@@ -1,0 +1,14 @@
+aFdDDDDDD_dD0d1:dc.b 'fD(D)D*D+D,D-D.D/D0D1D2D3EcEdEeEf',0
+		align $10
+		lea	(unk_49A14).l,a0
+		lea	($FFFFB800).w,a4
+		bsr.w	sub_407FC
+		lea	($FFFFB800).w,a1
+		lea	dword_3925C+$69D0(pc),a4
+		moveq	#0,d2
+		moveq	#7,d4
+
+loc_3621C:				; CODE XREF: ROM:00036218j
+		lea	dword_33FA0+$11E0(pc),a1
+		move.b	(a1,d0.w),$1C(a0)
+		rts

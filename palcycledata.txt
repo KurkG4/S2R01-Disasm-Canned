@@ -1,0 +1,360 @@
+PalCycle_Load:
+	bsr.w	PalCycle_SuperSonic
+	moveq	#0,d2
+	moveq	#0,d0
+	move.b	(Current_Zone).w,d0	; use level number as index into palette cycles
+	add.w	d0,d0			; (multiply by element size = 2 bytes)
+	move.w	PalCycle(pc,d0.w),d0	; load animated palettes offset index into d0
+	jmp	PalCycle(pc,d0.w)	; jump to PalCycle + offset index
+; ---------------------------------------------------------------------------
+	rts
+; End of function PalCycle_Load
+
+; ===========================================================================
+; off_19F4:
+PalCycle:
+	dc.w PalCycle_EHZ - PalCycle	; 0
+	dc.w PalCycle_Null - PalCycle	; 1
+	dc.w PalCycle_Level2 - PalCycle	; 2
+	dc.w PalCycle_Null - PalCycle	; 3
+	dc.w PalCycle_MTZ - PalCycle	; 4
+	dc.w PalCycle_MTZ - PalCycle	; 5
+	dc.w PalCycle_WFZ - PalCycle	; 6
+	dc.w PalCycle_HTZ - PalCycle	; 7
+	dc.w PalCycle_HPZ - PalCycle	; 8
+	dc.w PalCycle_Null - PalCycle	; 9
+	dc.w PalCycle_OOZ - PalCycle	; 10
+	dc.w PalCycle_MCZ - PalCycle	; 11
+	dc.w PalCycle_CNZ - PalCycle	; 12
+	dc.w PalCycle_CPZ - PalCycle	; 13
+	dc.w PalCycle_CPZ - PalCycle	; 14
+	dc.w PalCycle_ARZ - PalCycle	; 15
+	dc.w PalCycle_WFZ - PalCycle	; 16
+
+; ===========================================================================
+; return_1A16:
+PalCycle_Null:
+	rts
+; ===========================================================================
+
+PalCycle_EHZ:
+	lea	(word_1E7A).l,a0
+	subq.w	#1,($FFFFF634).w
+	bpl.s	return_1A44
+	move.w	#7,($FFFFF634).w
+	move.w	($FFFFF632).w,d0
+	addq.w	#1,($FFFFF632).w
+	andi.w	#3,d0
+	lsl.w	#3,d0
+	move.l	(a0,d0.w),(Normal_palette_line2+6).w
+	move.l	4(a0,d0.w),(Normal_palette_line2+$1C).w
+
+return_1A44:
+	rts
+; ===========================================================================
+
+PalCycle_Level2:
+	subq.w	#1,($FFFFF634).w
+	bpl.s	return_1A74
+	move.w	#2,($FFFFF634).w
+	lea	(word_1F1A).l,a0
+	move.w	($FFFFF632).w,d0
+	subq.w	#2,($FFFFF632).w
+	bcc.s	+
+	move.w	#6,($FFFFF632).w
++	lea	(Normal_palette_line4+6).w,a1
+	move.l	(a0,d0.w),(a1)+
+	move.l	4(a0,d0.w),(a1)
+
+return_1A74:
+	rts
+; ===========================================================================
+
+PalCycle_MTZ:
+	subq.w	#1,($FFFFF634).w
+	bpl.s	++
+	move.w	#$11,($FFFFF634).w
+	lea	(byte_1F2A).l,a0
+	move.w	($FFFFF632).w,d0
+	addq.w	#2,($FFFFF632).w
+	cmpi.w	#$C,($FFFFF632).w
+	bcs.s	+
+	move.w	#0,($FFFFF632).w
++	lea	(Normal_palette_line3+$A).w,a1
+	move.w	(a0,d0.w),(a1)
++
+	subq.w	#1,($FFFFF666).w
+	bpl.s	++
+	move.w	#2,($FFFFF666).w
+	lea	(word_1F36).l,a0
+	move.w	(Water_change_speed).w,d0
+	addq.w	#2,(Water_change_speed).w
+	cmpi.w	#6,(Water_change_speed).w
+	bcs.s	+
+	move.w	#0,(Water_change_speed).w
++	lea	(Normal_palette_line3+2).w,a1
+	move.l	(a0,d0.w),(a1)+
+	move.w	4(a0,d0.w),(a1)
++
+	subq.w	#1,($FFFFF668).w
+	bpl.s	++	; rts
+	move.w	#9,($FFFFF668).w
+	lea	(word_1F42).l,a0
+	move.w	($FFFFF654).w,d0
+	addq.w	#2,($FFFFF654).w
+	cmpi.w	#$14,($FFFFF654).w
+	bcs.s	+
+	move.w	#0,($FFFFF654).w
++	lea	(Normal_palette_line3+$1E).w,a1
+	move.w	(a0,d0.w),(a1)
++
+	rts
+; ===========================================================================
+
+PalCycle_HTZ:
+	lea	(word_1E9A).l,a0
+	subq.w	#1,($FFFFF634).w
+	bpl.s	+
+	move.w	#0,($FFFFF634).w
+	move.w	($FFFFF632).w,d0
+	addq.w	#1,($FFFFF632).w
+	andi.w	#$F,d0
+	move.b	PalCycle_HTZ_LavaDelayData(pc,d0.w),($FFFFF635).w
+	lsl.w	#3,d0
+	move.l	(a0,d0.w),(Normal_palette_line2+6).w
+	move.l	4(a0,d0.w),(Normal_palette_line2+$1C).w
++	rts
+; ===========================================================================
+; byte_1B40:
+PalCycle_HTZ_LavaDelayData: ; number of frames between changes of the lava palette
+	dc.b	$B, $B, $B, $A
+	dc.b	 8, $A, $B, $B
+	dc.b	$B, $B, $D, $F
+	dc.b	$D, $B, $B, $B
+; ===========================================================================
+
+PalCycle_HPZ:
+	subq.w	#1,($FFFFF634).w
+	bpl.s	++	; rts
+	move.w	#4,($FFFFF634).w
+	lea	(word_1F56).l,a0
+	move.w	($FFFFF632).w,d0
+	subq.w	#2,($FFFFF632).w
+	bcc.s	+
+	move.w	#6,($FFFFF632).w
++	lea	(Normal_palette_line4+$12).w,a1
+	move.l	(a0,d0.w),(a1)+
+	move.l	4(a0,d0.w),(a1)
+	lea	(word_1F66).l,a0
+	lea	(Underwater_palette_line4+$12).w,a1
+	move.l	(a0,d0.w),(a1)+
+	move.l	4(a0,d0.w),(a1)
++	rts
+; ===========================================================================
+
+PalCycle_OOZ:
+	subq.w	#1,($FFFFF634).w
+	bpl.s	+	; rts
+	move.w	#7,($FFFFF634).w
+	lea	(word_1F76).l,a0
+	move.w	($FFFFF632).w,d0
+	addq.w	#2,($FFFFF632).w
+	andi.w	#6,($FFFFF632).w
+	lea	(Normal_palette_line3+$14).w,a1
+	move.l	(a0,d0.w),(a1)+
+	move.l	4(a0,d0.w),(a1)
++	rts
+; ===========================================================================
+
+PalCycle_MCZ:
+	tst.b	(Current_Boss_ID).w
+	bne.s	+	; rts
+	subq.w	#1,($FFFFF634).w
+	bpl.s	+	; rts
+	move.w	#1,($FFFFF634).w
+	lea	(word_1F86).l,a0
+	move.w	($FFFFF632).w,d0
+	addq.w	#2,($FFFFF632).w
+	andi.w	#6,($FFFFF632).w
+	move.w	(a0,d0.w),(Normal_palette_line2+$16).w
++	rts
+; ===========================================================================
+
+PalCycle_CNZ:
+	subq.w	#1,($FFFFF634).w
+	bpl.w	+++
+	move.w	#7,($FFFFF634).w
+	lea	(word_1F8E).l,a0
+	move.w	($FFFFF632).w,d0
+	addq.w	#2,($FFFFF632).w
+	cmpi.w	#6,($FFFFF632).w
+	bcs.s	+
+	move.w	#0,($FFFFF632).w
++	lea	(a0,d0.w),a0
+	lea	(Normal_palette).w,a1
+	_move.w	0(a0),$4A(a1)
+	move.w	6(a0),$4C(a1)
+	move.w	$C(a0),$4E(a1)
+	move.w	$12(a0),$56(a1)
+	move.w	$18(a0),$58(a1)
+	move.w	$1E(a0),$5A(a1)
+	lea	(word_1FB2).l,a0
+	lea	(a0,d0.w),a0
+	_move.w	0(a0),$64(a1)
+	move.w	6(a0),$66(a1)
+	move.w	$C(a0),$68(a1)
+	lea	(word_1FC4).l,a0
+	move.w	(New_Water_Level).w,d0
+	addq.w	#2,(New_Water_Level).w
+	cmpi.w	#$24,(New_Water_Level).w
+	bcs.s	+
+	move.w	#0,(New_Water_Level).w
++	lea	(Normal_palette_line4+$12).w,a1
+	move.w	4(a0,d0.w),(a1)+
+	move.w	2(a0,d0.w),(a1)+
+	move.w	(a0,d0.w),(a1)+
++	tst.b	(Current_Boss_ID).w
+	beq.w	return_1D14
+	subq.w	#1,($FFFFF666).w
+	bpl.w	return_1D14
+	move.w	#3,($FFFFF666).w
+	move.w	(Water_change_speed).w,d0
+	addq.w	#2,(Water_change_speed).w
+	cmpi.w	#6,(Water_change_speed).w
+	bcs.s	+
+	move.w	#0,(Water_change_speed).w
++	lea	(word_1FEC).l,a0
+	lea	(a0,d0.w),a0
+	lea	(Normal_palette).w,a1
+	_move.w	0(a0),$24(a1)
+	move.w	6(a0),$26(a1)
+	move.w	$C(a0),$28(a1)
+	lea	(word_1FFE).l,a0
+	move.w	($FFFFF654).w,d0
+	addq.w	#2,($FFFFF654).w
+	cmpi.w	#$14,($FFFFF654).w
+	bcs.s	+
+	move.w	#0,($FFFFF654).w
++	move.w	(a0,d0.w),$3C(a1)
+	lea	(word_2012).l,a0
+	move.w	($FFFFF656).w,d0
+	addq.w	#2,($FFFFF656).w
+	andi.w	#$E,($FFFFF656).w
+	move.w	(a0,d0.w),$3E(a1)
+
+return_1D14:
+	rts
+; ===========================================================================
+
+PalCycle_CPZ:
+	subq.w	#1,($FFFFF634).w
+	bpl.s	return_1D86
+	move.w	#7,($FFFFF634).w
+	lea	(word_2022).l,a0
+	move.w	($FFFFF632).w,d0
+	addq.w	#6,($FFFFF632).w
+	cmpi.w	#$36,($FFFFF632).w
+	bcs.s	+
+	move.w	#0,($FFFFF632).w
++	lea	(Normal_palette_line4+$18).w,a1
+	move.l	(a0,d0.w),(a1)+
+	move.w	4(a0,d0.w),(a1)
+	lea	(word_2058).l,a0
+	move.w	(Water_change_speed).w,d0
+	addq.w	#2,(Water_change_speed).w
+	cmpi.w	#$2A,(Water_change_speed).w
+	bcs.s	+
+	move.w	#0,(Water_change_speed).w
++	move.w	(a0,d0.w),(Normal_palette_line4+$1E).w
+	lea	(word_2082).l,a0
+	move.w	($FFFFF654).w,d0
+	addq.w	#2,($FFFFF654).w
+	andi.w	#$1E,($FFFFF654).w
+	move.w	(a0,d0.w),(Normal_palette_line3+$1E).w
+
+return_1D86:
+	rts
+; ===========================================================================
+
+PalCycle_ARZ:
+	lea	(word_1E7A).l,a0
+	subq.w	#1,($FFFFF634).w
+	bpl.s	+	; rts
+	move.w	#5,($FFFFF634).w
+	move.w	($FFFFF632).w,d0
+	addq.w	#1,($FFFFF632).w
+	andi.w	#3,d0
+	lsl.w	#3,d0
+	lea	(Normal_palette_line3+4).w,a1
+	move.l	(a0,d0.w),(a1)+
+	move.l	4(a0,d0.w),(a1)
++	rts
+; ===========================================================================
+
+PalCycle_WFZ:
+	subq.w	#1,($FFFFF634).w
+	bpl.s	+++
+	move.w	#1,($FFFFF634).w
+	lea	(word_20A2).l,a0
+	tst.b	($FFFFF72E).w
+	beq.s	+
+	move.w	#5,($FFFFF634).w
+	lea	(word_20C2).l,a0
++	move.w	($FFFFF632).w,d0
+	addq.w	#8,($FFFFF632).w
+	cmpi.w	#$20,($FFFFF632).w
+	bcs.s	+
+	move.w	#0,($FFFFF632).w
++	lea	(Normal_palette_line3+$E).w,a1
+	move.l	(a0,d0.w),(a1)+
+	move.l	4(a0,d0.w),(a1)
++	subq.w	#1,($FFFFF666).w
+	bpl.s	++	; subq.w
+	move.w	#3,($FFFFF666).w
+	lea	(word_20E2).l,a0
+	move.w	(Water_change_speed).w,d0
+	addq.w	#2,(Water_change_speed).w
+	cmpi.w	#$44,(Water_change_speed).w
+	bcs.s	+	; move.w
+	move.w	#0,(Water_change_speed).w
++	move.w	(a0,d0.w),(Normal_palette_line3+$1C).w
++
+	subq.w	#1,($FFFFF668).w
+	bpl.s	++	; rts
+	move.w	#5,($FFFFF668).w
+	lea	(word_2126).l,a0
+	move.w	($FFFFF654).w,d0
+	addq.w	#2,($FFFFF654).w
+	cmpi.w	#$18,($FFFFF654).w
+	bcs.s	+
+	move.w	#0,($FFFFF654).w
++	move.w	(a0,d0.w),(Normal_palette_line3+$1E).w
++
+	rts
+; ===========================================================================
+
+; ----------------------------------------------------------------------------
+word_1E5A: BINCLUDE "art/palettes/Title Water.bin"; Title Screen Water palette (unused)
+word_1E7A: BINCLUDE "art/palettes/EHZ ARZ Water.bin"; Emerald Hill/Aquatic Ruin Rotating Water palette
+word_1E9A: BINCLUDE "art/palettes/Hill Top Lava.bin"; Hill Top Lava palette
+word_1F1A: BINCLUDE "art/palettes/Wood Conveyor.bin"; Wood Conveyor Belts palette
+byte_1F2A: BINCLUDE "art/palettes/MTZ Cycle 1.bin"; Metropolis Cycle #1 palette
+word_1F36: BINCLUDE "art/palettes/MTZ Cycle 2.bin"; Metropolis Cycle #2 palette
+word_1F42: BINCLUDE "art/palettes/MTZ Cycle 3.bin"; Metropolis Cycle #3 palette
+word_1F56: BINCLUDE "art/palettes/HPZ Water Cycle.bin"; Hidden Palace Water Cycle
+word_1F66: BINCLUDE "art/palettes/HPZ Underwater Cycle.bin"; Hidden Palace Underwater Cycle
+word_1F76: BINCLUDE "art/palettes/OOZ Oil.bin"; Oil Ocean Oil palette
+word_1F86: BINCLUDE "art/palettes/MCZ Lantern.bin"; Mystic Cave Lanterns
+word_1F8E: BINCLUDE "art/palettes/CNZ Cycle 1.bin"; Casino Night Cycles 1 & 2
+word_1FB2: BINCLUDE "art/palettes/CNZ Cycle 3.bin"; Casino Night Cycle 3
+word_1FC4: BINCLUDE "art/palettes/CNZ Cycle 4.bin"; Casino Night Cycle 4
+word_1FEC: BINCLUDE "art/palettes/unk_1FEC.bin"; Unknown palette
+word_1FFE: BINCLUDE "art/palettes/unk_1FFE.bin"; Unknown palette
+word_2012: BINCLUDE "art/palettes/unk_2012.bin"; Unknown palette
+word_2022: BINCLUDE "art/palettes/CPZ Cycle 1.bin"; Chemical Plant Cycle 1
+word_2058: BINCLUDE "art/palettes/CPZ Cycle 2.bin"; Chemical Plant Cycle 2
+word_2082: BINCLUDE "art/palettes/CPZ Cycle 3.bin"; Chemical Plant Cycle 3
+word_20A2: BINCLUDE "art/palettes/WFZ Fire Cycle.bin"; Wing Fortress Fire Cycle palette
+word_20C2: BINCLUDE "art/palettes/unk_20C2.bin"; Unknown palette
+word_20E2: BINCLUDE "art/palettes/CPZ Cycle 4.bin"; Chemical Plant Cycle 4
+word_2126: BINCLUDE "art/palettes/unk_2126.bin"; Unknown palette
