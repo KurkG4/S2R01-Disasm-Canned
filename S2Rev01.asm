@@ -3397,53 +3397,13 @@ locret_2244:				; DATA XREF: ROM:00061A68o
 ; ---------------------------------------------------------------------------
 
 loc_2246:				; DATA XREF: sub_213E+1Ao sub_213E+56o ...
-		eori.b	#$42,-(a2) ; 'B'
-; ---------------------------------------------------------------------------
-		dc.w $E44
-		dc.l $E660844, $A640E66, $E880666, $A860E88, $EAA0488
-		dc.l $AA80EAA
-		dc.b $E
-byte_2265:	dc.b $CC, 4, $AA	; DATA XREF: ROM:0005A270o
-dword_2268:	dc.l $ACA0ECC, $EEE04CC, $AEC0EEE, $EEE04EE, $AEE0EEE
-		dc.l $EEE06EE, $EEE0EEE, $EEE08EE, $EEE0EEE, $EEE06EE
-		dc.l $CEE0EEE, $EEE04EE, $AEE0EEE, $EEE02EE, $8EE0CEE
-		dc.l $EEE00EE
-		dc.b 6,	$EE
-		dc.w $AEE
-		dc.l $EEE00EE, $4EE08EE, $CEE00EE, $6EE0AEE, $EEE00EE
-		dc.l $8EE0CEE
-		dc.b $E, $EE
-word_22C6:	dc.w $E08		; DATA XREF: sub_213E+7Eo sub_213E+DCo
-		dc.l $E280E2A, $E4C0C2A, $E4A0E4C, $E6E0A4C, $E6C0E6E
-		dc.l $E8E0A6E, $E8E0E8E, $E8E0A6E, $E8E0E8E, $E8E0A6E
-		dc.l $E8E0E8E, $E8E0A6E, $E8E0E8E, $E8E0A6E, $E8E0E8E
-		dc.l $E8E0C8E, $EAE0EAE, $EAE0C8E
-		dcb.l 8,$EAE0EAE
-		dc.b $E, $AE
-byte_2332:	dc.b $E			; DATA XREF: ROM:00050D90o
-byte_2333:	dc.b $AE		; DATA XREF: ROM:0004FD7Co
-					; ROM:000502A8o ...
-		dc.b $E
-byte_2335:	dc.b $AE, $E, $AE	; DATA XREF: ROM:00058E8Co
-		dcb.l 3,$EAE0EAE
-		dc.b $E, $AE
-word_2346:	dc.w $A24		; DATA XREF: sub_213E+94o
-					; sub_213E:loc_2232o
-		dc.l $C440E46, $E680C46, $E660E68
-		dc.b $E
-byte_2355:	dc.b $8A, $E, $68	; DATA XREF: ROM:0005EA24o
-		dc.l $E880E8A, $EAC0E68, $E880E8A, $EAC0E88
-		dc.b $E, $AA, $E
-byte_236B:	dc.b $AC		; DATA XREF: ROM:000F468Co
-		dc.l $ECC0E88, $EAA0EAC, $ECC0EA8, $ECC0ECC, $ECC0EA8
-		dc.l $ECC0ECC, $ECC0EA8, $ECC0ECC, $ECC0ECA
-		dcb.l 9,$ECC0ECC
-		dc.l $ECC0ECA, $ECC0ECC, $ECC0EA8, $ECC0ECC
-		dc.b $E, $CC
-word_23C6:	dc.w $31FC		; CODE XREF: ROM:00003A50p
-					; ROM:00003C10p ...
-		dc.l $3FF626
-; ---------------------------------------------------------------------------
+		incbin	"art/palettes/Super Sonic transformation.bin"
+word_22C6:	
+                incbin	"art/palettes/CPZWater SS transformation.bin"
+word_2346: 
+                incbin	"art/palettes/ARZWater SS transformation.bin"
+Pal_FadeTo:
+	        move.w	#$3F,($FFFFF626).w
 		moveq	#0,d0
 		lea	($FFFFFB00).w,a0
 		move.b	($FFFFF626).w,d0
@@ -4559,7 +4519,7 @@ loc_3A44:				; CODE XREF: ROM:00003A46j
 		dbf	d1,loc_3A44
 		moveq	#3,d0
 		bsr.w	sub_2712
-		bsr.w	word_23C6
+		bsr.w	Pal_FadeTo
 		move	#$2700,sr
 		move.l	#$40000000,($C00004).l
 		lea	($74F6C).l,a0
@@ -4659,7 +4619,7 @@ loc_3BF4:				; CODE XREF: ROM:00003BF8j
 		move.w	($FFFFF60C).w,d0
 		ori.b	#$40,d0	; '@'
 		move.w	d0,($C00004).l
-		bsr.w	word_23C6
+		bsr.w	Pal_FadeTo
 
 loc_3C14:				; CODE XREF: ROM:00003C5Cj
 					; ROM:00003C6Cj
@@ -8175,7 +8135,7 @@ loc_78FE:				; DATA XREF: ROM:00069090o
 		move.w	($FFFFF60C).w,d0
 		ori.b	#$40,d0	; '@'
 		move.w	d0,($C00004).l
-		bsr.w	word_23C6
+		bsr.w	Pal_FadeTo
 
 loc_7960:				; CODE XREF: ROM:000079A8j
 					; ROM:000079AEj
@@ -8394,7 +8354,7 @@ loc_7E74:				; CODE XREF: ROM:00007E6Aj
 		move.w	($FFFFF60C).w,d0
 		ori.b	#$40,d0	; '@'
 		move.w	d0,($C00004).l
-		bsr.w	word_23C6
+		bsr.w	Pal_FadeTo
 
 loc_7EB4:				; CODE XREF: ROM:00007EDCj
 					; ROM:00007EEAj
@@ -8925,7 +8885,7 @@ loc_8D6A:				; CODE XREF: ROM:00008D6Ej
 		move.w	($FFFFF60C).w,d0
 		ori.b	#$40,d0	; '@'
 		move.w	d0,($C00004).l
-		bsr.w	word_23C6
+		bsr.w	Pal_FadeTo
 
 loc_8DA8:				; CODE XREF: ROM:00008DDEj
 					; ROM:00008DF0j
@@ -9169,7 +9129,7 @@ loc_9000:				; DATA XREF: ROM:000624E0o
 		move.w	($FFFFF60C).w,d0
 		ori.b	#$40,d0	; '@'
 		move.w	d0,($C00004).l
-		bsr.w	word_23C6
+		bsr.w	Pal_FadeTo
 
 loc_9060:				; CODE XREF: ROM:loc_9096j
 		move.b	#$16,($FFFFF62A).w
@@ -9509,7 +9469,7 @@ loc_9366:				; CODE XREF: ROM:0000936Aj
 		move.w	($FFFFF60C).w,d0
 		ori.b	#$40,d0	; '@'
 		move.w	d0,($C00004).l
-		bsr.w	word_23C6
+		bsr.w	Pal_FadeTo
 
 loc_93AC:				; CODE XREF: ROM:000093ECj
 		move.b	#$16,($FFFFF62A).w
@@ -10319,7 +10279,7 @@ loc_9FCE:				; DATA XREF: ROM:000865CCo
 loc_9FE6:				; CODE XREF: sub_9EF4+134j
 		bsr.w	sub_BF92
 		bsr.w	sub_B262
-		bsr.w	word_23C6
+		bsr.w	Pal_FadeTo
 		move.w	#$18E,d0
 		btst	#6,($FFFFFFF8).w
 		beq.s	loc_A002
@@ -11301,7 +11261,7 @@ off_C054:	dc.l off_29A0		; DATA XREF: sub_BFBC+62o
 		dc.l loc_71E+2
 		dc.l loc_3FFE+1
 		dc.l loc_71E+2
-		dc.l dword_2268+$18
+		dc.l loc_2246+$3A
 		dc.l $FF000800,	$1E80, $FF000800, $2A80, $FF000800, $3FFF
 		dc.l $FF000800,	$3FFF, $720, $3FFF, $720, $2800, $720
 		dc.l $3280, $720, $3FFF, $720, $3FFF, $720, $3FFF, $720
@@ -46481,7 +46441,7 @@ word_4EEFE:	dc.w $1666		; DATA XREF: sub_2C2B8+12o
 		dc.l off_3045
 		dc.l $42430404,	$35502003, $20225002, $4054000,	$3000000
 		dc.l $2000000, 0
-		dc.l byte_2333
+		dc.l word_22C6+$6D
 		dc.l $42343040,	$50404050, $20505020, $30202030, $40303044
 		dc.l $3400450, $20505023, $2022344, $53423050, $20504020
 		dc.l $30225330,	$40352240, $50403050, $25044204, $34035053
@@ -46569,7 +46529,7 @@ byte_50205:	dc.b $BD, $19, 0	; DATA XREF: ROM:00040060o
 		dc.l $222222, $22, 0
 		dc.l byte_22
 		dc.l loc_22C+7
-		dc.l byte_2333
+		dc.l word_22C6+$6D
 		dc.l dword_232A8+$8A
 		dc.l $232222, $2222222,	2, $22,	$222
 		dcb.l 2,$2222
@@ -46740,7 +46700,7 @@ dword_50704:	dc.l 0			; DATA XREF: ROM:00040064o
 		dcb.l $D,0
 		dc.l 3,	$33443,	$2222222, $2222, 2, 0
 		dc.l byte_22
-		dc.l byte_2332
+		dc.l word_22C6+$6C
 		dc.l $223342, $2234432,	$22223332, $22222222, $2222, $22
 		dc.l $3332, $33332, $333333, $3322222, $33222002
 		dcb.l $D,0
@@ -48628,7 +48588,7 @@ a3333323222:	dc.b '33"#33""32""3"""2" 22',0
 		dc.l $68900C00,	$78900C00, $8900CD00, $9000CD00, $CD000
 		dc.l $CDD0000, $DDDD0000, $DD100000, $11000000
 		dcb.l $B,0
-		dc.l byte_2333
+		dc.l word_22C6+$6D
 		dc.l byte_22
 		dc.l 2,	$22202,	$222223, $222233, $332233, $3333999, $3D3D898
 		dc.l $1D3D888, $1DDD882, $1DDD983, $1DD8989, $198891, $19DD01
@@ -48825,7 +48785,7 @@ a33333d33333333:dc.b '"33333D33333333334C33ET34Ve34Ve33ET334C3333333333333333333
 		dc.l $22222, $2222, $222
 		dcb.l 7,0
 		dc.l loc_222
-		dc.l byte_2333
+		dc.l word_22C6+$6D
 		dc.l $223333, $2333333,	$23333333
 		dcb.l 2,$33333333
 		dc.l $35555333,	$55555533, $55535555, $53333335, $33333335
@@ -48862,7 +48822,7 @@ a333333333333_0:dc.b '""""333333333333333333ET34Ve35ff35ff34Ve33ET33333333S333S3
 		dc.l $22222, $2222, $222
 		dcb.l 7,0
 		dc.l loc_222
-		dc.l byte_2335
+		dc.l word_22C6+$6F
 		dc.l $223555, $2355555,	$25553333, $35333333
 		dcb.l $D,$33333333
 		dc.l $33233333,	$22323232, $22232223
@@ -48897,7 +48857,7 @@ a3333us33uu33uu:dc.b '""""3333US33UU33UU33UUUT5UVe5Uff55ff54Ve53ET53335333U333S3
 		dc.l $22222, $2222, $222
 		dcb.l 7,0
 		dc.l loc_222
-		dc.l byte_2333
+		dc.l word_22C6+$6D
 		dc.l $223333, $2333333,	$23333333
 		dcb.l $E,$33333333
 		dc.l $33233333,	$22323232, $22232223
@@ -48931,7 +48891,7 @@ a3uuu335u333u33:dc.b '""""3UUU335U333U333533EU34Ve35ff35ff34Ve33UT35S33U33US33S3
 		dc.l $22222, $2222, $222
 		dcb.l 7,0
 		dc.l loc_222
-		dc.l byte_2333
+		dc.l word_22C6+$6D
 		dc.l $223333, $2333333,	$23333333
 		dcb.l $E,$33333333
 		dc.l $33233333,	$22323232, $22232223
@@ -48963,7 +48923,7 @@ a333333333333_1:dc.b '""""333333333333333333ET34Ve35ff35ff34Ve33ET33333335S3UU3U
 		dc.l $22222, $2222, $222
 		dcb.l 7,0
 		dc.l loc_222
-		dc.l byte_2333
+		dc.l word_22C6+$6D
 		dc.l $223333, $2333333,	$23333333
 		dcb.l $E,$33333333
 		dc.l $33233333,	$22323232, $22232223
@@ -49189,7 +49149,7 @@ a333333333333_2:dc.b '""""333333333333333333ET34Ve35ff35ff34Ve33ET33333333S33333
 		dcb.l $C,0
 		dc.l byte_33
 		dc.l loc_32E+5
-		dc.l byte_2265
+		dc.l loc_2246+$1F
 		dc.l byte_22663
 		dc.l loc_D5662+1
 		dc.l $9BDDB613,	$BDDB1113, $D0DB1185, $DBA1BB, $DBAAA1
@@ -50373,7 +50333,7 @@ aD333_0:	dc.b 'D333',0
 		dc.l $22000000
 		dcb.l 2,$30000000
 		dcb.l 2,0
-		dc.l byte_2355
+		dc.l loc_2246+$10F
 		dc.l byte_23
 		dc.l 2
 		dcb.l 3,0
@@ -83141,7 +83101,7 @@ byte_F423F:	dc.b $75		; DATA XREF: sub_40D42-30o
 		dc.l $98A0A29D,	$8A5B2E16, $17333E2C, $333E2E2F, $40596C64
 		dc.l $6D808589,	$81635672, $8B927949, $3C556053, $5351392D
 		dc.l $54879898,	$9CB1E2FC, $E3B8897D, $7B746122, 0
-		dc.l byte_236B
+		dc.l loc_2246+$125
 		dc.l $A8A38F90,	$90B1C2B6, $B6927B92, $95956D1F, $1F526A6D
 		dc.l $44203C59,	$5F5B4E69, $A6D2EAF7, $F3E6D3D0, $DDD4B697
 		dc.l $8F9C8A5B,	$4E649BDD, $FEFEECE7, $EEDBC49D, $82A2DCFE
