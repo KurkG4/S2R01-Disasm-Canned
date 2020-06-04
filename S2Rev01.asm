@@ -449,32 +449,22 @@ loc_400:				; DATA XREF: ROM:00027CDCo
 		jmp	loc_8BD4
 ; ---------------------------------------------------------------------------
 
-loc_408:				; DATA XREF: ROM:off_78o
+Vblank:				; DATA XREF: ROM:off_78o
 		movem.l	d0-a6,-(sp)
 		tst.b	($FFFFF62A).w
-
-loc_410:				; DATA XREF: ROM:0004303Co
-					; ROM:00043F5Co
 		beq.w	loc_484
 
 loc_414:				; CODE XREF: ROM:0000041Ej
 		move.w	($C00004).l,d0
 		andi.w	#8,d0
-		beq.s	loc_414
-
-loc_420:				; DATA XREF: sub_BFBC+A4o
+		beq.s	loc_414				; DATA XREF: sub_BFBC+A4o
 		move.l	#$40000010,($C00004).l
 		move.l	($FFFFF616).w,($C00000).l
-
-loc_432:				; DATA XREF: ROM:00058010o
-					; ROM:000596D0o
 		btst	#6,($FFFFFFF8).w
 		beq.s	loc_442
 		move.w	#$700,d0
-
 loc_43E:				; CODE XREF: ROM:loc_43Ej
 		dbf	d0,loc_43E
-
 loc_442:				; CODE XREF: ROM:00000438j
 					; DATA XREF: ROM:off_20C2o ...
 		move.b	($FFFFF62A).w,d0
@@ -1463,6 +1453,7 @@ loc_F0A:				; DATA XREF: ROM:0006806Co
 ; End of function sub_E98
 
 ; ---------------------------------------------------------------------------
+Hblank:
 		tst.w	($FFFFF644).w
 		beq.w	locret_FFE
 		tst.w	($FFFFFFD8).w
