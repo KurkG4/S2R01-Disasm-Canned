@@ -23,7 +23,7 @@
 align macro
 	cnop 0,\1
 	endm
-
+                include lang.asm
 ; Segment type:	Pure code
 ; segment "ROM"
 		dc.l $FFFFFE00,	$206
