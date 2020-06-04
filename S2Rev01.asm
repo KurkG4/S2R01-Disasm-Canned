@@ -3939,94 +3939,170 @@ loc_277A:				; CODE XREF: sub_2764+18j
 ; End of function sub_2764
 
 ; ---------------------------------------------------------------------------
-palptr	macro	ptr,loc,size
-	dc.l ptr	; Pointer to palette
-	dc.w loc&$FFFF	; Location in ram to load palette into
-	dc.w size	; Size of palette in (bytes / 4)
-	endm
-
-off_2782:
-	palptr Pal_SEGA,  $FFFFFB00, $1F
-	palptr Pal_Title, $FFFFFB20, 7
-	palptr Pal_UNK1,  $FFFFFB00, $1F
-	palptr Pal_BGND,  $FFFFFB00, $F
-	palptr Pal_EHZ,   $FFFFFB20, $17
-	palptr Pal_EHZ,   $FFFFFB20, $17
-	palptr Pal_WZ,    $FFFFFB20, $17
-	palptr Pal_EHZ,   $FFFFFB20, $17
-	palptr Pal_MTZ,   $FFFFFB20, $17
-	palptr Pal_MTZ,   $FFFFFB20, $17
-	palptr Pal_WFZ,   $FFFFFB20, $17
-	palptr Pal_HTZ,   $FFFFFB20, $17
-	palptr Pal_HPZ,   $FFFFFB20, $17
-	palptr Pal_EHZ,   $FFFFFB20, $17
-	palptr Pal_OOZ,   $FFFFFB20, $17
-	palptr Pal_MCZ,   $FFFFFB20, $17
-	palptr Pal_CNZ,   $FFFFFB20, $17
-	palptr Pal_CPZ,   $FFFFFB20, $17
-	palptr Pal_DEZ,   $FFFFFB20, $17
-	palptr Pal_ARZ,   $FFFFFB20, $17
-	palptr Pal_SCZ,   $FFFFFB20, $17
-	palptr Pal_HPZ_U, $FFFFFB00, $1F
-	palptr Pal_CPZ_U, $FFFFFB00, $1F
-	palptr Pal_ARZ_U, $FFFFFB00, $1F
-	palptr Pal_SS,    $FFFFFB00, $17
-	palptr Pal_UNK2,  $FFFFFB20, 7
-	palptr Pal_UNK3,  $FFFFFB20, 7
-	palptr Pal_SS1,   $FFFFFB60, 7
-	palptr Pal_SS2,   $FFFFFB60, 7
-	palptr Pal_SS3,   $FFFFFB60, 7
-	palptr Pal_SS4,   $FFFFFB60, 7
-	palptr Pal_SS5,   $FFFFFB60, 7
-	palptr Pal_SS6,   $FFFFFB60, 7
-	palptr Pal_SS7,   $FFFFFB60, 7
-	palptr Pal_UNK4,  $FFFFFB60, 7
-	palptr Pal_UNK5,  $FFFFFB60, 7
-	palptr Pal_UNK6,  $FFFFFB60, 7
-	palptr Pal_OOZ_B, $FFFFFB20, 7
-	palptr Pal_Menu,  $FFFFFB00, $1F
-	palptr Pal_UNK7,  $FFFFFB00, $1F
-
-; ----------------------------------------------------------------------------
-Pal_SEGA:  incbin "art/palettes/Sega screen.bin" ; SEGA screen palette (Sonic and initial background)
-Pal_Title: incbin "art/palettes/Title screen.bin" ; Title screen Palette
-Pal_UNK1:  incbin "art/palettes/Unknown 1.bin" ; Unknown palette 1 (leftover S1 level select palette?)
-Pal_BGND:  incbin "art/palettes/SonicAndTails.bin" ; "Sonic and Miles" background palette (also usually the primary palette line)
-Pal_EHZ:   incbin "art/palettes/EHZ.bin" ; Emerald Hill Zone palette
-Pal_WZ:    incbin "art/palettes/Wood Zone.bin" ; Wood Zone palette
-Pal_MTZ:   incbin "art/palettes/MTZ.bin" ; Metropolis Zone palette
-Pal_WFZ:   incbin "art/palettes/WFZ.bin" ; Wing Fortress Zone palette
-Pal_HTZ:   incbin "art/palettes/HTZ.bin" ; Hill Top Zone palette
-Pal_HPZ:   incbin "art/palettes/HPZ.bin" ; Hidden Palace Zone palette
-Pal_HPZ_U: incbin "art/palettes/HPZ underwater.bin" ; Hidden Palace Zone underwater palette
-Pal_OOZ:   incbin "art/palettes/OOZ.bin" ; Oil Ocean Zone palette
-Pal_MCZ:   incbin "art/palettes/MCZ.bin" ; Mystic Cave Zone palette
-Pal_CNZ:   incbin "art/palettes/CNZ.bin" ; Casino Night Zone palette
-Pal_CPZ:   incbin "art/palettes/CPZ.bin" ; Chemical Plant Zone palette
-Pal_CPZ_U: incbin "art/palettes/CPZ underwater.bin" ; Chemical Plant Zone underwater palette
-Pal_DEZ:   incbin "art/palettes/DEZ.bin" ; Death Egg Zone palette
-Pal_ARZ:   incbin "art/palettes/ARZ.bin" ; Aquatic Ruin Zone palette
-Pal_ARZ_U: incbin "art/palettes/ARZ underwater.bin" ; Aquatic Ruin Zone underwater palette
-Pal_SCZ:   incbin "art/palettes/SCZ.bin" ; Sky Chase Zone palette
-Pal_UNK2:  incbin "art/palettes/Unknown 2.bin" ; Unknown palette 2
-Pal_UNK3:  incbin "art/palettes/Unknown 3.bin" ; Unknown palette 3
-Pal_OOZ_B: incbin "art/palettes/OOZ Boss.bin" ; Oil Ocean Zone boss palette
-Pal_Menu:  incbin "art/palettes/Menu.bin" ; Menu palette
-Pal_SS:    incbin "art/palettes/Special Stage Main.bin" ; Special Stage palette
-Pal_SS1:   incbin "art/palettes/Special Stage 1.bin" ; Special Stage 1 palette
-Pal_SS2:   incbin "art/palettes/Special Stage 2.bin" ; Special Stage 2 palette
-Pal_SS3:   incbin "art/palettes/Special Stage 3.bin" ; Special Stage 3 palette
-Pal_SS4:   incbin "art/palettes/Special Stage 4.bin" ; Special Stage 4 palette
-Pal_SS5:   incbin "art/palettes/Special Stage 5.bin" ; Special Stage 5 palette
-Pal_SS6:   incbin "art/palettes/Special Stage 6.bin" ; Special Stage 6 palette
-Pal_SS7:   incbin "art/palettes/Special Stage 7.bin" ; Special Stage 7 palette
-Pal_UNK4:  incbin "art/palettes/Special Stage 1 2p.bin" ; Special Stage 1 2p palette
-Pal_UNK5:  incbin "art/palettes/Special Stage 2 2p.bin" ; Special Stage 2 2p palette
-Pal_UNK6:  incbin "art/palettes/Special Stage 3 2p.bin" ; Special Stage 3 2p palette
-Pal_UNK7:  incbin "art/palettes/Special Stage Results Screen.bin" ; Special Stage Results Screen palette
-; ===========================================================================
-	nop
-
+off_2782: dc.l word_28C2		; DATA XREF: sub_2712o	sub_272Eo ...
+		dc.w $FB00
+		dc.l $1F0000, $2942FB20, $70000, $2962FB00, $1F0000, $29E2FB00
+		dc.l $F0000, $2A22FB20,	$170000, $2A22FB20, $170000, $2A82FB20
+		dc.l $170000, $2A22FB20, $170000, $2AE2FB20, $170000, $2AE2FB20
+		dc.l $170000, $2B42FB20, $170000, $2BA2FB20, $170000, $2C02FB20
+		dc.l $170000, $2A22FB20, $170000, $2CE2FB20, $170000, $2D42FB20
+		dc.l $170000, $2DA2FB20, $170000, $2E02FB20, $170000, $2EE2FB20
+		dc.l $170000, $2F42FB20, $170000, $3022FB20, $170000, $2C62FB00
+		dc.l $1F0000, $2E62FB00, $1F0000, $2FA2FB00, $1F0000, $3162FB00
+		dc.l $170000, $3082FB20, $70000, $30A2FB20, $70000, $31C2FB60
+		dc.l $70000, $31E2FB60,	$70000,	$3202FB60, $70000, $3222FB60
+		dc.l $70000, $3242FB60,	$70000,	$3262FB60, $70000, $3282FB60
+		dc.l $70000, $32A2FB60,	$70000,	$32C2FB60, $70000, $32E2FB60
+		dc.l $70000, $30C2FB20,	$70000,	$30E2FB00, $1F0000, $3302FB00
+		dc.b 0,	$1F
+word_28C2:	dc.w $EEE		; DATA XREF: ROM:off_2782o
+dword_28C4:	dcb.l 8,$EEE0EEE
+		dc.l $EEC0EC8, $EA60E84, $E620E60, $E600EEE, $EEC0EC8
+		dc.l $EA60E84, $E620E60, $E600000, $A22, $C420E44, $E660EEE
+		dc.l $AAA0888, $44408AE, $46A000E, $800AE, $8E0000, $60
+		dc.l $8000A0, $440EEE, $AAA0888, $4440666, $48E00EE, $8806AE
+		dc.l $E20, $222, $A660EA8, $ECA0EEE, $AE008E, $6C08CE
+		dc.l $EEC004A, $60000
+		dcb.l 8,0
+		dc.l $EEE0C00, $240246,	$468068A, $8AC0ACE, $8AC068A, $4680ACE
+		dc.l $ACE0246, $240000
+off_29A0:	dc.l loc_BFE+2		; DATA XREF: sub_BFBC:off_C054o
+		dc.l $240246, $468068A,	$8AC0ACE, $8AC068A, $4680024, $24608AC
+		dc.l $68A0000, $EE0C00,	$240246, $468068A, $8AC0ACE, $8AC068A
+		dc.l $4680ACE, $ACE0468, $2460002, 0
+		dc.l loc_A1E+4
+		dc.l $C420E44, $E660EEE, $AAA0888, $44408AE, $46A000E
+		dc.l $800AE, $8E0C20, $E62, $A860E86, $440EEE, $AAA0888
+		dc.l $4440666, $E8600EE, $880EA8, $ECA0C20, $E62, $A860E86
+		dc.l $440EEE, $AAA0888,	$4440666, $E8600EE, $880EA8, $ECA0C20
+		dc.l $20800, $260048, $6C008E, $AE04A0,	$400060, $8000A0
+		dc.l $6A400C6, $E80C20,	$8000000, $E860ECA, $20A0EEE, $E6E0C4C
+		dc.l $A2A0EEC, $80064E,	$42C00A0, $E80002, $E64, $A680E86
+		dc.l $440EEE, $AAA0888,	$4440666, $EE, $880EA8,	$ECA0E88
+		dc.l $2040026
+		dc.b 2,	$48, 4
+byte_2AAB:	dc.b $6A		; DATA XREF: ROM:00052E58o
+		dc.l $48C06CE, $20000, $2200040, $600080, $2A006E0, $A0C0E88
+		dc.l $2220424, $248046A, $48C06CE, $4020200, $6460060
+		dc.l $400000, $2200240,	$4600000, $262,	$2A208E4, $440EEE
+		dc.l $AAA0888, $4440666, $22200EE, $88000E, 0
+dword_2B04:	dc.l $8660ECC, $4220048, $80ACE, $40008, $8620642, $4200006
+		dc.l $6E000E, $A00000, $CE2, $8C00480, $2600EEE, $4AC006A
+		dc.l $260048, $40040, $20004E, $E0000, $60, $8000A0, $440EEE
+		dc.l $AAA0888, $4440666, $800EE, $88000E, $E44,	$E64, $E860EA8
+		dc.l $ECA0EEE, $4EE02AE, $6E002C, $4440888, $AAA00E0, $EC00E44
+		dc.l $244, $268048A, $4AC0EEE, $CAA0A88, $8660022, $20026
+		dc.l $2A004E, $C0E42, $200, $E006E, $440EEE, $AAA0888
+		dc.l $4440666, $E8600EE, $8800AE, $EE0E42, $2000E86, $6400860
+		dc.l $A820CA4, $EC60024, $400062, $8200A4, $6C00C4, $E80E42
+		dc.l $40E64, $E860EA8, $280EEC,	$E6E0C4C, $A2A0ECA, $80026E
+		dc.l $4C00A4, $E80800, $242, $4640686, $440EEE,	$AAA0888
+		dc.l $44408EA, $46A00EE, $880044, $E0200, $4020604, $8060808
+		dc.l $6020620, $2020640, $260068, $28A06CE, $240046, $4AC0200
+		dc.l $200040, $600080, $C004E6,	$EEE0602, $E440E82, $EA80EEE
+		dc.l $240046, $4AC0000,	$4020A20, $A400C60, $E800ECA, $CA80A84
+		dc.l $8600AA8, $8840428, $42408AA, $88A0000, $2020242
+		dc.l $4640686, $4420EAA, $D880D66, $A220666, $46A06CA
+		dc.l $4840EEE, $E0400, $A200C22, $E260E28, $A220A40, $C220A60
+		dc.l $E280E4A, $E6A0CAA, $E240E26, $E8A0400, $4400660
+		dc.l $88008A0, $8C00AE4, $EEA0A60, $E840EA6, $EC60EE6
+		dc.l $E6A0E8A, $CAA006E, $40A, $82E0C8E, $440EEE, $AAA0888
+		dc.l $4440666, $48E00EE, $8806AE, $8CE006E, $2000402, $6020804
+		dc.l $8240846, $A680C8A, $EEE0400, $6020804, $8060400
+		dc.l $EE006E, $2020024,	$260046, $68028A, $4AC06CE, $CEE0020
+		dc.l $400060, $A006E6, $E0E0002, $A22, $C420E64, $440EEE
+		dc.l $AAA0888, $4440666, $E00EE, $880EA8, $ECA0000, $20006C
+		dc.l $4A0026, $2000CE6,	$6C40482, $A600060, $6EE04CE, $AA0C8E
+		dc.l $A6C0000, $8E006C,	$4A0026, $40200C0, $600200, $6040826
+		dc.l $A480EE0, $A600000, $EE0000, $A, $2E006C, $440EEE
+		dc.l $AAA0888, $4440666, $600EE, $880EA8, $C220000, $E20
+		dc.l $E620EC8, $E006E, $EE0A20,	$E0EEE,	$EC00C4, $80026E
+		dc.l $80000, $C06, $C0A0C2E, $68008A, $4AC02CE,	$EC00AE
+		dc.l $6E0EEE, $220A20, $E0002, 8, $2C006E, $440EEE, $AAA0888
+		dc.l $4440666, $EE, $880EA8, 2,	6, $440086, $AA00CC, $CE008E
+		dc.l $4E002C, $2A0008, $40EEE, $E0002, $222, $4440888
+		dc.l $AAA0EEE, $E400C00, $80000CE, $28E0E40, $C000C00
+		dc.l $E00802, $8020E08,	$E280E2A, $E4C0E8E, $E4E0E2E, $E0A0E8E
+		dc.l $C4E080E, $80E088E, $86E0802, $8020E2C, $E2C0E4E
+		dc.l $A0A0E8E, $E4E0E2E, $E0A0E0C, $C080A8E, $A2E0A06
+		dc.l $A060802
+		dcb.l 2,$8020804
+		dc.l $808082A, $82C080C, $80C082A, $8280806, $8040C4C
+		dc.l $80C0802, $8020C08, $E0A0E2E, $E4E0E8E, $E4E0E0C
+		dc.l $C080A6E, $A2E0E4E, $E4E0E4E, $A860AEE, $26, $4E006E
+		dc.l $440EEE, $AAA0888,	$4440666, $2A00EE, $88002E, 0
+		dc.l 2,	$240046, $68008A, $CE0ECA, $EA60E80, $E640E40
+		dc.l $C000EEE, $E0000, $642, $8640A86, $CA80ECA, $E400C00
+		dc.l $80000CE, $28E0E40, $C000C00, $E00020, $A22, $E420E86
+		dc.l $440EEE, $AAA0888,	$4440666, $600EE, $88002E, $2A0020
+		dc.l $220A86, $E860EA8,	$ECA06EE, $6CC02AA, $440066, $E800C4
+		dc.l $800040, $20, $206E2, $2C0000E, $802AE, $8C006A, $240048
+		dc.l $E800C4, $800040, $8000020, $A24, $C440E46, $E680ECC
+		dc.l $CA80A86, $6420CAE, $86A060E, $408068C, $46A0020
+		dc.l $2000E22, $E420E86, $4440EEE, $EAA0C88, $8440A66
+		dc.l $80604EE, $488082E, $A2A0020, $220CC8, $8840A84, $CA60CE8
+		dc.l $AC808A4, $2400662, $4E802C4, $800040
+byte_3000:	dc.b 0,	$60		; DATA XREF: ROM:0004FC7Co
+					; ROM:0004FCC0o ...
+word_3002:	dc.w $20		; DATA XREF: ROM:00058014o
+		dc.l dword_206E8
+		dc.l $2C0060E, $408086C, $64A0428, $40206, $4E802C4, $800040
+		dc.l $8000000, $60, $8000A0, $440EEE, $AAA0888,	$4440666
+dword_3038:	dc.l $48E00EE, $8806AE,	$E44 ; DATA XREF: ROM:off_3A688o
+		dc.b 0
+off_3045:	dc.l dword_E5F1C+$4F2	; DATA XREF: ROM:0004FD5Co
+		dc.b $86, $E, $A8
+		dc.l $ECA0EEE, $4EE02AE, $6E002C, $4440888, $AAA00E0, $EC00E44
+		dc.l $244, $268048A, $4AC0EEE, $CAA0A88, $8660022, $20026
+		dc.l $2A004E, $C0002, $6C, $8E00CE, $440EEE, $AAA0888
+		dc.l $4440666, $600EE, $88002E,	$2A0000, $6E, $AE00EE
+		dc.l $440EEE, $AAA0888,	$4440666, $EC000EE, $880A0E, $E0006E
+		dc.l $E80, $EC00EEA, $440EEE, $AAA0888,	$4440666, $48E00EE
+		dc.l $8806AE, $8CE0C20,	$A22, $C420E44,	$E660EEE, $AAA0888
+		dc.l $44408AE, $46A000E, $800AE, $8E0C20, $E62,	$A860E86
+		dc.l $440EEE, $AAA0888,	$4440666, $E8600EE, $880EA8, $ECA0C20
+		dcb.l 7,0
+		dc.l loc_C1E+2
+		dc.l loc_600
+		dc.l $C200A00, $EEE00EE
+		dcb.l 2,0
+		dc.l loc_E5E+2
+		dc.l $800000E, $80000, $EE00E8,	$E400C0, $6A004A0, $6400862
+		dc.l $A840CA6, $C8A0CAE, $6EE0EEE, $EEE0400, $600, $A220C42
+		dc.l $E640E86, $EA80EEE, $AAA0888, $444000E, $808AE, $46A0400
+		dc.l $26, $4A006C, $8E00AE, $CE0EEE, $ECA0CA8, $864000E
+		dc.l $808AE, $46A0000, $CA002AE, $A80028C, $26A0860, $EE0888
+		dc.l $4440EEE, $EE0088,	$440004, $EEE0000, $80C008E, $60A006C
+		dc.l $4A0408, $EE0888, $4440EEE, $EE0088, $440004, $EEE0000
+		dc.l $4C02AE, $2A028C, $26A0028, $EE0888, $4440EEE, $EE0088
+		dc.l $440004
+byte_3220:	dc.b $E			; DATA XREF: ROM:0004C5F4o
+					; ROM:0004C7ECo ...
+byte_3221:	dc.b $EE		; DATA XREF: ROM:00051698o
+		dcb.b 2,0
+		dc.l $ACC02AE, $8AA028C, $26A0688, $EE0888, $4440EEE, $EE0088
+		dc.l $440004, $EEE0000,	$8E04E0, $6C02A0, $80004A, $EE0888
+		dc.l $4440EEE, $EE0088,	$440004, $EEE0000, $A602AE, $84028C
+		dc.l $26A0064, $EE0888,	$4440EEE, $EE0088, $440004, $EEE0000
+		dc.l $8880CAA, $6660A88, $8660444, $EE0888, $4440EEE, $EE0088
+		dc.l $440004, $EEE0000,	$C080E2E, $A060C2C, $A2A0804, $EE0888
+		dc.l $4440EEE, $EE0088,	$440004, $EEE0000, $AC02AE, $6A028C
+		dc.l $26A0048, $EE0888,	$4440EEE, $EE0088, $440004, $EEE0000
+		dc.l $8C00EE2, $6A00CC2, $AA20680, $EE0888, $4440EEE, $EE0088
+		dc.l $440004, $EEE0EEE,	$EEE0000, 0
+		dc.l loc_E0A+4
+		dc.l $E0E0E0E, 0
+dword_3318:	dc.l $E, $80000, $EEE, $4EE0000, 0 ; DATA XREF:	ROM:0005028Co
+					; ROM:000504E8o ...
+		dc.l loc_EEC+2
+dword_3330:	dc.l $CCC0AAA, $8880000, $EC0, $EA00000, $EEE, $EEE0000
+					; DATA XREF: ROM:0004C5CCo
+					; ROM:0004C5F8o ...
+		dc.l $E800EC0, $EE80EEE, $EA00C6, $820A6E, $E000A, 0
+		dc.l loc_EEC+2
+dword_3364:	dc.l $EEE0000, $8060C08, $E6E0EEE, $AEE00CE, $8A0EAE, $E6E0E4E
+		dc.l 0
+		dc.l byte_4E71
 
 ; =============== S U B	R O U T	I N E =======================================
 
