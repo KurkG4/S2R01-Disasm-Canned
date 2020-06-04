@@ -1,8 +1,6 @@
 
 SN 68k version 2.53
 
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(265) : Error : Illegal addressing mode
- move.l (a6),usp
-Errors during pass 1 - pass 2 aborted
+
 Assembly completed.
-1 error(s) from 85925 lines in 0.6 seconds
+0 error(s) from 85928 lines in 0.12 seconds

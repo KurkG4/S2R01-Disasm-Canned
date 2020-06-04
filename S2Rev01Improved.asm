@@ -23,6 +23,7 @@
 align macro
 	cnop 0,\1
 	endm
+
 ; Segment type:	Pure code
 ; segment "ROM"
 		dc.l $FFFFFE00,	$206
@@ -262,7 +263,7 @@ loc_234:				; CODE XREF: ROM:0000022Aj
 		move.w	(a4),d0
 		moveq	#0,d0
 		movea.l	d0,a6
-		move.l	(a6),usp
+		move.l    A6, USP  
 		moveq	#$17,d1
 
 loc_23E:				; CODE XREF: ROM:00000244j
@@ -5181,7 +5182,7 @@ loc_4136:				; CODE XREF: ROM:00004138j
 		bsr.w	dword_4F4C
 		jsr	sub_402D4
 		bsr.w	sub_4F5E
-		jsr	nullsub_1
+		jsr	floorlog_unk
 		bsr.w	sub_49BC
 		bsr.w	sub_450E
 		bsr.w	sub_446E
@@ -29488,8 +29489,10 @@ loc_1EAE0:				; CODE XREF: sub_1EA58+76j
 		rts
 ; End of function sub_1EA58
 
-; [00000002 BYTES: COLLAPSED FUNCTION nullsub_1. PRESS CTRL-NUMPAD+ TO EXPAND]
+FloorLog_Unk:
+	rts
 ; ---------------------------------------------------------------------------
+
 		lea	(dword_42E50).l,a1
 		lea	(dword_42E50).l,a2
 		move.w	#$FF,d3
