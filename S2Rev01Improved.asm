@@ -262,7 +262,7 @@ loc_234:				; CODE XREF: ROM:0000022Aj
 		move.w	(a4),d0
 		moveq	#0,d0
 		movea.l	d0,a6
-		move.w	(a6),usp
+		move.l	(a6),usp
 		moveq	#$17,d1
 
 loc_23E:				; CODE XREF: ROM:00000244j
@@ -3340,7 +3340,7 @@ loc_1FB2:				; DATA XREF: ROM:00001C44o
 		cmpi.b	#$A,d6
 
 loc_1FC4:				; DATA XREF: ROM:00001C60o
-		ori.l	#$AE00EC,a6
+		ori.l	#$AE00EC,(a6)
 ; ---------------------------------------------------------------------------
 		dc.w $EEE
 		dc.l $EA00E4, $6C00CC4,	$E800E40, $E040C08, $C2E080E, $40E000E
@@ -6208,7 +6208,7 @@ locret_4CA6:				; CODE XREF: sub_4C48+4j sub_4C48+Aj ...
 
 loc_4CA8:				; DATA XREF: ROM:off_4948o
 					; ROM:0000494Co ...
-		ori.w	#$842,a3
+		ori.w	#$842,(a3)
 		move.l	a0,d4
 ; ---------------------------------------------------------------------------
 		dc.w $83E
@@ -9786,7 +9786,7 @@ word_95A2:	dc.w $E0F
 		move.b	(a3),-(a1)
 		move.b	(a4),d2
 		move.b	(a5),-(a2)
-		cmpi.b	#1,a5
+		cmpi.b	#1,(a5)
 		btst	d0,d2
 		subi.b	#$A,d6
 
@@ -12904,15 +12904,15 @@ loc_CF8A:				; CODE XREF: ROM:0000CF82j
 
 loc_CF90:				; DATA XREF: ROM:0000CF4Co
 					; ROM:0000D082o
-		move.b	a3,-(a1)
+		move.b	(a3),-(a1)
 		btst	d4,d4
 		btst	d1,d1
 		btst	d0,(a0)+
-		addi.b	#$20,a2	; ' '
-		move.b	a2,d0
+		addi.b	#$20,(a2)	; ' '
+		move.b	(a2),d0
 		addi.b	#1,(a0)+
 		btst	d1,d4
-		move.b	a1,d0
+		move.b	(a1),d0
 		btst	d5,(a3)
 
 loc_CFA8:				; CODE XREF: ROM:0000CF8Ej
@@ -17752,7 +17752,7 @@ dword_11F04:	dc.l $FFF8F805,	$E0007,	1, $F8010000, $FFFC, $2F805, $20001
 ; ---------------------------------------------------------------------------
 		move.l	d3,d0
 		ori.b	#0,d0
-		ori.b	#3,a0
+		ori.b	#3,(a0)
 		ori.b	#0,d0
 		ori.b	#$E,d0
 ; ---------------------------------------------------------------------------
@@ -25655,7 +25655,7 @@ word_1BA4E:	dc.w $5BC		; CODE XREF: ROM:0001BA00p
 					; DATA XREF: ROM:0001B9FCr
 ; ---------------------------------------------------------------------------
 		bset	d2,-(a4)
-		addi.b	#$34,a6	; '4'
+		addi.b	#$34,(a6)	; '4'
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -30608,7 +30608,7 @@ dword_207F8:	dc.l $FFF0680D,	$2D0016, $FFF00002, $F00A0018, $CFFE8
 		dc.l $80004, $400F, $80004, $FFE0400F, $80004, $E, $800D0000
 		dc.l $FFE0, $800D0000, 0
 		dc.l $800F0008,	$4FFE0,	$800F0008, $40000, $A00F0008
-off_20DA0:	dc.l aP0P00000000@0p+$DC ; DATA	XREF: ROM:00017964o
+off_20DA0:	dc.l atsignlabel1+$DC ; DATA	XREF: ROM:00017964o
 					; "P@0PP@@P%P@S	RD $PP\" US%3$R4B3"
 		dc.l $A00F0008,	$40000,	$C00F0008, $4FFE0, $C00F0008, $40000
 		dc.l $E00F0008,	$4FFE0,	$E00F0008, $40000, $F0008, $4FFE0
@@ -30617,7 +30617,7 @@ off_20DA0:	dc.l aP0P00000000@0p+$DC ; DATA	XREF: ROM:00017964o
 ; ---------------------------------------------------------------------------
 
 loc_20DFC:
-		ori.w	#$9694,a4
+		ori.w	#$9694,(a4)
 		subx.b	d0,d2
 		addq.b	#2,$24(a0)
 		moveq	#0,d0
@@ -30657,7 +30657,7 @@ loc_20E6C:				; DATA XREF: ROM:00020E12o
 
 loc_20E74:				; DATA XREF: ROM:00020E20o
 		ori.b	#$28,d6	; '('
-		ori.w	#4,a2
+		ori.w	#4,(a2)
 		asr.b	#8,d5
 ; ---------------------------------------------------------------------------
 		dc.w $34
@@ -41605,7 +41605,7 @@ loc_3FF82:				; CODE XREF: sub_3FF2C+52j
 ; End of function sub_3FF2C
 
 ; ---------------------------------------------------------------------------
-		dc.l aP0P00000000@0p	; "  P 0 P 0   0  00  000 0@0PP	 P     0  "...
+		dc.l atsignlabel1	; "  P 0 P 0   0  00  000 0@0PP	 P     0  "...
 		dc.l $97147280,	$602007F, $2130007, $2070007, $207FF04
 		dc.l $979472C0,	$802027F, $B020B, $B0205, $50205, $50704
 		dc.l $98147300,	$2020002, $FF049894, $73400802,	$7F0207
@@ -46610,7 +46610,7 @@ word_4EEFE:	dc.w $1666		; DATA XREF: sub_2C2B8+12o
 		dc.l $30332550,	$35322055, $34305424, $33252020, $30302020
 		dc.l $30302030,	$30302330, $43302033, $40453230, $42403542
 		dc.l $45445435,	$44335050, $20205020
-aP0P00000000@0p:dc.b '  P 0 P 0   0  00  000 0@0PP  P     0  00  000 0@0 0@@0@@@00@@4'
+atsignlabel1:dc.b '  P 0 P 0   0  00  000 0@0PP  P     0  00  000 0@0 0@@0@@@00@@4'
 					; DATA XREF: ROM:0003FF94o
 		dc.b '0S@0@PU3CRP@BPTBP%SEU$"T$3%0@P@4PP@@P PCP$PB# UP""PU 5$T5D3PP  '
 		dc.b 'P   P 0 P 0   0  00  000 0@0PP  P     0  00  000 0@0 0@@0@@@00@'
@@ -51371,7 +51371,7 @@ dword_60660:	dc.l $2233300, $23333, $2233, $223, $222 ; DATA	XREF: ROM:000419B8
 		dc.l $22B55333,	$22ABB533
 		dcb.l 4,0
 		dc.l $20000000,	$2200000, $20000, $40002000, $44002200
-aD@DcCc2Dd2EccD:dc.b 'D@" DC" CC2 DD2"ECC"DUC"4EC2',0
+atsignlabel2DcCc2Dd2EccD:dc.b 'D@" DC" CC2 DD2"ECC"DUC"4EC2',0
 		dc.l loc_2200
 		dc.b $20, 0, 2
 		dc.l $200002, $20002, $20000, $22000, $2200, $220, $222
@@ -58039,21 +58039,21 @@ dword_79900:	dc.l $869BA086,	$9BA3776D, $D6A99520, $EF4FED1E, $41DFAA07
 		dcb.l 3,$44444444
 		dcb.l 2,$44442444
 		dc.l 0
-a@dd@@dd@@dd@@d:dc.b ' "" @DD@@DD@@DD@@DD@@DD@@DD@',0
+atsignlabel4:dc.b ' "" @DD@@DD@@DD@@DD@@DD@@DD@',0
 		align $10
 		dc.b '" ',0
 		align 4
-aD@:		dc.b 'D@',0
+atsignlabel2:		dc.b 'D@',0
 		align 4
-aD@_0:		dc.b 'D@',0
+atsignlabel2_0:		dc.b 'D@',0
 		align 4
-aD@_1:		dc.b 'D@',0
+atsignlabel2_1:		dc.b 'D@',0
 		align $10
-aD@_2:		dc.b 'D@',0
+atsignlabel2_2:		dc.b 'D@',0
 		align 4
-aD@_3:		dc.b 'D@',0
+atsignlabel2_3:		dc.b 'D@',0
 		align 4
-aD@_4:		dc.b 'D@',0
+atsignlabel2_4:		dc.b 'D@',0
 		align $10
 		dc.l $2222220
 		dcb.l 3,$4444440
@@ -58064,9 +58064,9 @@ aD@_4:		dc.b 'D@',0
 		dcb.l 3,$44444444
 		dcb.l 4,$44404044
 		dc.l 0
-a@dd@@dd@@dd@_0:dc.b '@DD@@DD@@DD@@DD@@DD@@DD@@DD@',0
+atsignlabel5:dc.b '@DD@@DD@@DD@@DD@@DD@@DD@@DD@',0
 		align 4
-aD@_5:		dc.b 'D@',0
+atsignlabel2_5:		dc.b 'D@',0
 		align $10
 		dc.l $44400222,	$44400444, $44422444
 		dcb.l 3,$44444444
@@ -58088,7 +58088,7 @@ aD@_5:		dc.b 'D@',0
 		dc.l $22200000
 		dcb.l 6,$44400000
 		dc.l 0
-aDdd@ddd@ddd@d@:dc.b '""" DDD@DDD@DDD@D@',0
+atsignlabel3:dc.b '""" DDD@DDD@DDD@D@',0
 		align 4
 aDb:		dc.b 'DB"',0
 aDdd:		dc.b 'DDD',0
@@ -76612,7 +76612,7 @@ loc_D5666:				; CODE XREF: ROM:000D567Cj
 		cmpi.w	#$E071,-(a0)
 		move	d1,ccr
 		and.w	-(a0),d1
-		and.b	a6,d3
+		and.b	(a6),d3
 		addi.w	#$9C2,(a5)+
 		moveq	#$40,d0	; '@'
 		bra.s	loc_D5666

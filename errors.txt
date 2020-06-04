@@ -2,61 +2,7 @@
 SN 68k version 2.53
 
 C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(265) : Error : Illegal addressing mode
- move.w (a6),usp
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(3343) : Error : Illegal addressing mode
- ori.l #$ae00ec,a6
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(6211) : Error : Illegal addressing mode
- ori.w #$842,a3
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(9789) : Error : Illegal addressing mode
- cmpi.b #1,a5
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(12907) : Error : Illegal addressing mode
- move.b a3,-(a1)
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(12911) : Error : Illegal addressing mode
- addi.b #$20,a2
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(12912) : Error : Illegal addressing mode
- move.b a2,d0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(12915) : Error : Illegal addressing mode
- move.b a1,d0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(17755) : Error : Illegal addressing mode
- ori.b #3,a0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(25658) : Error : Illegal addressing mode
- addi.b #$34,a6
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(30611) : Error : Unexpected characters at end of line
-off_20da0: dc.l ap0p00000000@0p+$dc
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(30620) : Error : Illegal addressing mode
- ori.w #$9694,a4
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(30660) : Error : Illegal addressing mode
- ori.w #4,a2
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(41608) : Error : Unexpected characters at end of line
- dc.l ap0p00000000@0p
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(46613) : Error : more than one label specified
-ap0p00000000@0p:dc.b '  P 0 P 0   0  00  000 0@0PP  P     0  00  000 0@0 0@@0@@@00@@4'
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(51374) : Error : more than one label specified
-ad@dccc2dd2eccd:dc.b 'D@" DC" CC2 DD2"ECC"DUC"4EC2',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58042) : Error : Op-code not recognised
-a@dd@@dd@@dd@@d:dc.b ' "" @DD@@DD@@DD@@DD@@DD@@DD@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58046) : Error : more than one label specified
-ad@: dc.b 'D@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58048) : Error : more than one label specified
-ad@_0: dc.b 'D@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58050) : Error : more than one label specified
-ad@_1: dc.b 'D@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58052) : Error : more than one label specified
-ad@_2: dc.b 'D@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58054) : Error : more than one label specified
-ad@_3: dc.b 'D@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58056) : Error : more than one label specified
-ad@_4: dc.b 'D@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58067) : Error : Op-code not recognised
-a@dd@@dd@@dd@_0:dc.b '@DD@@DD@@DD@@DD@@DD@@DD@@DD@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58069) : Error : more than one label specified
-ad@_5: dc.b 'D@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58091) : Error : Op-code not recognised
-addd@ddd@ddd@d@:dc.b '""" DDD@DDD@DDD@D@',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(58094) : Error : Label 'addd' multiply defined
-addd: dc.b 'DDD',0
-C:\USERS\LEGOD\DOCUMENTS\SONIC-2-SPLIT-AND-TEXT-DISASM\S2REV01IMPROVED.ASM(76615) : Error : Illegal addressing mode
- and.b a6,d3
+ move.l (a6),usp
 Errors during pass 1 - pass 2 aborted
 Assembly completed.
-28 error(s) from 85925 lines in 0.10 seconds
+1 error(s) from 85925 lines in 0.6 seconds
