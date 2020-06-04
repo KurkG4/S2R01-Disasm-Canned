@@ -26,152 +26,237 @@ align macro
 
 ; Segment type:	Pure code
 ; segment "ROM"
-		dc.l $FFFFFE00
-		dc.l Reset
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l HBLANK
-		dc.l BusErr
-		dc.l VBLANK
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-		dc.l BusErr
-CopyRights:	dc.l $53454741
-		dc.b $20
-		dc.b $47 ; G
-		dc.b $45 ; E
-		dc.b $4E ; N
-		dc.b $45 ; E
-		dc.b $53 ; S
-		dc.b $49 ; I
-		dc.b $53 ; S
-		dc.b $20
-		dc.b $20
-		dc.b $20
-		dc.b $20
-		dc.b $28 ; (
-		dc.b $43 ; C
-		dc.b $29 ; )
-		dc.b $53 ; S
-		dc.b $45 ; E
-		dc.b $47 ; G
-		dc.b $41 ; A
-		dc.b $20
-		dc.b $31 ; 1
-		dc.b $39 ; 9
-		dc.b $39 ; 9
-		dc.b $32 ; 2
-		dc.b $2E ; .
-		dc.b $53 ; S
-		dc.b $45 ; E
-		dc.b $50 ; P
-DomesticName:	dc.b $53,$4F,$4E,$49,$43,$20,$54,$48,$45,$20,$20,$20,$20
-		dc.b $20,$20,$20,$20,$20,$20,$20,$20,$20,$48,$45,$44,$47
-		dc.b $45,$48,$4F,$47,$20,$32,$20,$20,$20,$20,$20,$20,$20
-		dc.b $20,$20,$20,$20,$20,$20,$20,$20,$20
-OverseasName:	dc.b $53,$4F,$4E,$49,$43,$20,$54,$48,$45,$20,$20,$20,$20
-		dc.b $20,$20,$20,$20,$20,$20,$20,$20,$20,$48,$45,$44,$47
-		dc.b $45,$48,$4F,$47,$20,$32,$20,$20,$20,$20,$20,$20,$20
-		dc.b $20,$20,$20,$20,$20,$20,$20,$20,$20
-ProductCode:	dc.b $47,$4D,$20,$30,$30,$30,$30,$31,$30,$35,$31,$2D,$30
+		dc.l $FFFFFE00,	$206
+		dcb.l 6,$200
+byte_20:	dc.b 0			; DATA XREF: ROM:00052484o
+					; ROM:0005A018o ...
+byte_21:	dc.b 0			; DATA XREF: ROM:0005960Co
+byte_22:	dc.b 2			; DATA XREF: ROM:000502A0o
+					; ROM:00050D8Co ...
+byte_23:	dc.b 0			; DATA XREF: ROM:00059894o
+					; ROM:0005DAB4o ...
+off_24:		dc.l byte_200		; DATA XREF: ROM:off_A0FEo
+		dcb.b 2,0
+word_2A:	dc.w $200		; DATA XREF: ROM:0005B0F0o
+					; ROM:0005B0F4o ...
+off_2C:		dc.l byte_200		; DATA XREF: ROM:00001F48o
+byte_30:	dcb.b 2,0		; DATA XREF: ROM:00011298o
+					; ROM:0005C5B0o
+byte_32:	dc.b 2			; DATA XREF: ROM:00051690o
+					; ROM:0005C7C4o
+byte_33:	dc.b 0			; DATA XREF: ROM:00050288o
+					; ROM:000504CCo ...
+byte_34:	dc.b 0			; DATA XREF: ROM:0005698Co
+					; ROM:00056C0Co
+off_35:		dc.l dword_1FFE8+$18	; DATA XREF: ROM:0005DB54o
+		align 2
+		dc.b 2
+byte_3B:	dc.b 0			; DATA XREF: ROM:00055788o
+					; ROM:00055C48o
+		dc.l byte_200
+byte_40:	dc.b 0			; DATA XREF: ROM:off_FF0o
+					; ROM:0005DCC4o
+byte_41:	dc.b 0,	2, 0		; DATA XREF: ROM:00054544o
+					; ROM:0005E624o ...
+byte_44:	dc.b 0			; DATA XREF: ROM:00050908o
+					; ROM:0005800Co ...
+off_45:		dc.l dword_1FFE8+$18	; DATA XREF: ROM:0005DB50o
+					; ROM:0005F0D0o
+		align 2
+		dc.w $200
+		dc.l byte_200
+		dc.l byte_200
+byte_54:	dc.b 0			; DATA XREF: ROM:0005EE50o
+off_55:		dc.l dword_1FFE8+$18	; DATA XREF: ROM:000497A8o
+					; ROM:000497D0o ...
+		align 2
+		dc.w $200
+		dc.l byte_200
+off_60:		dc.l byte_200		; DATA XREF: ROM:00072020o
+					; ROM:0007221Co ...
+byte_64:	dcb.b 2,0		; DATA XREF: ROM:off_41208o
+word_66:	dc.w $200		; DATA XREF: ROM:00072024o
+					; ROM:00072514o ...
+		dc.l byte_200
+off_6C:		dc.l byte_200		; DATA XREF: ROM:0007AF88o
+					; ROM:0007B108o ...
+byte_70:	dc.b 0			; DATA XREF: ROM:0005AB14o
+					; ROM:0005B098o
+byte_71:	dc.b 0			; DATA XREF: ROM:00063844o
+word_72:	dc.w $F54		; DATA XREF: ROM:00062368o
+					; ROM:000625E8o ...
+		dcb.b 2,0
+byte_76:	dc.b 2			; DATA XREF: ROM:0006A694o
+byte_77:	dc.b 0			; DATA XREF: ROM:0006716Co
+					; ROM:00069830o ...
+off_78:		dc.l loc_408		; DATA XREF: ROM:0006A108o
+		dc.l byte_200
+byte_80:	dc.b 0			; DATA XREF: ROM:off_1E5D0o
+					; ROM:00064F58o ...
+off_81:		dc.l dword_1FFE8+$18	; DATA XREF: ROM:00063840o
+		align 2
+byte_86:	dc.b 2			; DATA XREF: ROM:00062B6Co
+					; ROM:00067170o ...
+byte_87:	dc.b 0			; DATA XREF: ROM:00056908o
+					; ROM:00067174o ...
+byte_88:	dc.b 0			; DATA XREF: ROM:00056544o
+					; ROM:000630CCo ...
+off_89:		dc.l dword_1FFE8+$18	; DATA XREF: ROM:00053540o
+					; ROM:00053A40o ...
+		align 2
+word_8E:	dc.w $200		; DATA XREF: ROM:00002134o
+byte_90:	dc.b 0			; DATA XREF: ROM:0006B414o
+					; ROM:0006EDE0o
+byte_91:	dc.b 0			; DATA XREF: ROM:00053544o
+					; ROM:0005E304o ...
+word_92:	dc.w $200		; DATA XREF: ROM:000627C8o
+		dcb.b 2,0
+byte_96:	dc.b 2			; DATA XREF: ROM:0006E418o
+		dc.b 0
+byte_98:	dc.b 0			; DATA XREF: ROM:00049728o
+					; ROM:00061CA4o ...
+off_99:		dc.l dword_1FFE8+$18	; DATA XREF: ROM:00052578o
+					; ROM:0005BA84o ...
+byte_9D:	dc.b 0,	2, 0		; DATA XREF: ROM:00067878o
+					; ROM:0006EC68o ...
+byte_A0:	dc.b 0			; DATA XREF: ROM:000EED20o
+off_A1:		dc.l dword_1FFE8+$18	; DATA XREF: ROM:off_B68o
+		align 2
+		dc.w $200
+		dc.l byte_200
+		dc.l byte_200
+off_B0:		dc.l byte_200		; DATA XREF: ROM:000EECE0o
+		dc.l byte_200
+		dcb.b 2,0
+		dc.b 2
+byte_BB:	dc.b 0			; DATA XREF: ROM:0004A748o
+					; ROM:0004A94Co ...
+		dcb.b 2,0
+byte_BE:	dc.b 2			; DATA XREF: ROM:0006A660o
+					; ROM:0006A664o
+byte_BF:	dc.b 0			; DATA XREF: ROM:00067C64o
+					; ROM:00067C68o ...
+		dc.b 0
+off_C1:		dc.l dword_1FFE8+$18	; DATA XREF: ROM:00053DFCo
+		align 2
+		dc.w $200
+		dc.l byte_200
+byte_CC:	dc.b 0			; DATA XREF: ROM:000631E4o
+byte_CD:	dc.b 0			; DATA XREF: ROM:0007B130o
+					; ROM:0007B1E8o
+word_CE:	dc.w $200		; DATA XREF: ROM:00082770o
+		dc.l byte_200
+		dcb.b 2,0
+		dc.b 2
+byte_D7:	dc.b 0			; DATA XREF: ROM:00062BB8o
+					; ROM:0006F108o
+byte_D8:	dcb.b 2,0		; DATA XREF: ROM:00064358o
+					; ROM:000644D8o ...
+		dc.b 2
+byte_DB:	dc.b 0			; DATA XREF: ROM:0006435Co
+					; ROM:000644DCo ...
+byte_DC:	dc.b 0			; DATA XREF: ROM:00063BE8o
+					; ROM:00063EA8o ...
+byte_DD:	dc.b 0			; DATA XREF: ROM:000540C0o
+					; ROM:00056288o ...
+byte_DE:	dc.b 2			; DATA XREF: ROM:0006DF74o
+					; ROM:0006DF78o ...
+byte_DF:	dc.b 0			; DATA XREF: ROM:0006BE74o
+off_E0:		dc.l byte_200		; DATA XREF: ROM:00002130o
+					; ROM:00042E48o
+		dc.l byte_200
+		dc.l byte_200
+		dcb.b 2,0
+word_EE:	dc.w $200		; DATA XREF: ROM:00001F44o
+					; ROM:0000212Co ...
+off_F0:		dc.l byte_200		; DATA XREF: ROM:00067084o
+					; ROM:00068064o ...
+		dcb.b 2,0
+word_F6:	dc.w $200		; DATA XREF: ROM:0006BE70o
+		dc.l byte_200
+		dcb.b 2,0
+byte_FE:	dc.b 2			; DATA XREF: ROM:00067C60o
+					; ROM:00067D64o ...
+byte_FF:	dc.b 0			; DATA XREF: ROM:000244F4o
+					; ROM:00068074o ...
+byte_100:	dc.b $53		; DATA XREF: ROM:0001FAF4o
+					; ROM:0005D004o ...
+byte_101:	dc.b $45		; DATA XREF: sub_16DAE:off_16EA2o
+					; ROM:off_17294o ...
+byte_102:	dc.b $47		; DATA XREF: ROM:00043078o
+					; ROM:0004316Co ...
+byte_103:	dc.b $41		; DATA XREF: ROM:00042FFCo
+					; ROM:00043F9Co ...
+dword_104:	dc.l $2047454E		; DATA XREF: ROM:00044B04o
+		dc.b $45
+byte_109:	dc.b $53, $49, $53	; DATA XREF: ROM:000EE3ACo
+		dc.l $20202020
+		dc.b $28
+byte_111:	dc.b $43, $29, $53	; DATA XREF: ROM:00057738o
+					; ROM:00057F38o ...
+		dc.l $45474120
 		dc.b $31
-Checksum:	dc.w $D951
-Peripherials:	dc.b $4A,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
-		dc.b $20,$20,$20
-RomStart:	dc.w	 0,    0
-RomEnd:		dc.w	$F,$FFFF
-RamStart:	dc.w   $FF,    0
-RamEnd:		dc.w   $FF,$FFFF
-SramCode:	dc.b $20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
-ModemCode:	dc.b $20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
-Reserved:	dc.b $20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
-		dc.b $20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
-		dc.b $20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
+byte_119:	dcb.b 2,$39		; DATA XREF: ROM:0005BB80o
+		dc.b $32
+		dc.l $2E534550
+		dc.b $53, $4F
+word_122:	dc.w $4E49		; DATA XREF: ROM:00057754o
+					; ROM:00057F54o ...
+		dc.l $43205448,	$45202020
+		dcb.l 2,$20202020
+		dc.l $20204845,	$44474548, $4F472032
+		dcb.l 4,$20202020
+		dc.l $534F4E49,	$43205448, $45202020
+		dcb.l 2,$20202020
+		dc.l $20204845,	$44474548, $4F472032
+		dcb.l 4,$20202020
+dword_180:	dc.l $474D2030,	$30303031, $3035312D, $3031D951	; DATA XREF: ROM:000674F0o
+					; ROM:0006A230o ...
+aJ:		dc.b 'J               ',0 ; DATA XREF: ROM:000EEC58o
+		align 4
+		dc.l byte_FFFFF
+dword_1A8:	dc.l $FF0000, $FFFFFF
+		dcb.l 7,$20202020
+dword_1CC:	dcb.l 2,$20202020	; DATA XREF: ROM:0005B7C0o
+		dcb.b 3,$20
 		dc.b $20
-CountryCode:	dc.b $4A,$55,$45,$20,$20,$20,$20,$20,$20,$20,$20,$20,$20
-		dc.b $20,$20,$20
+		dcb.b 3,$20
+byte_1DB:	dc.b $20		; DATA XREF: ROM:0006CE00o
+byte_1DC:	dc.b $20		; DATA XREF: ROM:0005FE04o
+byte_1DD:	dcb.b 3,$20		; DATA XREF: ROM:0005771Co
+					; ROM:00057720o ...
+		dcb.l 4,$20202020
+		dc.l $4A554520
+		dcb.l 3,$20202020
+byte_200:	dc.b $4E		; DATA XREF: ROM:off_24o ROM:off_2Co ...
+byte_201:	dc.b $71, $4E, $71	; DATA XREF: ROM:00057748o
+					; ROM:00057F48o
+byte_204:	dc.b $60		; DATA XREF: ROM:00043014o
+					; ROM:00043F74o ...
+byte_205:	dc.b $FA, $4A, $B9	; DATA XREF: ROM:000436E8o
+					; ROM:0004425Co ...
+		dc.l $A10008, $66064A79
+		dc.b 0,	$A1
+byte_212:	dc.b 0			; DATA XREF: ROM:000EEB40o
+byte_213:	dc.b $C			; DATA XREF: ROM:00059898o
+		dc.l $667C4BFA
+		dc.b 0
+byte_219:	dc.b $7C, $4C, $9D	; DATA XREF: ROM:000F0844o
+		dc.l $E04CDD
+; ---------------------------------------------------------------------------
 
-; =============== S U B	R O U T	I N E =======================================
+loc_220:				; DATA XREF: ROM:0005122Co
+					; ROM:0005A01Co ...
+		move.b	d0,-(sp)
 
-
-BusErr:					; CODE XREF: BusErr+4j
-					; DATA XREF: ROM:00000008o ...
-		nop
-		nop
-		bra.s	BusErr
-; End of function BusErr
-
-
-; =============== S U B	R O U T	I N E =======================================
-
-
-Reset:					; DATA XREF: ROM:00000004o
-		tst.l	(IO_CT1_CTRL).l
-		bne.s	loc_214
-		tst.w	(IO_EXT_CTRL).l
-
-loc_214:				; CODE XREF: Reset+6j
-		bne.s	loc_292
-		lea	unk_294(pc),a5
-		movem.w	(a5)+,d5-d7
-		movem.l	(a5)+,a0-a4
+loc_222:				; DATA XREF: ROM:00057740o
+					; ROM:00057744o ...
 		move.b	-$10FF(a1),d0
 		andi.b	#$F,d0
 		beq.s	loc_234
+
+loc_22C:				; DATA XREF: ROM:000502A4o
+					; ROM:0005DD98o
 		move.l	#$53454741,$2F00(a1)
 
 loc_234:				; CODE XREF: ROM:0000022Aj
