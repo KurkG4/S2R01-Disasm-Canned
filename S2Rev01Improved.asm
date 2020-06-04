@@ -263,7 +263,7 @@ loc_234:				; CODE XREF: ROM:0000022Aj
 		move.w	(a4),d0
 		moveq	#0,d0
 		movea.l	d0,a6
-		move.l    A6, USP  
+		move.l    A6, USP
 		moveq	#$17,d1
 
 loc_23E:				; CODE XREF: ROM:00000244j
@@ -3272,134 +3272,30 @@ loc_1E52:				; CODE XREF: ROM:00001E4Aj
 
 locret_1E58:				; CODE XREF: ROM:00001E2Ej
 		rts
-; ---------------------------------------------------------------------------
-		cmpi.w	#$E86,d2
-; ---------------------------------------------------------------------------
-		dc.w $ECA
-		dc.l $EEC0EEC
-; ---------------------------------------------------------------------------
-		cmpi.w	#$E86,d2
-; ---------------------------------------------------------------------------
-		dc.l $ECA0ECA, $EEC0C42, $E860E86, $ECA0EEC
-		dc.b $C, $42
-; ---------------------------------------------------------------------------
-
-loc_1E7A:				; DATA XREF: ROM:00001A18o
-					; ROM:00001D88o
-		eori.l	#$E860EA8,d6
-; ---------------------------------------------------------------------------
-		dc.l $ECA0ECA, $A860E86, $EA80EA8, $ECA0A86, $E860E86
-		dc.l $EA80ECA
-		dc.b $A, $86
-off_1E9A:	dc.l word_E006E		; DATA XREF: ROM:00001B0Co
-		dc.w $AE
-		dc.l $EE00EE, $E006E, $AE02CE, $EE000E,	$6E006E, $4EE08EE
-		dc.l $2E004E, $8E06EE, $AEE08EE, $2E006E, $4EE02CE, $EE000E
-		dc.l $6E006E, $2CE00EE,	$E000E,	$6E00AE, $EE00CE, $C004E
-		dc.l $8E006E, $AC000A, $2E000C,	$4C008E, $8000A, $2E006E
-		dc.l $AC00CE, $C004E, $8E00AE, $EE000E,	$6E006E, $AE00EE
-		dc.b 0,	$E
-word_1F1A:	dc.w $248		; DATA XREF: ROM:00001A52o
-		dc.l $46A048C, $6CE0248, $46A048C
-		dc.b 6,	$CE
-off_1F2A:	dc.l byte_60008		; DATA XREF: ROM:00001A82o
-		dc.l byte_A000C
-		dc.l dword_9FDDC+$22C
-word_1F36:	dc.w $422		; DATA XREF: ROM:00001AB2o
-		dc.l $8660ECC, $4220866
-		dc.b $E, $CC
-word_1F42:	dc.w $A0		; DATA XREF: ROM:00001AE6o
-		dc.l word_EE
-		dc.l off_2C+2
-		dc.l loc_E2E
-		dc.l loc_E7E+2
-		dcb.b 2,0
-word_1F56:	dc.w $E44		; DATA XREF: ROM:00001B5Co
-		dc.l $E820EA8, $EEE0E44, $E820EA8
-		dc.b $E, $EE
-word_1F66:	dc.w $E84		; DATA XREF: ROM:00001B7Eo
-		dc.l $EA60EC6, $EE60E84, $EA60EC6
-		dc.b $E, $E6
-word_1F76:	dc.w $400		; DATA XREF: ROM:00001B9Eo
-		dc.l $6020804, $8060400, $6020804
-		dc.b 8,	6
-off_1F86:	dc.l word_C006E		; DATA XREF: ROM:00001BD2o
-		dc.w $CE
-		dc.b 8,	$EE
-off_1F8E:	dc.l word_E00EE		; DATA XREF: ROM:00001BFCo
-; ---------------------------------------------------------------------------
-		ori.w	#$6E,$E(a6) ; 'n'
-; ---------------------------------------------------------------------------
-		dc.l $EE00EE, $6E000E, $EC0080,	$C400C4, $EC0080, $8000C4
-		dc.b 0,	$EC
-; ---------------------------------------------------------------------------
-
-loc_1FB2:				; DATA XREF: ROM:00001C44o
-		cmpi.b	#$A,d6
-		cmpi.b	#$A,$C2E(a6)
-		cmpi.b	#$2E,d6	; '.'
-		cmpi.b	#$A,d6
-
-loc_1FC4:				; DATA XREF: ROM:00001C60o
-		ori.l	#$AE00EC,(a6)
-; ---------------------------------------------------------------------------
-		dc.w $EEE
-		dc.l $EA00E4, $6C00CC4,	$E800E40, $E040C08, $C2E080E, $40E000E
-		dc.l $4E006E, $8E00AE
-dword_1FEC:	dc.l $6E00AE, $EE00AE	; DATA XREF: ROM:loc_1CB8o
-		dcb.l 2,$EE006E
-		dc.b 0,	$AE
-word_1FFE:	dc.w $A0E		; DATA XREF: ROM:00001CD8o
-byte_2000:	dcb.b 2,$C		; DATA XREF: ROM:0000B0C0o
-					; ROM:0004C5C4o ...
-word_2002:	dc.w $EA0		; DATA XREF: ROM:00059608o
-		dc.l $AE00EA, $AE000EA,	$AE0EA0
-		dcb.b 2,$C
-off_2012:	dc.l dword_E000C	; DATA XREF: ROM:00001CFAo
-		dc.l dword_9FDDC+$22C
-		dc.l byte_60008
-		dc.l byte_A000C
-word_2022:	dc.w $E40		; DATA XREF: ROM:00001D22o
-		dc.l $C000C00, $E600C20, $C000E40, $E400C00, $C200E60
-		dc.l $C200C00, $E400C40
-		dc.b $C, 0, $C
-		dc.b $20
-		dc.l $E400C00, $C000E60, $C200C00, $E400E20, $C000C20
-dword_2058:	dc.l $E000C2, $A40086, $68004A,	$2C000E, $20C040A, $6080806
-					; DATA XREF: ROM:00001D4Ao
-		dc.l $A040C02, $E000C20, $A400860, $68004A0
-		dc.b 2,	$C0
-off_2082:	dc.l dword_E000C	; DATA XREF: ROM:00001D6Co
-		dc.l dword_9FDDC+$22C
-		dc.l byte_60004
-		dc.l dword_1FFE8+$1C
-		dc.l byte_60008
-		dc.l byte_A000C
-		dc.l word_E002E
-		dc.w $4E
-		dc.b 0,	$2E
-word_20A2:	dc.w $4EE		; DATA XREF: ROM:00001DC2o
-		dc.l $2AE006E, $2C0EEE,	$4EE02AE, $6E04EE, $2AE006E, $2C02AE
-		dc.l $6E002C
-		dc.b 0,	$28
-off_20C2:	dc.l loc_442+2		; DATA XREF: ROM:loc_1DD4o
-		dc.w $444
-		dc.l $4440444, $444, $4440444, $4440000
-		dcb.l 2,$4440444
-		dcb.b 2,0
-word_20E2:	dc.w $E0		; DATA XREF: ROM:00001E08o
-		dc.l $A00060, $200000, $2000600, $A200E60, $A200600, $2000000
-		dc.l $20006, $A000E, $4E000E, $A0006, $20000, $220066
-		dc.l $AA00EE, $AA0066, $220000,	$200060
-		dc.b 0,	$A0
-word_2126:	dc.w $EC0		; DATA XREF: ROM:00001E36o
-		dc.l loc_E0A+4
-		dc.l word_EE
-		dc.l off_E0
-		dc.l word_8E
-		dc.l loc_EEC+2
-		dcb.b 2,0
-
+           incbin "art/palettes/Title Water.bin"; Title Screen Water palette (unused)
+loc_1E7A: incbin "art/palettes/EHZ ARZ Water.bin"; Emerald Hill/Aquatic Ruin Rotating Water palette
+off_1E9A: incbin "art/palettes/Hill Top Lava.bin"; Hill Top Lava palette
+word_1F1A: incbin "art/palettes/Wood Conveyor.bin"; Wood Conveyor Belts palette
+off_1F2A: incbin "art/palettes/MTZ Cycle 1.bin"; Metropolis Cycle #1 palette
+word_1F36: incbin "art/palettes/MTZ Cycle 2.bin"; Metropolis Cycle #2 palette
+word_1F42: incbin "art/palettes/MTZ Cycle 3.bin"; Metropolis Cycle #3 palette
+word_1F56: incbin "art/palettes/HPZ Water Cycle.bin"; Hidden Palace Water Cycle
+word_1F66: incbin "art/palettes/HPZ Underwater Cycle.bin"; Hidden Palace Underwater Cycle
+word_1F76: incbin "art/palettes/OOZ Oil.bin"; Oil Ocean Oil palette
+off_1F86: incbin "art/palettes/MCZ Lantern.bin"; Mystic Cave Lanterns
+off_1F8E: incbin "art/palettes/CNZ Cycle 1.bin"; Casino Night Cycles 1 & 2
+loc_1FB2: incbin "art/palettes/CNZ Cycle 3.bin"; Casino Night Cycle 3
+loc_1FC4: incbin "art/palettes/CNZ Cycle 4.bin"; Casino Night Cycle 4
+dword_1FEC: incbin "art/palettes/unk_1FEC.bin"; Unknown palette
+word_1FFE: incbin "art/palettes/unk_1FFE.bin"; Unknown palette
+off_2012: incbin "art/palettes/unk_2012.bin"; Unknown palette
+word_2022: incbin "art/palettes/CPZ Cycle 1.bin"; Chemical Plant Cycle 1
+dword_2058: incbin "art/palettes/CPZ Cycle 2.bin"; Chemical Plant Cycle 2
+off_2082: incbin "art/palettes/CPZ Cycle 3.bin"; Chemical Plant Cycle 3
+word_20A2: incbin "art/palettes/WFZ Fire Cycle.bin"; Wing Fortress Fire Cycle palette
+off_20C2: incbin "art/palettes/unk_20C2.bin"; Unknown palette
+word_20E2: incbin "art/palettes/CPZ Cycle 4.bin"; Chemical Plant Cycle 4
+word_2126: incbin "art/palettes/unk_2126.bin"; Unknown palette
 ; =============== S U B	R O U T	I N E =======================================
 
 
@@ -10966,7 +10862,7 @@ dword_B000:	dc.l $370038, $28040075, $3A0000, $28060077, $3B0010, $280F007D
 		dc.l $76003B, $68400F, $7A003D,	$481000
 		dc.b 0,	$8A, 0
 byte_B0BF:	dc.b $45		; DATA XREF: ROM:0006B080o
-		dc.l byte_2000
+		dc.l word_1FFE+$2
 		dc.l $8B0045, $100E, $8C0046, $82800, $98004C, $83802
 		dc.l $99004C, $280F, $9C004E, $282805, $AC0056,	$183809
 		dc.l $B00058
@@ -45748,12 +45644,12 @@ byte_49A14:	dc.b $80		; DATA XREF: sub_407C0o
 		dc.l $33331111,	$11131111
 		dcb.l 2,$11111111
 		dc.l $11110000,	0
-		dc.l byte_2000
+		dc.l word_1FFE+$2
 		dc.l loc_2220
 		dc.l dword_3330+2
 		dc.l $20001133,	$32221111, $13331111, $11110000
 		dcb.l 4,0
-		dc.l byte_2000
+		dc.l word_1FFE+$2
 		dc.l byte_3220
 		dc.l dword_3330+2
 		dc.l $22224443,	$34433331, $33331111
@@ -48298,8 +48194,8 @@ a3333323222:	dc.b '33"#33""32""3"""2" 22',0
 		dc.l dword_3209C+$164
 		dc.l dword_3209C+$164
 		dc.l dword_3209C+$164
-		dc.l byte_2000
-		dc.l byte_2000
+		dc.l word_1FFE+$2
+		dc.l word_1FFE+$2
 		dcb.l 9,0
 		dc.l $351118, $33444411, $44444356, $44555111, $55551111
 		dc.l $55576666
@@ -49093,7 +48989,7 @@ a333333333333_2:dc.b '""""333333333333333333ET34Ve35ff35ff34Ve33ET33333333S33333
 		dcb.l $B,0
 		dc.l loc_2220+2
 		dc.l loc_2220+2
-		dc.l word_2002
+		dc.l word_1FFE+$4
 		dc.l byte_21
 		dc.l loc_2200
 		dc.l 0
@@ -49300,7 +49196,7 @@ a333333333333_2:dc.b '""""333333333333333333ET34Ve35ff35ff34Ve33ET33333333S33333
 		dc.l $DBAAA6, $DAAAA, $DBAAA, $DBBA, $90000DDB,	$6AA0000D
 		dc.l $6BBAAAAA,	$690BBBBB, $90000000
 		dcb.l 9,0
-		dc.l byte_2000
+		dc.l word_1FFE+$2
 		dc.l off_22000
 		dc.l $222000, $3244333,	$33444443, $44444444, $34444444
 		dc.l $44444455,	$44444556, $44444455, $44433333, $33355533
@@ -50200,7 +50096,7 @@ aD333_0:	dc.b 'D333',0
 		dc.l byte_23
 		dcb.l 2,2
 		dcb.l 2,0
-		dc.l byte_2000
+		dc.l word_1FFE+$2
 		dc.l loc_220
 		dc.l byte_22
 		dc.l 2
@@ -50930,7 +50826,7 @@ a3d:		dc.b '"3D',0
 		dc.l $2AB53455,	$2AAB5345
 		dcb.l 2,0
 		dc.l dword_1FFE8+$18
-		dc.l byte_2000
+		dc.l word_1FFE+$2
 		dc.l $44000200,	$44400200, $44432200, $54433200, 2, $30000002
 		dc.l $33300003,	$32333033, $2233333, $2223333, $222223
 		dc.l $22222, $2222, $222, $20022, $2222, $22, 2
@@ -51192,8 +51088,8 @@ dword_60660:	dc.l $2233300, $23333, $2233, $223, $222 ; DATA	XREF: ROM:000419B8
 		dc.l loc_22200
 		dc.l loc_2200
 		dc.l loc_2200
-		dc.l byte_2000
-		dc.l byte_2000
+		dc.l word_1FFE+$2
+		dc.l word_1FFE+$2
 		dc.l dword_1FFE8+$18
 		dc.l $30000000,	$33000000, $76690000, $7669000,	$767900
 		dc.l $77000
