@@ -2335,7 +2335,7 @@ loc_1612:				; CODE XREF: sub_15CC+4Cj
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_161E:				; CODE XREF: ROM:00003F1Cp
+LoadPLC:				; CODE XREF: ROM:00003F1Cp
 					; ROM:00003F22p ...
 		movem.l	a1-a2,-(sp)
 		lea	(dword_42660).l,a1
@@ -2344,26 +2344,26 @@ sub_161E:				; CODE XREF: ROM:00003F1Cp
 		lea	(a1,d0.w),a1
 		lea	($FFFFF680).w,a2
 
-loc_1636:				; CODE XREF: sub_161E+1Ej
+loc_1636:				; CODE XREF: LoadPLC+1Ej
 		tst.l	(a2)
 		beq.s	loc_163E
 		addq.w	#6,a2
 		bra.s	loc_1636
 ; ---------------------------------------------------------------------------
 
-loc_163E:				; CODE XREF: sub_161E+1Aj
+loc_163E:				; CODE XREF: LoadPLC+1Aj
 		move.w	(a1)+,d0
 		bmi.s	loc_164A
 
-loc_1642:				; CODE XREF: sub_161E+28j
+loc_1642:				; CODE XREF: LoadPLC+28j
 		move.l	(a1)+,(a2)+
 		move.w	(a1)+,(a2)+
 		dbf	d0,loc_1642
 
-loc_164A:				; CODE XREF: sub_161E+22j
+loc_164A:				; CODE XREF: LoadPLC+22j
 		movem.l	(sp)+,a1-a2
 		rts
-; End of function sub_161E
+; End of function LoadPLC
 
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -3889,7 +3889,7 @@ loc_2726:				; CODE XREF: sub_2712+16j
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_272E:				; CODE XREF: ROM:000038D0p
+PalLoad2:				; CODE XREF: ROM:000038D0p
 					; ROM:0000407Ep ...
 		lea	(off_2782).l,a1
 		lsl.w	#3,d0
@@ -3898,11 +3898,11 @@ sub_272E:				; CODE XREF: ROM:000038D0p
 		movea.w	(a1)+,a3
 		move.w	(a1)+,d7
 
-loc_273E:				; CODE XREF: sub_272E+12j
+loc_273E:				; CODE XREF: PalLoad2+12j
 		move.l	(a2)+,(a3)+
 		dbf	d7,loc_273E
 		rts
-; End of function sub_272E
+; End of function PalLoad2
 
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -3943,7 +3943,7 @@ loc_277A:				; CODE XREF: sub_2764+18j
 ; End of function sub_2764
 
 ; ---------------------------------------------------------------------------
-off_2782: dc.l word_28C2		; DATA XREF: sub_2712o	sub_272Eo ...
+off_2782: dc.l word_28C2		; DATA XREF: sub_2712o	PalLoad2o ...
 		dc.w $FB00
 		dc.l $1F0000, $2942FB20, $70000, $2962FB00, $1F0000, $29E2FB00
 		dc.l $F0000, $2A22FB20,	$170000, $2A22FB20, $170000, $2A82FB20
@@ -4150,7 +4150,7 @@ loc_339C:				; CODE XREF: sub_3390+4j
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_33B6:				; CODE XREF: sub_FC94j	sub_10304j ...
+CalcSine:				; CODE XREF: sub_FC94j	sub_10304j ...
 		andi.w	#$FF,d0
 		add.w	d0,d0
 		addi.w	#$80,d0	; '€'
@@ -4158,7 +4158,7 @@ sub_33B6:				; CODE XREF: sub_FC94j	sub_10304j ...
 		subi.w	#$80,d0	; '€'
 		move.w	algn_33CE(pc,d0.w),d0
 		rts
-; End of function sub_33B6
+; End of function CalcSine
 
 ; ---------------------------------------------------------------------------
 algn_33CE:
@@ -4386,7 +4386,7 @@ loc_384A:				; CODE XREF: ROM:00003850j
 
 loc_38CE:				; CODE XREF: ROM:000038BEj
 		moveq	#0,d0
-		bsr.w	sub_272E
+		bsr.w	PalLoad2
 		move.w	#$FFF6,($FFFFF632).w
 		move.w	#0,($FFFFF634).w
 		move.w	#0,($FFFFF662).w
@@ -4837,11 +4837,11 @@ loc_3ED8:				; CODE XREF: ROM:00003ECEj
 		moveq	#0,d0
 		move.b	(a2),d0
 		beq.s	loc_3F20
-		bsr.w	sub_161E
+		bsr.w	LoadPLC
 
 loc_3F20:				; CODE XREF: ROM:00003F1Aj
 		moveq	#1,d0
-		bsr.w	sub_161E
+		bsr.w	LoadPLC
 		bsr.w	sub_4450
 		moveq	#6,d0
 		tst.w	($FFFFFFD8).w
@@ -4856,7 +4856,7 @@ loc_3F3C:				; CODE XREF: ROM:00003F30j
 		addq.w	#2,d0
 
 loc_3F44:				; CODE XREF: ROM:00003F40j
-		bsr.w	sub_161E
+		bsr.w	LoadPLC
 
 loc_3F48:				; CODE XREF: ROM:00003EE4j
 					; ROM:00003F38j
@@ -4970,7 +4970,7 @@ loc_402C:				; CODE XREF: ROM:0000401Cj
 
 loc_407C:				; CODE XREF: ROM:00004040j
 		moveq	#3,d0
-		bsr.w	sub_272E
+		bsr.w	PalLoad2
 		tst.b	($FFFFF730).w
 		beq.s	loc_40AE
 		moveq	#$15,d0
@@ -6421,7 +6421,7 @@ loc_51FC:				; CODE XREF: ROM:00005248j
 		tst.b	($FFFFDB23).w
 		beq.s	loc_51FC
 		moveq	#$3D,d0	; '='
-		bsr.w	sub_161E
+		bsr.w	LoadPLC
 
 loc_5250:				; CODE XREF: ROM:000052C2j
 		bsr.w	sub_1388
@@ -6498,7 +6498,7 @@ loc_52F4:				; CODE XREF: ROM:000052EEj
 		move.l	#$FFFFDC00,($FFFFDCFC).w
 		move	#$2300,sr
 		moveq	#$27,d0	; '''
-		bsr.w	sub_272E
+		bsr.w	PalLoad2
 		moveq	#0,d0
 		bsr.w	sub_1650
 		move.l	#$40400000,d0
@@ -15324,7 +15324,7 @@ loc_E59E:				; CODE XREF: sub_E59C+12j
 ; Attributes: thunk
 
 sub_E5BC:				; CODE XREF: sub_E3C6+96p
-		jmp	(sub_272E).l
+		jmp	(PalLoad2).l
 ; End of function sub_E5BC
 
 
@@ -15333,7 +15333,7 @@ sub_E5BC:				; CODE XREF: sub_E3C6+96p
 ; Attributes: thunk
 
 sub_E5C2:				; CODE XREF: sub_E3C6+8Cp
-		jmp	(sub_161E).l
+		jmp	(LoadPLC).l
 ; End of function sub_E5C2
 
 
@@ -15682,7 +15682,7 @@ loc_F62E:				; CODE XREF: ROM:0002FC42j
 ; Attributes: thunk
 ; jumps to singleobjectload
 sub_F64C:				; CODE XREF: ROM:0000F41Ap
-		jmp	sub_17FDA
+		jmp	SingleObjLoad
 ; End of function sub_F64C
 
 ; ---------------------------------------------------------------------------
@@ -15690,7 +15690,7 @@ sub_F64C:				; CODE XREF: ROM:0000F41Ap
 		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
 ; jumps to palload2
-		jmp	(sub_272E).l
+		jmp	(PalLoad2).l
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -15698,7 +15698,7 @@ sub_F64C:				; CODE XREF: ROM:0000F41Ap
 
 sub_F65E:				; CODE XREF: ROM:0000F63Ep
 					; ROM:0000F644p
-		jmp	(sub_161E).l
+		jmp	(LoadPLC).l
 ; End of function sub_F65E
 
 
@@ -16217,48 +16217,47 @@ locret_FA96:				; CODE XREF: sub_F9E8+7Aj sub_F9E8+88j
 ; End of function sub_F9E8
 
 ; ---------------------------------------------------------------------------
-		dc.l $2040608, $8060402
-		dcb.l 2,0
-		dc.l $2040608, $A080604, $2000000, 0
-		dc.l $2040608, $A0A0806, $4020000, 0
-		dc.l $2040608, $A0C0A08, $6040200, 0
-		dc.l $2040608, $A0C0C0A, $8060402, 0
-		dc.l $2040608, $A0C0E0C, $A080604, $2000000, $2040608
-		dc.l $A0C0E0E, $C0A0806, $4020000, $2040608, $A0C0E10
-		dc.l $E0C0A08, $6040200, $2040608, $A0C0E10, $100E0C0A
-		dc.l $8060402
-dword_FB28:	dc.l $FF000000		; DATA XREF: sub_F9E8+Ao
-		dcb.l 3,0
-		dc.l $B5FF0000
-		dcb.l 3,0
-		dc.l $7EDBFF00
-		dcb.l 3,0
-		dc.l $61B5ECFF
-		dcb.l 3,0
-		dc.l $4A93CDF3,	$FF000000
-		dcb.l 2,0
-		dc.l $3E7EB0DB,	$F6FF0000
-		dcb.l 2,0
-		dc.l $386D9DC5,	$E4F8FF00
-		dcb.l 2,0
-		dc.l $31618EB5,	$D4ECFBFF
-		dcb.l 2,0
-		dc.l $2B567EA2,	$C1DBEEFB, $FF000000, 0
-		dc.b $25, $4A, $73
-byte_FBBB:	dc.b $93		; DATA XREF: ROM:0006807Co
-		dc.l $B0CDE1F3,	$FCFF0000, 0
-		dc.l $1F446788,	$A7BDD4E7, $F4FDFF00, 0
-		dc.l $1F3E5C7E,	$98B0C9DB, $EAF6FDFF, 0
-dword_FBE8:	dc.l $19385673,	$8EA7BDD1, $E1EEF8FE, $FF000000, $1938506D
-		dc.l $839DB0C5,	$D8E4F1F8, $FEFF0000, $19314A67, $7E93A7BD
-		dc.l $CDDBE7F3,	$F9FEFF00, $19314A61, $788EA2B5, $C5D4E1EC
-		dc.l $F4FBFEFF,	$C0016,	$20002A, $34003E, $1F805, 0
-		dc.l $FFF80001,	$F8050004, $2FFF8, $1F805, $80004, $FFF80001
-		dc.l $F402000C,	$6FFFC,	$1F402,	$F0007,	$FFFC0001, $F4020012
-		dc.l $9FFFC, $4000E, $1F805, $40002, $FFF80001,	$F8050000
-		dc.l $FFF8
-dword_FC88:	dc.l $4EF90001		; CODE XREF: sub_F728p
-		dc.b $7F, $FA
+; ===========================================================================
+; bridge piece vertical position offset data
+byte_FA98:
+	dc.b   2,  4,  6,  8,  8,  6,  4,  2,  0,  0,  0,  0,  0,  0,  0,  0; 16
+	dc.b   2,  4,  6,  8, $A,  8,  6,  4,  2,  0,  0,  0,  0,  0,  0,  0; 32
+	dc.b   2,  4,  6,  8, $A, $A,  8,  6,  4,  2,  0,  0,  0,  0,  0,  0; 48
+	dc.b   2,  4,  6,  8, $A, $C, $A,  8,  6,  4,  2,  0,  0,  0,  0,  0; 64
+	dc.b   2,  4,  6,  8, $A, $C, $C, $A,  8,  6,  4,  2,  0,  0,  0,  0; 80
+	dc.b   2,  4,  6,  8, $A, $C, $E, $C, $A,  8,  6,  4,  2,  0,  0,  0; 96
+	dc.b   2,  4,  6,  8, $A, $C, $E, $E, $C, $A,  8,  6,  4,  2,  0,  0; 112
+	dc.b   2,  4,  6,  8, $A, $C, $E,$10, $E, $C, $A,  8,  6,  4,  2,  0; 128
+	dc.b   2,  4,  6,  8, $A, $C, $E,$10,$10, $E, $C, $A,  8,  6,  4,  2; 144
+
+dword_FB28:
+	dc.b $FF,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0; 16
+	dc.b $B5,$FF,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0; 32
+	dc.b $7E,$DB,$FF,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0; 48
+	dc.b $61,$B5,$EC,$FF,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0; 64
+	dc.b $4A,$93,$CD,$F3,$FF,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0; 80
+	dc.b $3E,$7E,$B0,$DB,$F6,$FF,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0; 96
+	dc.b $38,$6D,$9D,$C5,$E4,$F8,$FF,  0,  0,  0,  0,  0,  0,  0,  0,  0; 112
+	dc.b $31,$61,$8E,$B5,$D4,$EC,$FB,$FF,  0,  0,  0,  0,  0,  0,  0,  0; 128
+	dc.b $2B,$56,$7E,$A2,$C1,$DB,$EE,$FB,$FF,  0,  0,  0,  0,  0,  0,  0; 144
+	dc.b $25,$4A,$73,$93,$B0,$CD,$E1,$F3,$FC,$FF,  0,  0,  0,  0,  0,  0; 160
+	dc.b $1F,$44,$67,$88,$A7,$BD,$D4,$E7,$F4,$FD,$FF,  0,  0,  0,  0,  0; 176
+	dc.b $1F,$3E,$5C,$7E,$98,$B0,$C9,$DB,$EA,$F6,$FD,$FF,  0,  0,  0,  0; 192
+	dc.b $19,$38,$56,$73,$8E,$A7,$BD,$D1,$E1,$EE,$F8,$FE,$FF,  0,  0,  0; 208
+	dc.b $19,$38,$50,$6D,$83,$9D,$B0,$C5,$D8,$E4,$F1,$F8,$FE,$FF,  0,  0; 224
+	dc.b $19,$31,$4A,$67,$7E,$93,$A7,$BD,$CD,$DB,$E7,$F3,$F9,$FE,$FF,  0; 240
+	dc.b $19,$31,$4A,$61,$78,$8E,$A2,$B5,$C5,$D4,$E1,$EC,$F4,$FB,$FE,$FF; 256
+; -------------------------------------------------------------------------------
+; sprite mappings
+; -------------------------------------------------------------------------------
+Obj11_MapUnc_FC28:	incbin "mappings/sprite/obj11_a.bin"
+
+; -------------------------------------------------------------------------------
+; sprite mappings
+; -------------------------------------------------------------------------------
+Obj11_MapUnc_FC70:	incbin "mappings/sprite/obj11_b.bin"
+dword_FC88:
+                jmp	(SingleObjLoad2).l
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -16274,10 +16273,11 @@ sub_FC8E:				; CODE XREF: sub_F88C+66p
 ; Attributes: thunk
 
 sub_FC94:				; CODE XREF: sub_F9E8+4p
-		jmp	(sub_33B6).l
+		jmp	(CalcSine).l
 ; End of function sub_FC94
 
 ; ---------------------------------------------------------------------------
+;this is obj15 (swinging arz platform) code
 		align 4
 		btst	#6,1(a0)
 		bne.w	loc_FCB4
@@ -16776,7 +16776,7 @@ sub_102F8:				; CODE XREF: ROM:0000FE68p
 ; Attributes: thunk
 
 sub_102FE:				; CODE XREF: ROM:0001006Ep
-		jmp	sub_17FFA
+		jmp	SingleObjLoad2
 ; End of function sub_102FE
 
 
@@ -16786,7 +16786,7 @@ sub_102FE:				; CODE XREF: ROM:0001006Ep
 
 sub_10304:				; CODE XREF: sub_FE70:loc_FEE0p
 					; DATA XREF: ROM:00043458o ...
-		jmp	(sub_33B6).l
+		jmp	(CalcSine).l
 ; End of function sub_10304
 
 
@@ -16832,7 +16832,7 @@ loc_10342:				; CODE XREF: ROM:000102E8j
 		moveq	#0,d6
 
 loc_10372:				; CODE XREF: ROM:loc_103E4j
-		bsr.w	sub_17FFA
+		bsr.w	SingleObjLoad2
 		bne.s	loc_103E8
 		addq.b	#1,$28(a0)
 		move.w	a1,d5
@@ -18444,7 +18444,7 @@ sub_15E18:				; CODE XREF: ROM:00015E00p
 ; ---------------------------------------------------------------------------
 
 loc_15E3E:				; CODE XREF: sub_15E18+66j
-		bsr.w	sub_17FFA
+		bsr.w	SingleObjLoad2
 		bne.s	loc_15E82
 		addq.w	#8,a3
 
@@ -21618,7 +21618,7 @@ sub_17F36:				; CODE XREF: ROM:loc_17BD0p
 ; ---------------------------------------------------------------------------
 
 loc_17F4A:				; CODE XREF: sub_17F36+4j sub_17F36+Cj
-		bsr.w	sub_17FDA
+		bsr.w	SingleObjLoad
 		bne.s	locret_17F7E
 		move.w	(a0)+,8(a1)
 		move.w	(a0)+,d0
@@ -21659,7 +21659,7 @@ sub_17F80:				; CODE XREF: sub_17D36:loc_17DB0p
 loc_17F94:				; CODE XREF: sub_17F80+4j sub_17F80+Cj
 		btst	#4,2(a0)
 		beq.s	loc_17FA4
-		bsr.w	sub_17FDA
+		bsr.w	SingleObjLoad
 		bne.s	locret_17FD8
 		bra.s	loc_17FAA
 ; ---------------------------------------------------------------------------
@@ -21695,7 +21695,7 @@ locret_17FD8:				; CODE XREF: sub_17F80+20j
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_17FDA:				; CODE XREF: sub_F64Cj
+SingleObjLoad:				; CODE XREF: sub_F64Cj
 					; sub_17F36:loc_17F4Ap	...
 		lea	($FFFFB400).w,a1
 		move.w	#$6F,d0	; 'o'
@@ -21703,22 +21703,22 @@ sub_17FDA:				; CODE XREF: sub_F64Cj
 		beq.s	loc_17FEC
 		move.w	#$27,d0	; '''
 
-loc_17FEC:				; CODE XREF: sub_17FDA+Cj
-					; sub_17FDA+1Aj
+loc_17FEC:				; CODE XREF: SingleObjLoad+Cj
+					; SingleObjLoad+1Aj
 		tst.b	(a1)
 		beq.s	locret_17FF8
 		lea	$40(a1),a1
 		dbf	d0,loc_17FEC
 
-locret_17FF8:				; CODE XREF: sub_17FDA+14j
+locret_17FF8:				; CODE XREF: SingleObjLoad+14j
 		rts
-; End of function sub_17FDA
+; End of function SingleObjLoad
 
 
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_17FFA:				; CODE XREF: sub_102FEj ROM:loc_10372p ...
+SingleObjLoad2:				; CODE XREF: sub_102FEj ROM:loc_10372p ...
 		movea.l	a0,a1
 		move.w	#$D000,d0
 		sub.w	a0,d0
@@ -21726,16 +21726,16 @@ sub_17FFA:				; CODE XREF: sub_102FEj ROM:loc_10372p ...
 		subq.w	#1,d0
 		bcs.s	locret_18014
 
-loc_18008:				; CODE XREF: sub_17FFA+16j
+loc_18008:				; CODE XREF: SingleObjLoad2+16j
 		tst.b	(a1)
 		beq.s	locret_18014
 		lea	$40(a1),a1
 		dbf	d0,loc_18008
 
-locret_18014:				; CODE XREF: sub_17FFA+Cj
-					; sub_17FFA+10j
+locret_18014:				; CODE XREF: SingleObjLoad2+Cj
+					; SingleObjLoad2+10j
 		rts
-; End of function sub_17FFA
+; End of function SingleObjLoad2
 
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -23597,7 +23597,7 @@ loc_1A62C:				; CODE XREF: sub_1A35A+2CCj
 loc_1A630:				; CODE XREF: sub_1A35A+10j
 					; sub_1A35A+2B2j ...
 		move.b	$26(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	$14(a0),d1
 		asr.l	#8,d1
 		move.w	d1,$10(a0)
@@ -23849,7 +23849,7 @@ loc_1A868:				; CODE XREF: sub_1A7C6+9Cj
 
 loc_1A86C:				; CODE XREF: sub_1A7C6+9Aj
 		move.b	$26(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	$14(a0),d0
 		asr.l	#8,d0
 		move.w	d0,$12(a0)
@@ -24117,7 +24117,7 @@ loc_1AA74:				; CODE XREF: sub_1AA38+36j
 		moveq	#0,d0
 		move.b	$26(a0),d0
 		subi.b	#$40,d0	; '@'
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	d2,d1
 		asr.l	#8,d1
 		add.w	d1,$10(a0)
@@ -24393,7 +24393,7 @@ sub_1AD96:				; CODE XREF: ROM:0001A2C0p
 		cmpi.b	#$C0,d0
 		bcc.s	locret_1ADCA
 		move.b	$26(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	#$20,d0	; ' '
 		asr.l	#8,d0
 		tst.w	$14(a0)
@@ -24425,7 +24425,7 @@ sub_1ADCC:				; CODE XREF: ROM:loc_1A314p
 		cmpi.b	#$C0,d0
 		bcc.s	locret_1AE06
 		move.b	$26(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	#$50,d0	; 'P'
 		asr.l	#8,d0
 		tst.w	$14(a0)
@@ -24923,7 +24923,7 @@ loc_1B26E:				; CODE XREF: sub_1B21C+9Aj
 		move.w	#$9B,d0	; '›'
 		jsr	(Playmusic).l
 		moveq	#3,d0
-		jmp	(sub_161E).l
+		jmp	(LoadPLC).l
 ; ---------------------------------------------------------------------------
 
 loc_1B28E:				; CODE XREF: sub_1B21C+30j
@@ -26272,7 +26272,7 @@ loc_1C210:				; CODE XREF: sub_1C0AC+15Ej
 loc_1C214:				; CODE XREF: sub_1C0AC+10j
 					; sub_1C0AC+144j ...
 		move.b	$26(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	$14(a0),d1
 		asr.l	#8,d1
 		move.w	d1,$10(a0)
@@ -26525,7 +26525,7 @@ loc_1C44E:				; CODE XREF: sub_1C3AA+9Ej
 
 loc_1C452:				; CODE XREF: sub_1C3AA+9Cj
 		move.b	$26(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	$14(a0),d0
 		asr.l	#8,d0
 		move.w	d0,$12(a0)
@@ -26788,7 +26788,7 @@ loc_1C650:				; CODE XREF: sub_1C61E+2Cj
 		moveq	#0,d0
 		move.b	$26(a0),d0
 		subi.b	#$40,d0	; '@'
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	d2,d1
 		asr.l	#8,d1
 		add.w	d1,$10(a0)
@@ -26975,7 +26975,7 @@ sub_1C846:				; CODE XREF: ROM:0001C012p
 		cmpi.b	#$C0,d0
 		bcc.s	locret_1C87A
 		move.b	$26(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	#$20,d0	; ' '
 		asr.l	#8,d0
 		tst.w	$14(a0)
@@ -27007,7 +27007,7 @@ sub_1C87C:				; CODE XREF: ROM:loc_1C066p
 		cmpi.b	#$C0,d0
 		bcc.s	locret_1C8B6
 		move.b	$26(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	#$50,d0	; 'P'
 		asr.l	#8,d0
 		tst.w	$14(a0)
@@ -27483,7 +27483,7 @@ loc_1CCD4:				; DATA XREF: ROM:00057C98o
 		move.w	#$9B,d0	; '›'
 		jsr	(Playmusic).l
 		moveq	#3,d0
-		jmp	(sub_161E).l
+		jmp	(LoadPLC).l
 ; ---------------------------------------------------------------------------
 
 loc_1CCEC:				; CODE XREF: ROM:0001CCAAj
@@ -28143,7 +28143,7 @@ loc_1D73C:				; CODE XREF: ROM:loc_1D72Aj
 		andi.w	#$F,d0
 		addq.w	#8,d0
 		move.w	d0,$3A(a0)
-		jsr	sub_17FDA
+		jsr	SingleObjLoad
 		bne.w	locret_1D81C
 		move.b	0(a0),0(a1)
 		move.w	8(a2),8(a1)
@@ -28408,7 +28408,7 @@ loc_1DE64:				; CODE XREF: ROM:0001DE54j
 		subq.b	#1,$32(a0)
 		bpl.s	loc_1DEE0
 		move.b	#3,$32(a0)
-		bsr.w	sub_17FDA
+		bsr.w	SingleObjLoad
 		bne.s	loc_1DEE0
 		move.b	0(a0),0(a1)
 		move.w	8(a2),8(a1)
@@ -30868,7 +30868,7 @@ sub_214AC:				; CODE XREF: ROM:00020E66p
 loc_214B2:				; CODE XREF: ROM:00020E5Cj
 		jmp	loc_164E6
 ; ---------------------------------------------------------------------------
-		jmp	sub_17FDA
+		jmp	SingleObjLoad
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -31183,7 +31183,7 @@ locret_2191E:				; CODE XREF: sub_2181E+F8j
 ; Attributes: thunk
 
 sub_21920:				; CODE XREF: sub_2181E+CCp
-		jmp	(sub_33B6).l
+		jmp	(CalcSine).l
 ; End of function sub_21920
 
 ; ---------------------------------------------------------------------------
@@ -31292,7 +31292,7 @@ word_21DBA:	dc.w 4			; CODE XREF: ROM:00021DB6j
 		dc.l $80A0000, $3D805, $1C000E,	$FFF8E807, $200010, $FFF80807
 		dc.l $200010, $FFF80003, $D8050028, $14FFF8, $E8070820
 		dc.l $810FFF8, $8070820, $810FFF8, $4EF90001, $63D24EF9
-off_22000:	dc.l sub_17FFA		; DATA XREF: ROM:0005A2DCo
+off_22000:	dc.l SingleObjLoad2		; DATA XREF: ROM:0005A2DCo
 					; ROM:0005DFD0o ...
 ; ---------------------------------------------------------------------------
 		jmp	sub_16D6E
@@ -31615,7 +31615,7 @@ byte_227BE:	dc.b 2			; DATA XREF: ROM:0002279Er
 		dc.l loc_FF02+1
 		dc.l loc_4FE
 		dc.l loc_FDF8+4
-		dc.l dword_FBE8+$13
+		dc.l dword_FB28+$D3
 		dc.l loc_704+2
 		dc.l loc_F9FA
 		dc.l loc_802+7
@@ -32035,7 +32035,7 @@ off_23DF0:	dc.l byte_60018		; DATA XREF: ROM:00023B6Co
 loc_23E2C:				; CODE XREF: ROM:00023BB8j
 		jmp	loc_163D2
 ; ---------------------------------------------------------------------------
-		jmp	sub_17FFA
+		jmp	SingleObjLoad2
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -32558,7 +32558,7 @@ word_25956:	dc.w $36		; CODE XREF: sub_25948+Aj
 loc_260E4:				; CODE XREF: ROM:00025944j
 		jmp	loc_163D2
 ; ---------------------------------------------------------------------------
-		jmp	sub_17FFA
+		jmp	SingleObjLoad2
 ; ---------------------------------------------------------------------------
 		jmp	sub_16D6E
 
@@ -32753,7 +32753,7 @@ loc_268FC:				; CODE XREF: ROM:loc_26868j
 loc_26902:				; CODE XREF: ROM:00026864j
 		jmp	loc_164E6
 ; ---------------------------------------------------------------------------
-		jmp	sub_17FDA
+		jmp	SingleObjLoad
 ; ---------------------------------------------------------------------------
 		jmp	loc_163D2
 ; ---------------------------------------------------------------------------
@@ -33299,7 +33299,7 @@ byte_2774C:	dc.b $84		; DATA XREF: ROM:00027638o
 loc_27864:				; CODE XREF: ROM:0002765Ej
 		jmp	loc_163D2
 ; ---------------------------------------------------------------------------
-		jmp	sub_17FFA
+		jmp	SingleObjLoad2
 ; ---------------------------------------------------------------------------
 		jmp	sub_16D6E
 
@@ -33819,7 +33819,7 @@ sub_28DD8:				; CODE XREF: ROM:00028D64p
 ; End of function sub_28DD8
 
 ; ---------------------------------------------------------------------------
-		jmp	sub_17FFA
+		jmp	SingleObjLoad2
 ; ---------------------------------------------------------------------------
 		jmp	sub_16D6E
 
@@ -33828,7 +33828,7 @@ sub_28DD8:				; CODE XREF: ROM:00028D64p
 ; Attributes: thunk
 
 sub_28DEA:				; CODE XREF: ROM:00028CDAp
-		jmp	(sub_33B6).l
+		jmp	(CalcSine).l
 ; End of function sub_28DEA
 
 
@@ -35001,7 +35001,7 @@ loc_2C410:				; DATA XREF: ROM:0002C060o
 		subi.b	#4,d2
 		btst	d0,d0
 		nop
-		jmp	sub_17FDA
+		jmp	SingleObjLoad
 ; ---------------------------------------------------------------------------
 		jmp	loc_163D2
 ; ---------------------------------------------------------------------------
@@ -35011,7 +35011,7 @@ loc_2C410:				; DATA XREF: ROM:0002C060o
 ; ---------------------------------------------------------------------------
 		jmp	sub_16D6E
 ; ---------------------------------------------------------------------------
-		jmp	(sub_33B6).l
+		jmp	(CalcSine).l
 ; ---------------------------------------------------------------------------
 		jmp	loc_1978E
 ; ---------------------------------------------------------------------------
@@ -35801,7 +35801,7 @@ loc_2FBFA:				; CODE XREF: ROM:0002F82Cj
 ; ---------------------------------------------------------------------------
 		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
-		jmp	sub_17FFA
+		jmp	SingleObjLoad2
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -35817,7 +35817,7 @@ sub_2FC18:				; CODE XREF: ROM:0002F882p
 ; ---------------------------------------------------------------------------
 		jmp	loc_1EDFA
 ; ---------------------------------------------------------------------------
-		jmp	(sub_161E).l
+		jmp	(LoadPLC).l
 ; ---------------------------------------------------------------------------
 		jmp	loc_40D06
 ; ---------------------------------------------------------------------------
@@ -35955,7 +35955,7 @@ sub_30448:
 ; ---------------------------------------------------------------------------
 		jmp	loc_1EDFA
 ; ---------------------------------------------------------------------------
-		jmp	(sub_161E).l
+		jmp	(LoadPLC).l
 ; ---------------------------------------------------------------------------
 		dc.l $4EF90002,	$2FF84EF9, $40D06
 
@@ -36296,7 +36296,7 @@ loc_30F5A:				; CODE XREF: ROM:00030CBCj
 ; Attributes: thunk
 
 sub_30F60:				; CODE XREF: ROM:0003057Cp
-		jmp	sub_17FDA
+		jmp	SingleObjLoad
 ; End of function sub_30F60
 
 
@@ -36314,7 +36314,7 @@ sub_30F66:				; CODE XREF: ROM:00030C76p
 ; Attributes: thunk
 
 sub_30F6C:				; CODE XREF: ROM:000305D0p
-		jmp	sub_17FFA
+		jmp	SingleObjLoad2
 ; End of function sub_30F6C
 
 
@@ -36329,7 +36329,7 @@ sub_30F72:				; CODE XREF: ROM:00030CA4p
 ; ---------------------------------------------------------------------------
 		jmp	(sub_3390).l
 ; ---------------------------------------------------------------------------
-		jmp	(sub_161E).l
+		jmp	(LoadPLC).l
 ; ---------------------------------------------------------------------------
 		jmp	loc_40D06
 ; ---------------------------------------------------------------------------
@@ -36747,7 +36747,7 @@ loc_32252:				; CODE XREF: ROM:00031F2Ej
 					; ROM:00032098j
 		jmp	loc_164E6
 ; ---------------------------------------------------------------------------
-		jmp	sub_17FDA
+		jmp	SingleObjLoad
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -36763,7 +36763,7 @@ sub_3225E:				; CODE XREF: ROM:00032034p
 ; Attributes: thunk
 
 sub_32264:				; CODE XREF: ROM:00032062p
-		jmp	sub_17FFA
+		jmp	SingleObjLoad2
 ; End of function sub_32264
 
 
@@ -36781,7 +36781,7 @@ sub_3226A:				; CODE XREF: ROM:0003208Ap
 ; Attributes: thunk
 
 sub_32270:
-		jmp	(sub_161E).l
+		jmp	(LoadPLC).l
 ; End of function sub_32270
 
 
@@ -37012,7 +37012,7 @@ loc_32A64:				; CODE XREF: ROM:00032A54j
 
 sub_32A70:				; CODE XREF: ROM:loc_32A64p
 		move.b	$29(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		move.w	d0,d3
 		moveq	#0,d1
 		move.b	$33(a1),d1
@@ -37028,7 +37028,7 @@ loc_32A96:				; CODE XREF: sub_32A70+20j
 		muls.w	d3,d2
 		move.w	$38(a0),d6
 		move.b	$28(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	d0,d5
 		swap	d5
 		add.w	d6,d5
@@ -37043,7 +37043,7 @@ loc_32A96:				; CODE XREF: sub_32A70+20j
 		move.b	$3C(a0),d0
 
 loc_32ACA:				; CODE XREF: sub_32A70+54j
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		muls.w	d0,d2
 		swap	d2
 		add.w	d6,d2
@@ -37171,7 +37171,7 @@ loc_32BEE:				; CODE XREF: ROM:00032BE0j
 		cmpi.b	#$B,$1A(a0)
 		bne.s	loc_32BB0
 		move.b	$2C(a0),d0
-		jsr	(sub_33B6).l
+		jsr	(CalcSine).l
 		neg.w	d0
 		asr.w	#2,d0
 		add.w	$2E(a0),d0
@@ -37338,7 +37338,7 @@ loc_32F52:				; CODE XREF: ROM:00032CAAj
 
 sub_32F58:				; CODE XREF: ROM:00032348p
 					; ROM:0003238Ep
-		jmp	sub_17FDA
+		jmp	SingleObjLoad
 ; End of function sub_32F58
 
 
@@ -37361,7 +37361,7 @@ sub_32F64:				; CODE XREF: ROM:00032BBAp
 ; End of function sub_32F64
 
 ; ---------------------------------------------------------------------------
-		jmp	(sub_161E).l
+		jmp	(LoadPLC).l
 ; ---------------------------------------------------------------------------
 		jmp	loc_40D06
 ; ---------------------------------------------------------------------------
@@ -38690,7 +38690,7 @@ sub_365D4:				; CODE XREF: ROM:00035B8Ap
 ; Attributes: thunk
 
 sub_365DA:				; CODE XREF: ROM:00035B9Cp
-		jmp	(sub_33B6).l
+		jmp	(CalcSine).l
 ; End of function sub_365DA
 
 ; ---------------------------------------------------------------------------
@@ -38885,7 +38885,7 @@ loc_36794:				; CODE XREF: ROM:0003678Cj
 
 
 sub_367D0:				; CODE XREF: sub_BF9Ej
-		jsr	sub_17FFA
+		jsr	SingleObjLoad2
 		bne.s	locret_367F6
 		move.w	(a2)+,d0
 		move.w	a1,(a0,d0.w)
@@ -38914,7 +38914,7 @@ locret_36818:				; CODE XREF: ROM:0003680Aj
 		moveq	#0,d1
 
 loc_3681C:				; CODE XREF: ROM:0003686Aj
-		jsr	sub_17FFA
+		jsr	SingleObjLoad2
 		bne.s	locret_3686E
 		move.b	#$98,0(a1)
 		move.b	d2,$28(a1)
@@ -41114,7 +41114,7 @@ loc_3F88C:				; CODE XREF: sub_3F554+32Cj
 		bne.s	loc_3F8B8
 		tst.w	d0
 		beq.w	loc_3F926
-		jsr	sub_17FDA
+		jsr	SingleObjLoad
 		bne.s	loc_3F8B8
 		move.b	#$37,0(a1) ; '7'
 		move.w	8(a0),8(a1)
@@ -43040,7 +43040,7 @@ word_41A86:	dc.w 4			; CODE XREF: ROM:00041A82j
 		dc.l $240C5004,	$250C4074, $140C85E4
 ; this is the start of the art loading cues. I need to split this as well.
 dword_42660:	dc.l $8600A0, $BA00CE, $D600FC,	$116011E, $126012E, $1360136
-					; DATA XREF: sub_161E+4o sub_1650+4o ...
+					; DATA XREF: LoadPLC+4o sub_1650+4o ...
 		dc.l $136016E, $1A601A6, $1A601E4, $23A0278
 		dcb.l 2,$28C028C
 		dc.l $28C02C4, $30E0334, $35A0398, $3BE03F6, $422042A
@@ -52715,7 +52715,7 @@ dword_66890:	dc.l $10000000,	$91000000, $99000000, $710000D8, $7D88DDD8
 		dc.l off_F0
 		dc.l byte_FF
 		dc.l byte_B000F
-		dc.l byte_FBBB
+		dc.l dword_FB28+$93
 		dc.l byte_FF
 		dcb.l 7,0
 		dc.l byte_99999
