@@ -1913,7 +1913,7 @@ sub_130A:				; CODE XREF: ROM:00000386p
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_135E:				; CODE XREF: ROM:000037BCp
+Playmusic:				; CODE XREF: ROM:000037BCp
 					; ROM:0000399Cp ...
 		tst.b	($FFFFFFE0).w
 		bne.s	loc_136A
@@ -1921,20 +1921,20 @@ sub_135E:				; CODE XREF: ROM:000037BCp
 		rts
 ; ---------------------------------------------------------------------------
 
-loc_136A:				; CODE XREF: sub_135E+4j
+loc_136A:				; CODE XREF: Playmusic+4j
 		move.b	d0,($FFFFFFE4).w
 		rts
-; End of function sub_135E
+; End of function Playmusic
 
 
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_1370:				; CODE XREF: ROM:0000392Cp
+Playsound:				; CODE XREF: ROM:0000392Cp
 					; ROM:00003CB4p ...
 		move.b	d0,($FFFFFFE1).w
 		rts
-; End of function sub_1370
+; End of function Playsound
 
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -4316,7 +4316,7 @@ loc_36B4:
 		move.l	d0,d0
 		nop
 		move.b	#$FD,d0
-		bsr.w	sub_135E
+		bsr.w	Playmusic
 		bsr.w	sub_167C
 		bsr.w	sub_246A
 		lea	($FFFFF700).w,a1
@@ -4407,7 +4407,7 @@ loc_390E:				; CODE XREF: ROM:00003926j
 		tst.b	($FFFFF660).w
 		beq.s	loc_390E
 		move.b	#$FA,d0
-		bsr.w	sub_1370
+		bsr.w	Playsound
 		move.b	#2,($FFFFF62A).w
 		bsr.w	sub_3384
 		move.w	#$B4,($FFFFF614).w ; '´'
@@ -4463,7 +4463,7 @@ sub_3990:				; CODE XREF: ROM:00003918p
 
 loc_3998:				; CODE XREF: ROM:000003A6j
 		move.b	#$FD,d0
-		bsr.w	sub_135E
+		bsr.w	Playmusic
 		bsr.w	sub_167C
 		bsr.w	sub_246A
 		move	#$2700,sr
@@ -4666,7 +4666,7 @@ loc_3C42:				; CODE XREF: ROM:00003C38j
 		move.l	#$1388,($FFFFFFC0).w
 		move.l	#$1388,($FFFFFFC4).w
 		move.b	#$F9,d0
-		bsr.w	sub_1370
+		bsr.w	Playsound
 		moveq	#0,d0
 		move.b	($FFFFFF86).w,d0
 		bne.s	loc_3CF6
@@ -4714,7 +4714,7 @@ loc_3D20:				; CODE XREF: ROM:00003CF8j
 
 loc_3D2E:				; CODE XREF: ROM:00003C54j
 		move.b	#$F9,d0
-		bsr.w	sub_1370
+		bsr.w	Playsound
 		move.w	($FFFFFFF2).w,d0
 		andi.w	#7,d0
 		add.w	d0,d0
@@ -4766,7 +4766,7 @@ sub_3DB4:				; CODE XREF: ROM:00003C4Cp
 		bne.s	locret_3DEC
 		bchg	#7,($FFFFFFF8).w
 		move.b	#$B5,d0
-		bsr.w	sub_1370
+		bsr.w	Playsound
 
 loc_3DE6:				; CODE XREF: sub_3DB4+18j
 		move.w	#0,($FFFFFFD4).w
@@ -4813,7 +4813,7 @@ loc_3EC4:				; CODE XREF: ROM:000003AAj
 		tst.w	($FFFFFFF0).w
 		bmi.s	loc_3ED8
 		move.b	#$F9,d0
-		bsr.w	sub_1370
+		bsr.w	Playsound
 
 loc_3ED8:				; CODE XREF: ROM:00003ECEj
 		bsr.w	sub_167C
@@ -5002,7 +5002,7 @@ loc_40AE:				; CODE XREF: ROM:00004086j
 loc_40C8:				; CODE XREF: ROM:000040C2j
 		move.b	(a1,d0.w),d0
 		move.w	d0,($FFFFFF90).w
-		bsr.w	sub_135E
+		bsr.w	Playmusic
 		move.b	#$34,($FFFFB080).w ; '4'
 
 loc_40DA:				; CODE XREF: ROM:000040FCj
@@ -5591,7 +5591,7 @@ loc_474C:				; CODE XREF: sub_46CA+7Aj
 		andi.b	#$1F,d0
 		bne.s	locret_476C
 		move.w	#$F0,d0	; 'ð'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 
 locret_476C:				; CODE XREF: sub_46CA+96j
 		rts
@@ -6218,9 +6218,9 @@ loc_4F64:				; CODE XREF: ROM:000003B2j
 
 loc_4F72:				; CODE XREF: ROM:00004F6Aj
 		move.w	#$CA,d0	; 'Ê'
-		bsr.w	sub_1370
+		bsr.w	Playsound
 		move.b	#$F9,d0
-		bsr.w	sub_135E
+		bsr.w	Playmusic
 		bsr.w	sub_2592
 		tst.w	($FFFFFFD8).w
 		beq.s	loc_4F98
@@ -6396,7 +6396,7 @@ loc_51A0:				; CODE XREF: ROM:000051BCj
 		move.b	#$1A,($FFFFF62A).w
 		bsr.w	sub_3384
 		move.w	#$92,d0	; '’'
-		bsr.w	sub_135E
+		bsr.w	Playmusic
 		move.w	($FFFFF60C).w,d0
 		ori.b	#$40,d0	; '@'
 		move.w	d0,($C00004).l
@@ -6531,7 +6531,7 @@ loc_5390:				; CODE XREF: ROM:00005388j
 		move.b	#1,($FFFFFE1F).w
 		move.b	#1,($FFFFF7D6).w
 		move.w	#$9A,d0	; 'š'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		lea	($FFFFAC00).w,a1
 		moveq	#0,d0
 		move.w	#$FF,d1
@@ -6560,7 +6560,7 @@ loc_53CC:				; CODE XREF: ROM:000053EAj
 		tst.l	($FFFFF680).w
 		bne.s	loc_53CC
 		move.w	#$CA,d0	; 'Ê'
-		bsr.w	sub_1370
+		bsr.w	Playsound
 		bsr.w	sub_2592
 		tst.w	($FFFFFF8A).w
 		bne.s	loc_540C
@@ -8116,7 +8116,7 @@ loc_78DE:				; CODE XREF: ROM:000078D6j
 		bsr.w	sub_2712
 		move.w	#0,($FFFFFB80).w
 		move.b	#$9C,d0
-		bsr.w	sub_135E
+		bsr.w	Playmusic
 
 loc_78FE:				; DATA XREF: ROM:00069090o
 		move.w	#$293,($FFFFF614).w
@@ -8339,7 +8339,7 @@ loc_7DA6:				; CODE XREF: ROM:00007DA8j
 		cmp.w	($FFFFFF90).w,d0
 		beq.s	loc_7E74
 		move.w	d0,($FFFFFF90).w
-		bsr.w	sub_135E
+		bsr.w	Playmusic
 
 loc_7E74:				; CODE XREF: ROM:00007E6Aj
 		move.w	#$707,($FFFFF614).w
@@ -9982,7 +9982,7 @@ word_9C32:	dc.w $809		; DATA XREF: ROM:00008CE2o
 
 sub_9C64:				; CODE XREF: ROM:00008DECp
 					; ROM:000094CCp ...
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_9C64
 
 
@@ -9992,7 +9992,7 @@ sub_9C64:				; CODE XREF: ROM:00008DECp
 
 sub_9C6A:				; CODE XREF: ROM:00008D76p
 					; ROM:0000902Cp ...
-		jmp	(sub_135E).l
+		jmp	(Playmusic).l
 ; End of function sub_9C6A
 
 
@@ -11092,7 +11092,7 @@ loc_BF6E:				; CODE XREF: ROM:0000AB98j
 ; Attributes: thunk
 
 sub_BF74:				; CODE XREF: sub_9EF4+C6p
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_BF74
 
 
@@ -11149,7 +11149,7 @@ sub_BF92:				; CODE XREF: sub_9EF4+36p
 ; Attributes: thunk
 
 sub_BF98:				; CODE XREF: ROM:00009DF8p
-		jmp	(sub_135E).l
+		jmp	(Playmusic).l
 ; End of function sub_BF98
 
 
@@ -15680,19 +15680,21 @@ loc_F62E:				; CODE XREF: ROM:0002FC42j
 ; =============== S U B	R O U T	I N E =======================================
 
 ; Attributes: thunk
-
+; jumps to singleobjectload
 sub_F64C:				; CODE XREF: ROM:0000F41Ap
 		jmp	sub_17FDA
 ; End of function sub_F64C
 
 ; ---------------------------------------------------------------------------
-		jmp	(sub_1370).l
+; jumps to playsound routine
+		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
+; jumps to palload2
 		jmp	(sub_272E).l
 
 ; =============== S U B	R O U T	I N E =======================================
 
-; Attributes: thunk
+; jumps to loadplc
 
 sub_F65E:				; CODE XREF: ROM:0000F63Ep
 					; ROM:0000F644p
@@ -15702,15 +15704,16 @@ sub_F65E:				; CODE XREF: ROM:0000F63Ep
 
 ; =============== S U B	R O U T	I N E =======================================
 
-; Attributes: thunk
+; jumps to playmusic
 
 sub_F664:				; CODE XREF: ROM:0000F34Ap
 					; ROM:0000F42Cp ...
-		jmp	(sub_135E).l
+		jmp	(Playmusic).l
 ; End of function sub_F664
 
 ; ---------------------------------------------------------------------------
 		align 4
+;start of code for bridges, look here to see why they are fucked up?
 		btst	#6,1(a0)
 		bne.w	loc_F684
 		moveq	#0,d0
@@ -17745,7 +17748,7 @@ word_13F82:	dc.w 6			; CODE XREF: ROM:00013F7Ej
 ; ---------------------------------------------------------------------------
 		jmp	(a0)
 ; ---------------------------------------------------------------------------
-		dc.l dword_4137C
+		dc.l dword_4134C+$30
 		dc.w $78
 		dc.l $19137C, 1, $43E90040, $51C9FFC8, $4A38FFB0, $6706117C
 		dc.l $4001A, $C380007, $FFB16606, $117C0019, $1A3028, $30B068
@@ -18461,7 +18464,7 @@ loc_15E46:				; CODE XREF: sub_15E18+24j
 
 loc_15E82:				; CODE XREF: sub_15E18+2Aj
 		move.w	#$CB,d0	; 'Ë'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_15E18
 
 ; ---------------------------------------------------------------------------
@@ -20969,7 +20972,7 @@ loc_177FA:				; CODE XREF: ROM:00017698j
 		bclr	#5,$22(a0)
 		clr.b	$3C(a0)
 		move.w	#$D9,d0	; 'Ù'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
 off_1781A:	dc.l dword_A0410	; DATA XREF: ROM:000173D2o
 		dc.w $540
@@ -23129,7 +23132,7 @@ loc_1A0DA:				; CODE XREF: sub_1A0C6+Cj
 		cmpi.b	#$C,$28(a0)
 		bcs.s	loc_1A106
 		move.w	($FFFFFF90).w,d0
-		jsr	(sub_135E).l
+		jsr	(Playmusic).l
 
 loc_1A106:				; CODE XREF: sub_1A0C6+2Cj
 					; sub_1A0C6+34j
@@ -23155,7 +23158,7 @@ loc_1A10C:				; CODE XREF: sub_1A0C6+1Aj
 loc_1A14A:				; CODE XREF: sub_1A0C6+70j
 		bclr	#2,$2B(a0)
 		move.w	#$FC,d0	; 'ü'
-		jmp	(sub_135E).l
+		jmp	(Playmusic).l
 ; ---------------------------------------------------------------------------
 
 locret_1A15A:				; CODE XREF: sub_1A0C6+4Cj
@@ -23222,7 +23225,7 @@ loc_1A1E0:				; CODE XREF: sub_1A186+46j
 		beq.s	locret_1A18C
 		move.w	#$100,($FFFFD11C).w
 		move.w	#$AA,d0	; 'ª'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
 
 loc_1A1FE:				; CODE XREF: sub_1A186+10j
@@ -23256,7 +23259,7 @@ loc_1A242:				; CODE XREF: sub_1A186+B6j
 
 loc_1A264:				; CODE XREF: sub_1A186+D6j
 		move.w	#$AA,d0	; 'ª'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_1A186
 
 ; ---------------------------------------------------------------------------
@@ -23703,7 +23706,7 @@ loc_1A702:				; CODE XREF: sub_1A6C0+3Cj
 		move.b	#$D,$1C(a0)
 		bclr	#0,$22(a0)
 		move.w	#$A4,d0	; '¤'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		cmpi.b	#$C,$28(a0)
 		bcs.s	locret_1A744
 		move.b	#6,($FFFFD124).w
@@ -23758,7 +23761,7 @@ loc_1A782:				; CODE XREF: sub_1A746+36j
 		move.b	#$D,$1C(a0)
 		bset	#0,$22(a0)
 		move.w	#$A4,d0	; '¤'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		cmpi.b	#$C,$28(a0)
 		bcs.s	locret_1A7C4
 		move.b	#6,($FFFFD124).w
@@ -24076,7 +24079,7 @@ loc_1AA04:				; CODE XREF: sub_1A9D2+2Ej
 		move.b	#2,$1C(a0)
 		addq.w	#5,$C(a0)
 		move.w	#$BE,d0	; '¾'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		tst.w	$14(a0)
 		bne.s	locret_1AA36
 		move.w	#$200,$14(a0)
@@ -24127,7 +24130,7 @@ loc_1AA74:				; CODE XREF: sub_1AA38+36j
 		move.b	#1,$3C(a0)
 		clr.b	$38(a0)
 		move.w	#$A0,d0	; ' '
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		move.b	#$13,$16(a0)
 		move.b	#9,$17(a0)
 		btst	#2,$22(a0)
@@ -24207,9 +24210,9 @@ loc_1AB38:				; CODE XREF: sub_1AAF0+2Ej
 		move.w	#0,$32(a0)
 		bset	#1,$2B(a0)
 		move.w	#$DF,d0	; 'ß'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		move.w	#$96,d0	; '–'
-		jmp	(sub_135E).l
+		jmp	(Playmusic).l
 ; ---------------------------------------------------------------------------
 
 locret_1ABA4:				; CODE XREF: sub_1AAF0+4Cj
@@ -24282,7 +24285,7 @@ sub_1AC3E:				; CODE XREF: ROM:loc_1A2B8p
 		beq.w	locret_1AC8C
 		move.b	#9,$1C(a0)
 		move.w	#$E0,d0	; 'à'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		addq.l	#4,sp
 		move.b	#1,$39(a0)
 		move.w	#0,$3A(a0)
@@ -24332,7 +24335,7 @@ loc_1ACF4:				; CODE XREF: sub_1AC3E+B0j
 		bset	#2,$22(a0)
 		move.b	#0,($FFFFD11C).w
 		move.w	#$BC,d0	; '¼'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		bra.s	loc_1AD78
 ; ---------------------------------------------------------------------------
 word_1AD0C:	dc.w $800, $880, $900, $980, $A00, $A80, $B00, $B80, $C00
@@ -24357,7 +24360,7 @@ loc_1AD48:				; CODE XREF: sub_1AC3E+F6j
 		beq.w	loc_1AD78
 		move.w	#$900,$1C(a0)
 		move.w	#$E0,d0	; 'à'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		addi.w	#$200,$3A(a0)
 		cmpi.w	#$800,$3A(a0)
 		bcs.s	loc_1AD78
@@ -24918,7 +24921,7 @@ loc_1B26E:				; CODE XREF: sub_1B21C+9Aj
 		clr.b	($FFFFFECA).w
 		move.b	#8,$24(a0)
 		move.w	#$9B,d0	; '›'
-		jsr	(sub_135E).l
+		jsr	(Playmusic).l
 		moveq	#3,d0
 		jmp	(sub_161E).l
 ; ---------------------------------------------------------------------------
@@ -25540,7 +25543,7 @@ loc_1BA6A:				; CODE XREF: sub_1BA56+Cj
 		cmpi.b	#$C,$28(a0)
 		bcs.s	loc_1BA96
 		move.w	($FFFFFF90).w,d0
-		jsr	(sub_135E).l
+		jsr	(Playmusic).l
 
 loc_1BA96:				; CODE XREF: sub_1BA56+2Cj
 					; sub_1BA56+34j
@@ -25559,7 +25562,7 @@ loc_1BA9C:				; CODE XREF: sub_1BA56+1Aj
 		move.w	#$80,($FFFFFEC4).w ; '€'
 		bclr	#2,$2B(a0)
 		move.w	#$FC,d0	; 'ü'
-		jmp	(sub_135E).l
+		jmp	(Playmusic).l
 ; ---------------------------------------------------------------------------
 
 locret_1BAD2:				; CODE XREF: sub_1BA56+4Cj
@@ -26041,7 +26044,7 @@ loc_1BF5A:				; CODE XREF: sub_1BF52+4j
 		beq.s	locret_1BF58
 		move.w	#$100,($FFFFD15C).w
 		move.w	#$AA,d0	; 'ª'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
 
 loc_1BFB2:				; CODE XREF: sub_1BF52+10j
@@ -26068,7 +26071,7 @@ loc_1BFDE:				; CODE XREF: sub_1BF52+86j
 
 loc_1C000:				; CODE XREF: sub_1BF52+A6j
 		move.w	#$AA,d0	; 'ª'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_1BF52
 
 ; ---------------------------------------------------------------------------
@@ -26378,7 +26381,7 @@ loc_1C2E6:				; CODE XREF: sub_1C2A4+3Cj
 		move.b	#$D,$1C(a0)
 		bclr	#0,$22(a0)
 		move.w	#$A4,d0	; '¤'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		cmpi.b	#$C,$28(a0)
 		bcs.s	locret_1C328
 		move.b	#6,($FFFFD164).w
@@ -26433,7 +26436,7 @@ loc_1C366:				; CODE XREF: sub_1C32A+36j
 		move.b	#$D,$1C(a0)
 		bset	#0,$22(a0)
 		move.w	#$A4,d0	; '¤'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		cmpi.b	#$C,$28(a0)
 		bcs.s	locret_1C3A8
 		move.b	#6,($FFFFD164).w
@@ -26752,7 +26755,7 @@ loc_1C5EA:				; CODE XREF: sub_1C5B8+2Ej
 		move.b	#2,$1C(a0)
 		addq.w	#1,$C(a0)
 		move.w	#$BE,d0	; '¾'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		tst.w	$14(a0)
 		bne.s	locret_1C61C
 		move.w	#$200,$14(a0)
@@ -26798,7 +26801,7 @@ loc_1C650:				; CODE XREF: sub_1C61E+2Cj
 		move.b	#1,$3C(a0)
 		clr.b	$38(a0)
 		move.w	#$A0,d0	; ' '
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		move.b	#$F,$16(a0)
 		move.b	#9,$17(a0)
 		btst	#2,$22(a0)
@@ -26871,7 +26874,7 @@ sub_1C70E:				; CODE XREF: ROM:0001C00Ap
 		beq.w	locret_1C75C
 		move.b	#9,$1C(a0)
 		move.w	#$E0,d0	; 'à'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		addq.l	#4,sp
 		move.b	#1,$39(a0)
 		move.w	#0,$3A(a0)
@@ -26916,7 +26919,7 @@ loc_1C7B6:				; CODE XREF: sub_1C70E+A2j
 		bset	#2,$22(a0)
 		move.b	#0,($FFFFD15C).w
 		move.w	#$BC,d0	; '¼'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		bra.s	loc_1C828
 ; ---------------------------------------------------------------------------
 word_1C7CE:	dc.w $800		; DATA XREF: sub_1C70E+7Er
@@ -26939,7 +26942,7 @@ loc_1C7F8:				; CODE XREF: sub_1C70E+D6j
 		beq.w	loc_1C828
 		move.w	#$900,$1C(a0)
 		move.w	#$E0,d0	; 'à'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		addi.w	#$200,$3A(a0)
 		cmpi.w	#$800,$3A(a0)
 		bcs.s	loc_1C828
@@ -27478,7 +27481,7 @@ loc_1CCD4:				; DATA XREF: ROM:00057C98o
 					; ROM:00057CA8o
 		move.b	#8,$24(a0)
 		move.w	#$9B,d0	; '›'
-		jsr	(sub_135E).l
+		jsr	(Playmusic).l
 		moveq	#3,d0
 		jmp	(sub_161E).l
 ; ---------------------------------------------------------------------------
@@ -28060,7 +28063,7 @@ locret_1D604:				; CODE XREF: sub_1D5C0+Aj
 		tst.b	$3F(a0)
 		bne.s	loc_1D678
 		move.w	#$9F,d0	; 'Ÿ'
-		jsr	(sub_135E).l
+		jsr	(Playmusic).l
 
 loc_1D678:				; CODE XREF: ROM:0001D666j
 					; ROM:0001D66Cj
@@ -28076,7 +28079,7 @@ loc_1D68C:				; CODE XREF: ROM:0001D652j
 		tst.b	$3F(a0)
 		bne.s	loc_1D69C
 		move.w	#$C2,d0	; 'Â'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 
 loc_1D69C:				; CODE XREF: ROM:0001D664j
 					; ROM:0001D67Cj ...
@@ -28084,7 +28087,7 @@ loc_1D69C:				; CODE XREF: ROM:0001D664j
 		bcc.w	loc_1D72A
 		move.b	#$81,$2A(a2)
 		move.w	#$B2,d0	; '²'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		move.b	#$A,$34(a0)
 		move.w	#1,$36(a0)
 		move.w	#$78,$2C(a0) ; 'x'
@@ -28236,7 +28239,7 @@ loc_1D848:				; CODE XREF: sub_1D81E+22j
 		move.w	#$93,d0	; '“'
 
 loc_1D852:				; CODE XREF: sub_1D81E+2Ej
-		jsr	(sub_135E).l
+		jsr	(Playmusic).l
 
 loc_1D858:				; CODE XREF: sub_1D81E+6j sub_1D81E+Cj
 		move.b	#$1E,$28(a1)
@@ -30671,7 +30674,7 @@ loc_212CE:				; CODE XREF: sub_21244+86j
 		move.b	#2,$1C(a1)
 		addq.w	#5,$C(a1)
 		move.w	#$BE,d0	; '¾'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		rts
 ; End of function sub_21244
 
@@ -31443,7 +31446,7 @@ loc_223BA:				; CODE XREF: sub_22388+26j
 
 loc_223D8:				; CODE XREF: sub_22388+12j
 		move.w	#$CC,d0	; 'Ì'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_22388
 
 ; ---------------------------------------------------------------------------
@@ -31546,7 +31549,7 @@ loc_22688:				; CODE XREF: ROM:0002266Cj
 		move.w	#$800,d2
 		bsr.w	sub_22902
 		move.w	#$BE,d0	; '¾'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		rts
 ; ---------------------------------------------------------------------------
 		subq.b	#1,2(a4)
@@ -31605,7 +31608,7 @@ loc_227A6:				; CODE XREF: ROM:0002278Aj
 		move.b	#6,(a4)
 		clr.b	$2A(a1)
 		move.w	#$BC,d0	; '¼'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
 byte_227BE:	dc.b 2			; DATA XREF: ROM:0002279Er
 		dc.b 1
@@ -31669,7 +31672,7 @@ loc_228E4:				; CODE XREF: ROM:000228C2j
 		move.w	#$800,d2
 		bsr.w	sub_22902
 		move.w	#$BE,d0	; '¾'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		addq.b	#2,(a4)
 		rts
 
@@ -32164,7 +32167,7 @@ loc_244BA:				; CODE XREF: ROM:000244ACj
 		bclr	#5,$22(a1)
 		move.b	#1,$1D(a1)
 		move.w	#$CC,d0	; 'Ì'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
 		rts
 ; ---------------------------------------------------------------------------
@@ -32717,7 +32720,7 @@ loc_2681E:				; CODE XREF: ROM:00026810j
 
 loc_26830:				; CODE XREF: ROM:00026822j
 		move.w	#$CC,d0	; 'Ì'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
 		subq.b	#1,$1E(a0)
 		bpl.s	loc_26868
@@ -33034,7 +33037,7 @@ loc_27104:				; CODE XREF: sub_27042+B4j
 		bclr	#6,$22(a0)
 		bclr	#5,$22(a1)
 		move.w	#$CC,d0	; 'Ì'
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_27042
 
 ; ---------------------------------------------------------------------------
@@ -33240,7 +33243,7 @@ sub_276CA:				; CODE XREF: ROM:00027662p
 		tst.b	1(a0)
 		bpl.s	loc_276EE
 		move.w	#$B6,d0	; '¶'
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 
 loc_276EE:				; CODE XREF: sub_276CA+4j
 					; sub_276CA+18j
@@ -35796,7 +35799,7 @@ loc_2FBFA:				; CODE XREF: ROM:0002F82Cj
 ; ---------------------------------------------------------------------------
 		jmp	sub_164E8
 ; ---------------------------------------------------------------------------
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; ---------------------------------------------------------------------------
 		jmp	sub_17FFA
 
@@ -35944,7 +35947,7 @@ word_3004A:	dc.w $1A		; DATA XREF: ROM:00006A1Co
 ; Attributes: thunk
 
 sub_30448:
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_30448
 
 ; ---------------------------------------------------------------------------
@@ -36302,7 +36305,7 @@ sub_30F60:				; CODE XREF: ROM:0003057Cp
 ; Attributes: thunk
 
 sub_30F66:				; CODE XREF: ROM:00030C76p
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_30F66
 
 
@@ -36751,7 +36754,7 @@ loc_32252:				; CODE XREF: ROM:00031F2Ej
 ; Attributes: thunk
 
 sub_3225E:				; CODE XREF: ROM:00032034p
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_3225E
 
 
@@ -37345,7 +37348,7 @@ sub_32F58:				; CODE XREF: ROM:00032348p
 
 sub_32F5E:				; CODE XREF: ROM:00032C9Cp
 					; ROM:00032D28p
-		jmp	(sub_1370).l
+		jmp	(Playsound).l
 ; End of function sub_32F5E
 
 
@@ -40649,7 +40652,7 @@ loc_3EA90:				; CODE XREF: sub_3AF58+38j
 ; ---------------------------------------------------------------------------
 		jmp	sub_16D6E
 ; ---------------------------------------------------------------------------
-		jmp	(sub_135E).l
+		jmp	(Playmusic).l
 ; ---------------------------------------------------------------------------
 		dc.l $4EF90002,	$D6CC4EF9, $19C32, $4EF90001, $97184EF9
 		dc.l $16380, $4EF90001,	$63AC0000, $70001028, $24323B
@@ -41149,7 +41152,7 @@ loc_3F8FC:				; CODE XREF: sub_3F554+3A2j
 		move.w	#$A6,d0	; '¦'
 
 loc_3F91C:				; CODE XREF: sub_3F554+3C2j
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 		moveq	#$FFFFFFFF,d0
 		rts
 ; ---------------------------------------------------------------------------
@@ -41173,7 +41176,7 @@ loc_3F926:				; CODE XREF: sub_19736+40Cp
 		move.w	#$A6,d0	; '¦'
 
 loc_3F96C:				; CODE XREF: sub_3F554+412j
-		jsr	(sub_1370).l
+		jsr	(Playsound).l
 
 loc_3F972:				; CODE XREF: sub_3F554+3D6j
 		moveq	#$FFFFFFFF,d0
@@ -42091,7 +42094,7 @@ loc_40D1E:				; CODE XREF: sub_40D42-28j
 		addq.b	#1,($FFFFFE12).w
 		addq.b	#1,($FFFFFE1C).w
 		move.w	#$98,d0	; '˜'
-		jmp	(sub_135E).l
+		jmp	(Playmusic).l
 ; ---------------------------------------------------------------------------
 
 locret_40D40:				; CODE XREF: sub_40D42-1Ej
@@ -42125,7 +42128,7 @@ loc_40D66:				; CODE XREF: sub_40D42+20j
 		addq.b	#1,($FFFFFEC6).w
 		addq.b	#1,($FFFFFEC8).w
 		move.w	#$98,d0	; '˜'
-		jmp	(sub_135E).l
+		jmp	(Playmusic).l
 ; ---------------------------------------------------------------------------
 
 locret_40D88:				; CODE XREF: sub_40D42+2Aj
@@ -42366,7 +42369,7 @@ loc_40FE4:				; CODE XREF: sub_40D8A+250j
 		cmpi.b	#$C,-1(a1)
 		bne.s	loc_41010
 		move.w	#$9F,d0	; 'Ÿ'
-		jsr	(sub_135E).l
+		jsr	(Playmusic).l
 
 loc_41010:				; CODE XREF: sub_40D8A+27Aj
 					; DATA XREF: ROM:0004420Co
@@ -42638,6 +42641,7 @@ loc_411CE:				; CODE XREF: sub_411A4+24j
 ; End of function sub_411A4
 
 ; ---------------------------------------------------------------------------
+;hud counter stuff?
 off_411FC:	dc.l dword_18030+$670	; DATA XREF: sub_41146o
 		dc.l pal_26E2+$2E
 off_41204:	dc.l loc_3E2+6		; DATA XREF: sub_41274o
@@ -42853,163 +42857,12 @@ loc_41340:				; CODE XREF: sub_412E2+64j
 ; End of function sub_412E2
 
 ; ---------------------------------------------------------------------------
-dword_4134C:	dc.l 0			; DATA XREF: sub_4105A:loc_41090o
-					; sub_4105A+66o ...
-		dc.l $666610, $6666661,	$6611661, $6610661, $76617661
-		dcb.l 3,$66106610
-		dc.l $66666610,	$6666100, $1111000
-dword_4137C:	dcb.l 5,0		; DATA XREF: ROM:0001443Ao
-		dc.l dword_66100
-		dc.l $666100
-		dcb.l 2,$66100
-		dc.l $766100
-		dcb.l 5,$661000
-		dc.l $111000
-		dcb.l 5,0
-		dc.l $666610, $6666661,	$6611661, $1116661, $66610, $7661000
-		dc.l $76610000,	$66610000
-		dcb.l 2,$66666610
-		dc.l $11111110
-		dcb.l 5,0
-		dc.l $666610, $6666661,	$6611661, $1110661, $66610, $666100
-		dc.l $116610, $66106610, $66666610, $6666100, $1111000
-		dcb.l 5,0
-		dc.l dword_5E84+$78C
-		dc.l off_66610
-		dc.l $766610, $666610, $6616610, $76166100
-		dcb.l 2,$66666610
-		dc.l $11166110,	$66100,	$11100
-		dcb.l 5,0
-		dcb.l 2,$6666661
-		dc.l $6611111, $6610000, $76666710, $66666610, $11116610
-		dc.l $66106610,	$66666610, $16666100, $1111000
-		dcb.l 5,0
-		dc.l $666610, $6666661,	$6611661, $6610111, $76667810
-		dc.l $66666710,	$66116610, $66106610, $66666610, $6666100
-		dc.l $1111000
-		dcb.l 5,0
-		dcb.l 2,$6666661
-		dc.l $1111661, $7610, $76610, $66100
-		dcb.l 2,$661000
-		dcb.l 2,$6671000
-		dc.l $111000
-		dcb.l 5,0
-		dc.l $666610, $6666661,	$6611661, $6610661, $666610, $6666100
-		dc.l $66116610,	$66106610, $66666610, $6666100,	$1111000
-		dcb.l 5,0
-		dc.l $666610, $6666661,	$6611661, $6610661, $6666661, $8666671
-		dc.l $1116610, $66106610, $66666610, $6666100, $1111000
-		dcb.l 7,0
-		dc.l dword_66100
-		dc.l dword_66100
-		dc.l dword_1106C+$94
-		dc.l 0
-		dc.l dword_66100
-		dc.l dword_66100
-		dc.l dword_1106C+$94
-		dcb.l 7,0
-		dcb.l 2,$CCCCCC1
-		dc.l $CC11111, $CC10000, $CCCCC10, $CCCCC100, $CC111100
-		dc.l $CC100000
-		dcb.l 2,$CCCCCC10
-		dc.l $11111110
-		dcb.l 4,0
-dword_4164C:	dc.l 0			; DATA XREF: sub_412E2+14o
-		dc.l $666610, $6611661
-		dcb.l 3,$6610661
-		dc.l $666610, $111100, 0
-		dc.l dword_66100
-		dc.l $666100, $166100
-		dcb.l 3,$66100
-		dc.l $11100, 0
-		dc.l $666610, $111661, $6611, $66110, $661110, $6666661
-		dc.l $1111111, 0
-		dc.l $666610, $111661, $66610, $11661, $6610661, $666610
-		dc.l $111100, 0
-		dc.l dword_5E84+$78C
-		dc.l off_66610
-		dc.l $616610, $6616610,	$6666661, $1116611, $1110, 0
-		dc.l $6666661, $6611111, $6666610, $1111661, $6610661
-		dc.l $666610, $111100, 0
-		dc.l $666610, $6611110,	$6666610, $6611661, $6610661, $666610
-		dc.l $111100, 0
-		dc.l $6666661, $1111661, $6610,	$66100
-		dcb.l 2,$661000
-		dc.l $111000, 0
-		dc.l $666610, $6611661,	$666610, $6611661, $6610661, $666610
-		dc.l $111100, 0
-		dc.l $666610, $6611661,	$6610661, $666661, $111661, $666610
-		dc.l $111100
-dword_4178C:	dcb.l 2,0		; DATA XREF: sub_41104+2o
-		dc.l $666600, $6600660,	$66606660, $66660660, $66006600
-		dc.l $6666000
-		dcb.l 2,0
-		dc.l dword_66600
-		dc.l $606600, $6600
-		dcb.l 2,$66000
-		dc.l $6666600
-		dcb.l 2,0
-		dc.l $666000, $6006600,	$6600, $66000, $660000,	$6666600
-		dcb.l 2,0
-		dc.l $6666600, $6600, $66000, $6600, $6006600, $6666000
-		dcb.l 2,0
-		dc.l dword_66600
-		dc.l $606600, $6006000,	$66666660, $66000, $666000
-		dcb.l 2,0
-		dc.l $666600, $600000, $666600,	$660, $6006660,	$666600
-		dcb.l 2,0
-		dc.l dword_66600
-		dc.l $660000, $6666000
-		dcb.l 2,$66006600
-		dc.l $66666000
-		dcb.l 2,0
-		dc.l $6666600, $6006600, $66000, $660000, $6600000, $66600000
-		dcb.l 2,0
-		dc.l $666600, $6600660,	$666600, $6666000, $66006600, $6666000
-		dcb.l 2,0
-		dc.l $666600
-		dcb.l 2,$6600660
-		dc.l $666600, $6600, $6666000, 0
-		dc.l dword_60000
-		dc.l $666600, $6060000,	$666000, $60600, $6666000, $60000
-		dcb.l 4,0
-		dc.l $6666660
-		dcb.l 6,0
-		dc.l $6666660, 0
-		dc.l $6666660
-		dcb.l 3,0
-		dc.l dword_5E84+$17C
-		dc.l dword_5E84+$77C
-		dcb.l 2,$6666660
-		dc.l $6600, $6000
-		dcb.l 2,0
-		dc.l dword_5E84+$17C
-		dc.l dword_5E84+$77C
-		dcb.l 2,$6666660
-		dc.l $6600, $6000
-		dcb.l 3,0
-		dcb.l 2,$6600660
-		dc.l $606600, $666000, $6660000, $66600000
-		dcb.l 2,0
-		dc.l $6666660, $6600, $66000, $660000, $6600000, $66666600
-		dcb.l 2,0
-		dc.l dword_5E84+$7DC
-		dc.l dword_60660
-		dc.l $600660, $666660, $6600660, $66000660
-		dcb.l 2,0
-		dc.l $666600, $600660, $6666600, $6666000, $66006600, $66666000
-		dcb.l 2,0
-		dc.l $666600, $6600660,	$6600000, $66000000, $66006600
-		dc.l $66666000
-		dcb.l 2,0
-		dc.l $666600, $660660
-		dcb.l 2,$6600660
-		dc.l $66006600,	$66666000
-		dcb.l 2,0
-		dc.l $666660, $660000, $6600000, $6666000, $66000000, $66666600
-		dcb.l 2,0
-		dc.l $666660, $6660000,	$6600000, $6666600
-		dcb.l 2,$66600000
+dword_4134C:
+                incbin	"art/uncompressed/Big and small numbers used on counters - 1.bin"
+dword_4164C:
+                incbin	"art/uncompressed/Big and small numbers used on counters - 2.bin"
+dword_4178C:
+                incbin	"art/uncompressed/Big and small numbers used on counters - 3.bin"
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -43030,7 +42883,7 @@ sub_41A72:				; CODE XREF: sub_40804+50p
 ; End of function sub_41A72
 
 ; ---------------------------------------------------------------------------
-
+;this is the start of the debug mode code. The rest is merged as data, i need to split it.
 loc_41A78:				; CODE XREF: ROM:00019F56j
 		moveq	#0,d0
 		move.b	($FFFFFE08).w,d0
@@ -43185,6 +43038,7 @@ word_41A86:	dc.w 4			; CODE XREF: ROM:00041A82j
 		dc.l $100B2CF4,	$1E0B6174, $1F0B5234, $110B90F4, $200B6174
 		dc.l $210B5234,	$120B90F4, $220BCC24, $230BB944, $130C1434
 		dc.l $240C5004,	$250C4074, $140C85E4
+; this is the start of the art loading cues. I need to split this as well.
 dword_42660:	dc.l $8600A0, $BA00CE, $D600FC,	$116011E, $126012E, $1360136
 					; DATA XREF: sub_161E+4o sub_1650+4o ...
 		dc.l $136016E, $1A601A6, $1A601E4, $23A0278
