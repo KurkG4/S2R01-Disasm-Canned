@@ -3766,7 +3766,7 @@ loc_261C:				; CODE XREF: sub_25E0+6j sub_25E0+34j
 		tst.b	($FFFFF635).w
 		bne.s	loc_2680
 		lea	($FFFFFB20).w,a1
-		lea	(word_26D6).l,a0
+		lea	(pal_26D6).l,a0
 		moveq	#5,d1
 		move.w	($FFFFF632).w,d0
 
@@ -3828,7 +3828,7 @@ loc_2680:				; CODE XREF: ROM:00002624j
 
 loc_269E:				; CODE XREF: ROM:00002698j
 		move.w	d0,($FFFFF632).w
-		lea	(word_26E2).l,a0
+		lea	(pal_26E2).l,a0
 		lea	(a0,d0.w),a0
 		lea	($FFFFFB04).w,a1
 		move.l	(a0)+,(a1)+
@@ -3853,14 +3853,18 @@ loc_26D2:				; CODE XREF: ROM:00002684j
 		moveq	#1,d0
 		rts
 ; ---------------------------------------------------------------------------
-word_26D6:	dc.w $EEE		; DATA XREF: ROM:0000262Ao
-		dc.l $EEA0EE4, $EC00EE4
-		dc.b $E, $EA
-word_26E2:	dc.w $EEC		; DATA XREF: ROM:000026A2o
-		dcb.l 2,$EEA0EEA
-		dc.l $EEA0EEC, $EEA0EE4, $EC00EC0, $EC00EEC, $EEA0EE4
-		dc.l $EC00EA0, $E600EEA, $EE40EC0, $EA00E80
-byte_2710:	dc.b $E, 0		; DATA XREF: ROM:00041200o
+; ===========================================================================
+;----------------------------------------------------------------------------
+; Unused palette for the Sega logo
+;----------------------------------------------------------------------------
+Pal_26D6:
+         	incbin	"art/palettes/Unused Sega logo.bin"
+;----------------------------------------------------------------------------
+; Unused palette for the Sega logo (fading?)
+;----------------------------------------------------------------------------
+Pal_26E2:
+                incbin	"art/palettes/Unused Sega logo 2.bin"
+
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -42635,7 +42639,7 @@ loc_411CE:				; CODE XREF: sub_411A4+24j
 
 ; ---------------------------------------------------------------------------
 off_411FC:	dc.l dword_18030+$670	; DATA XREF: sub_41146o
-		dc.l byte_2710
+		dc.l pal_26E2+$2E
 off_41204:	dc.l loc_3E2+6		; DATA XREF: sub_41274o
 off_41208:	dc.l byte_64		; DATA XREF: sub_40984o sub_4113Co
 dword_4120C:	dc.l $A			; DATA XREF: sub_40938o sub_411A4+10o	...
