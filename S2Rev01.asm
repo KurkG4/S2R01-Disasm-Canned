@@ -86,7 +86,7 @@ word_72:	dc.w $F54		; DATA XREF: ROM:00062368o
 byte_76:	dc.b 2			; DATA XREF: ROM:0006A694o
 byte_77:	dc.b 0			; DATA XREF: ROM:0006716Co
 					; ROM:00069830o ...
-off_78:		dc.l loc_408		; DATA XREF: ROM:0006A108o
+off_78:		dc.l sub_408		; DATA XREF: ROM:0006A108o
 		dc.l byte_200
 byte_80:	dc.b 0			; DATA XREF: ROM:off_1E5D0o
 					; ROM:00064F58o ...
@@ -400,54 +400,70 @@ loc_37C:				; CODE XREF: ROM:0000037Ej
 loc_394:				; CODE XREF: ROM:000003A0j
 		move.b	($FFFFF600).w,d0
 		andi.w	#$3C,d0	; '<'
-		jsr	word_3A2(pc,d0.w)
+		jsr	loc_3A2(pc,d0.w)
 		bra.s	loc_394
 ; ---------------------------------------------------------------------------
-word_3A2:	dc.w $6000		; DATA XREF: ROM:0000039Co
+
+loc_3A2:				; DATA XREF: ROM:0000039Co
+		bra.w	sub_37B8
 ; ---------------------------------------------------------------------------
-		move.w	(a4),d2
-		bra.w	loc_3998  ;titlescreen
+		bra.w	loc_3998
 ; ---------------------------------------------------------------------------
-		bra.w	loc_3EC4  ;level (demo)
+		bra.w	loc_3EC4
 ; ---------------------------------------------------------------------------
-		bra.w	loc_3EC4  ;level (playing the game)
+		bra.w	loc_3EC4
 ; ---------------------------------------------------------------------------
-		bra.w	loc_4F64  ;specialstage
+		bra.w	loc_4F64
 ; ---------------------------------------------------------------------------
-		bra.w	loc_7870  ;continue screen
+		bra.w	loc_7870
 ; ---------------------------------------------------------------------------
-		bra.w	loc_7D50  ;2p results
+		bra.w	loc_7D50
 ; ---------------------------------------------------------------------------
-		dc.w $6000
-		dc.l $306000, $326000, $346000
-		dc.b 0,	$36
+		bra.w	loc_3F0
 ; ---------------------------------------------------------------------------
-;checksum error
+		bra.w	loc_3F6
+; ---------------------------------------------------------------------------
+		bra.w	loc_3FC
+; ---------------------------------------------------------------------------
+		bra.w	loc_402
+; ---------------------------------------------------------------------------
+
 loc_3CE:				; CODE XREF: ROM:00000346j
 		move.l	d1,-(sp)
 		bsr.w	sub_1158
 		move.l	(sp)+,d1
 		move.l	#$C0000000,($C00004).l
 		moveq	#$3F,d7	; '?'
-;checksum error red
+
 loc_3E2:				; CODE XREF: ROM:000003EAj
 					; DATA XREF: ROM:off_41204o
 		move.w	#$E,($C00000).l
 		dbf	d7,loc_3E2
-;checksum failure loop
+
 loc_3EE:				; CODE XREF: ROM:loc_3EEj
 		bra.s	loc_3EE
 ; ---------------------------------------------------------------------------
-;menu screen and ending screen jmptos
-		dc.l $4EF90000,	$8BD44EF9, $9C7C, $4EF90000
-; ---------------------------------------------------------------------------
 
-loc_400:				; DATA XREF: ROM:00027CDCo
-		divs.w	(a4),d5
+loc_3F0:				; CODE XREF: ROM:000003BEj
 		jmp	loc_8BD4
 ; ---------------------------------------------------------------------------
 
-loc_408:				; DATA XREF: ROM:off_78o
+loc_3F6:				; CODE XREF: ROM:000003C2j
+		jmp	loc_9C7C
+; ---------------------------------------------------------------------------
+
+loc_3FC:				; CODE XREF: ROM:000003C6j
+					; DATA XREF: ROM:00027CDCo
+		jmp	loc_8BD4
+; ---------------------------------------------------------------------------
+
+loc_402:				; CODE XREF: ROM:000003CAj
+		jmp	loc_8BD4
+
+; =============== S U B	R O U T	I N E =======================================
+
+
+sub_408:				; DATA XREF: ROM:off_78o
 		movem.l	d0-a6,-(sp)
 		tst.b	($FFFFF62A).w
 
@@ -455,7 +471,7 @@ loc_410:				; DATA XREF: ROM:0004303Co
 					; ROM:00043F5Co
 		beq.w	loc_484
 
-loc_414:				; CODE XREF: ROM:0000041Ej
+loc_414:				; CODE XREF: sub_408+16j
 		move.w	($C00004).l,d0
 		andi.w	#8,d0
 		beq.s	loc_414
@@ -470,10 +486,10 @@ loc_432:				; DATA XREF: ROM:00058010o
 		beq.s	loc_442
 		move.w	#$700,d0
 
-loc_43E:				; CODE XREF: ROM:loc_43Ej
+loc_43E:				; CODE XREF: sub_408:loc_43Ej
 		dbf	d0,loc_43E
 
-loc_442:				; CODE XREF: ROM:00000438j
+loc_442:				; CODE XREF: sub_408+30j
 					; DATA XREF: ROM:off_20C2o ...
 		move.b	($FFFFF62A).w,d0
 		move.b	#0,($FFFFF62A).w
@@ -482,8 +498,7 @@ loc_442:				; CODE XREF: ROM:00000438j
 		move.w	dword_468(pc,d0.w),d0
 		jsr	dword_468(pc,d0.w)
 
-loc_45E:				; CODE XREF: ROM:000004C2j
-					; ROM:00000562j ...
+loc_45E:				; CODE XREF: sub_408+BAj sub_408+15Aj	...
 		addq.l	#1,($FFFFFE0C).w
 		movem.l	(sp)+,d0-a6
 		rte
@@ -4316,6 +4331,10 @@ loc_36B4:
 		move.l	-(a0),d0
 		move.l	d0,d0
 		nop
+; =============== S U B	R O U T	I N E =======================================
+
+
+sub_37B8:				; CODE XREF: ROM:loc_3A2j
 		move.b	#$FD,d0
 		bsr.w	Playmusic
 		bsr.w	sub_167C
@@ -10017,6 +10036,7 @@ sub_9C76:				; CODE XREF: ROM:00008D56p
 ; End of function sub_9C76
 
 ; ---------------------------------------------------------------------------
+loc_9C7C:
 		lea	($FFFFB000).w,a1
 		moveq	#0,d0
 		move.w	#$7FF,d1
@@ -33487,7 +33507,7 @@ locret_27CDA:				; CODE XREF: sub_27CA2+30j
 ; End of function sub_27CA2
 
 ; ---------------------------------------------------------------------------
-		dc.l loc_400
+		dc.l loc_3FC+4
 		dc.l $100400, $FE000020, $400, $10FC00,	$FE000020, $100
 		dc.l $40FF00, $80, $FF00, $400100, $80,	$1000000, $400000
 		dc.l $1000040, $1000000, $800000, $FF000040, $FF000000
