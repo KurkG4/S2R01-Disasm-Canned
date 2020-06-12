@@ -3,7 +3,7 @@ Sonic 2 Split Disassembly (By Kurk)
 Notes on the state of this disassembly:
 -
 
-* There are multiple asm files present in the files for here. S2Rev01.asm is (for now) the main asm file used in assembly. In the "old attempts" folder there are 2 asm files from earlier attempts to disassemble this in IDA. There are also .idb files of these as well. "S2Rev01Improved.idb" is the source of the "S2Rev01.asm" used while assembling. the other 2 idb's in the folder are the earlier attempts, with one made using lab313ru's smd ida loader.
+* There are multiple asm files present in the files for here. S2Rev01.asm is (for now) the main asm file used in assembly. In the "old attempts" folder there are 2 asm files from earlier attempts to disassemble this in IDA. There are also .idb files of these as well. "S2Rev01Improved.idb" is the source of the "S2Rev01.asm" used while assembling. the other idb (S2Rev01SMDTools.idb) was an earlier attempt made using lab313ru's smd ida loader.
 
 * The produced rom is not bit-perfect yet. This is due to whatIi believe to be the assembler incorrectly assembling the non-split data (ie: mappings, art, dplc, music, etc)
 
@@ -13,11 +13,13 @@ Notes on the state of this disassembly:
 
 Credits:
 -
-* Kurk: Main disasm attempts
+* Kurk: Main disasm
 * Ralakimus: Advice on how to improve this disasm.
 * Rivet: Bug Reporting
 * Gerbilsoft: Program used to compare the S2Built with a normal S2 Revision 1 rom.
 * Xenowhirl: Split.bat program from his disasm
+* Contributors to Sonic Retro's S2 Github Disasm
+* Puto: SNASM68k to ASM68k conversion guide, which was needed to fix a single error
 
 See Readme.txt for information on files in the disasm.
 -
