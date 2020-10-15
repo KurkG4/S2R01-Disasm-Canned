@@ -79,39 +79,39 @@ PalPointers: ; Offset_0x00273E:
                 dc.w    $FB00, $001F                      
                 dc.l    Pal_UNK7
                 dc.w    $FB00, $001F
-Pal_SEGA:  BINCLUDE "art/palettes/Sega screen.bin" ; SEGA screen palette (Sonic and initial background)
-Pal_Title: BINCLUDE "art/palettes/Title screen.bin" ; Title screen Palette
-Pal_UNK1:  BINCLUDE "art/palettes/Unknown 1.bin" ; Unknown palette 1 (leftover S1 level select palette?)
-Pal_BGND:  BINCLUDE "art/palettes/SonicAndTails.bin" ; "Sonic and Miles" background palette (also usually the primary palette line)
-Pal_EHZ:   BINCLUDE "art/palettes/EHZ.bin" ; Emerald Hill Zone palette
-Pal_WZ:    BINCLUDE "art/palettes/Wood Zone.bin" ; Wood Zone palette
-Pal_MTZ:   BINCLUDE "art/palettes/MTZ.bin" ; Metropolis Zone palette
-Pal_WFZ:   BINCLUDE "art/palettes/WFZ.bin" ; Wing Fortress Zone palette
-Pal_HTZ:   BINCLUDE "art/palettes/HTZ.bin" ; Hill Top Zone palette
-Pal_HPZ:   BINCLUDE "art/palettes/HPZ.bin" ; Hidden Palace Zone palette
-Pal_HPZ_U: BINCLUDE "art/palettes/HPZ underwater.bin" ; Hidden Palace Zone underwater palette
-Pal_OOZ:   BINCLUDE "art/palettes/OOZ.bin" ; Oil Ocean Zone palette
-Pal_MCZ:   BINCLUDE "art/palettes/MCZ.bin" ; Mystic Cave Zone palette
-Pal_CNZ:   BINCLUDE "art/palettes/CNZ.bin" ; Casino Night Zone palette
-Pal_CPZ:   BINCLUDE "art/palettes/CPZ.bin" ; Chemical Plant Zone palette
-Pal_CPZ_U: BINCLUDE "art/palettes/CPZ underwater.bin" ; Chemical Plant Zone underwater palette
-Pal_DEZ:   BINCLUDE "art/palettes/DEZ.bin" ; Death Egg Zone palette
-Pal_ARZ:   BINCLUDE "art/palettes/ARZ.bin" ; Aquatic Ruin Zone palette
-Pal_ARZ_U: BINCLUDE "art/palettes/ARZ underwater.bin" ; Aquatic Ruin Zone underwater palette
-Pal_SCZ:   BINCLUDE "art/palettes/SCZ.bin" ; Sky Chase Zone palette
-Pal_MCZ_B:  BINCLUDE "art/palettes/Unknown 2.bin" ; Unknown palette 2
-Pal_CNZ_B:  BINCLUDE "art/palettes/Unknown 3.bin" ; Unknown palette 3
-Pal_OOZ_B: BINCLUDE "art/palettes/OOZ Boss.bin" ; Oil Ocean Zone boss palette
-Pal_Menu:  BINCLUDE "art/palettes/Menu.bin" ; Menu palette
-Pal_SS:    BINCLUDE "art/palettes/Special Stage Main.bin" ; Special Stage palette
-Pal_SS1:   BINCLUDE "art/palettes/Special Stage 1.bin" ; Special Stage 1 palette
-Pal_SS2:   BINCLUDE "art/palettes/Special Stage 2.bin" ; Special Stage 2 palette
-Pal_SS3:   BINCLUDE "art/palettes/Special Stage 3.bin" ; Special Stage 3 palette
-Pal_SS4:   BINCLUDE "art/palettes/Special Stage 4.bin" ; Special Stage 4 palette
-Pal_SS5:   BINCLUDE "art/palettes/Special Stage 5.bin" ; Special Stage 5 palette
-Pal_SS6:   BINCLUDE "art/palettes/Special Stage 6.bin" ; Special Stage 6 palette
-Pal_SS7:   BINCLUDE "art/palettes/Special Stage 7.bin" ; Special Stage 7 palette
-Pal_UNK4:  BINCLUDE "art/palettes/Special Stage 1 2p.bin" ; Special Stage 1 2p palette
-Pal_UNK5:  BINCLUDE "art/palettes/Special Stage 2 2p.bin" ; Special Stage 2 2p palette
-Pal_UNK6:  BINCLUDE "art/palettes/Special Stage 3 2p.bin" ; Special Stage 3 2p palette
-Pal_UNK7:  BINCLUDE "art/palettes/Special Stage Results Screen.bin" ; Special Stage Results Screen palette
+Pal_SEGA:  incbin "art/palettes/Sega screen.bin" ; SEGA screen palette (Sonic and initial background)
+Pal_Title: incbin "art/palettes/Title screen.bin" ; Title screen Palette
+Pal_UNK1:  incbin "art/palettes/Unknown 1.bin" ; Unknown palette 1 (leftover S1 level select palette?)
+Pal_BGND:  incbin "art/palettes/SonicAndTails.bin" ; "Sonic and Miles" background palette (also usually the primary palette line)
+Pal_EHZ:   incbin "art/palettes/EHZ.bin" ; Emerald Hill Zone palette
+Pal_WZ:    incbin "art/palettes/Wood Zone.bin" ; Wood Zone palette
+Pal_MTZ:   incbin "art/palettes/MTZ.bin" ; Metropolis Zone palette
+Pal_WFZ:   incbin "art/palettes/WFZ.bin" ; Wing Fortress Zone palette
+Pal_HTZ:   incbin "art/palettes/HTZ.bin" ; Hill Top Zone palette
+Pal_HPZ:   incbin "art/palettes/HPZ.bin" ; Hidden Palace Zone palette
+Pal_HPZ_U: incbin "art/palettes/HPZ underwater.bin" ; Hidden Palace Zone underwater palette
+Pal_OOZ:   incbin "art/palettes/OOZ.bin" ; Oil Ocean Zone palette
+Pal_MCZ:   incbin "art/palettes/MCZ.bin" ; Mystic Cave Zone palette
+Pal_CNZ:   incbin "art/palettes/CNZ.bin" ; Casino Night Zone palette
+Pal_CPZ:   incbin "art/palettes/CPZ.bin" ; Chemical Plant Zone palette
+Pal_CPZ_U: incbin "art/palettes/CPZ underwater.bin" ; Chemical Plant Zone underwater palette
+Pal_DEZ:   incbin "art/palettes/DEZ.bin" ; Death Egg Zone palette
+Pal_ARZ:   incbin "art/palettes/ARZ.bin" ; Aquatic Ruin Zone palette
+Pal_ARZ_U: incbin "art/palettes/ARZ underwater.bin" ; Aquatic Ruin Zone underwater palette
+Pal_SCZ:   incbin "art/palettes/SCZ.bin" ; Sky Chase Zone palette
+Pal_MCZ_B:  incbin "art/palettes/Unknown 2.bin" ; Unknown palette 2
+Pal_CNZ_B:  incbin "art/palettes/Unknown 3.bin" ; Unknown palette 3
+Pal_OOZ_B: incbin "art/palettes/OOZ Boss.bin" ; Oil Ocean Zone boss palette
+Pal_Menu:  incbin "art/palettes/Menu.bin" ; Menu palette
+Pal_SS:    incbin "art/palettes/Special Stage Main.bin" ; Special Stage palette
+Pal_SS1:   incbin "art/palettes/Special Stage 1.bin" ; Special Stage 1 palette
+Pal_SS2:   incbin "art/palettes/Special Stage 2.bin" ; Special Stage 2 palette
+Pal_SS3:   incbin "art/palettes/Special Stage 3.bin" ; Special Stage 3 palette
+Pal_SS4:   incbin "art/palettes/Special Stage 4.bin" ; Special Stage 4 palette
+Pal_SS5:   incbin "art/palettes/Special Stage 5.bin" ; Special Stage 5 palette
+Pal_SS6:   incbin "art/palettes/Special Stage 6.bin" ; Special Stage 6 palette
+Pal_SS7:   incbin "art/palettes/Special Stage 7.bin" ; Special Stage 7 palette
+Pal_UNK4:  incbin "art/palettes/Special Stage 1 2p.bin" ; Special Stage 1 2p palette
+Pal_UNK5:  incbin "art/palettes/Special Stage 2 2p.bin" ; Special Stage 2 2p palette
+Pal_UNK6:  incbin "art/palettes/Special Stage 3 2p.bin" ; Special Stage 3 2p palette
+Pal_UNK7:  incbin "art/palettes/Special Stage Results Screen.bin" ; Special Stage Results Screen palette
