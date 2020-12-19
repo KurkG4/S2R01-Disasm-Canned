@@ -787,7 +787,7 @@ loc_78E:
 		move.w	#$7800,(a5)
 		move.w	#$83,($FFFFF640).w ; 'ƒ'
 		move.w	($FFFFF640).w,(a5)
-		bsr.w	sub_14AC
+		bsr.w	ProcessDMAQueue
 		bsr.w	sub_1084
 		startZ80
 		movem.l	($FFFFEE00).w,d0-d7
@@ -973,7 +973,7 @@ loc_98E:				; CODE XREF: ROM:00000978j
 		eori.b	#1,($FFFFDB0C).w
 
 loc_994:				; CODE XREF: ROM:loc_960j
-		bsr.w	sub_14AC
+		bsr.w	ProcessDMAQueue
 
 loc_998:				; DATA XREF: ROM:00051B5Co
 					; ROM:00067870o ...
@@ -1182,7 +1182,7 @@ loc_C10:				; DATA XREF: ROM:00052F00o
 
 loc_C1E:				; DATA XREF: ROM:00003140o
 		move.w	($FFFFF640).w,(a5)
-		bsr.w	sub_14AC
+		bsr.w	ProcessDMAQueue
 		jsr	sub_15584
 		jsr	(sub_1084).l
 		startZ80
@@ -1238,7 +1238,7 @@ loc_CCE:				; DATA XREF: ROM:00053E00o
 		move.w	#$7C00,(a5)
 		move.w	#$83,($FFFFF640).w ; 'ƒ'
 		move.w	($FFFFF640).w,(a5)
-		bsr.w	sub_14AC
+		bsr.w	ProcessDMAQueue
 
 loc_D00:				; DATA XREF: ROM:off_3DACo
 					; ROM:00055BE4o ...
@@ -1381,7 +1381,7 @@ loc_E64:
 		move.w	#$7C00,(a5)
 		move.w	#$83,($FFFFF640).w ; 'ƒ'
 		move.w	($FFFFF640).w,(a5)
-		bsr.w	sub_14AC
+		bsr.w	ProcessDMAQueue
 		bsr.w	sub_1084
 
 loc_E7E:				; DATA XREF: ROM:00001F50o
@@ -2049,7 +2049,7 @@ loc_1440:				; CODE XREF: sub_142E+14j
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_144E:				; CODE XREF: sub_4E98+90p
+QueueDMATransfer:				; CODE XREF: sub_4E98+90p
 					; sub_1B848+48p ...
 		movea.l	($FFFFDCFC).w,a1
 		cmpa.w	#$DCFC,a1
@@ -2086,13 +2086,13 @@ sub_144E:				; CODE XREF: sub_4E98+90p
 
 locret_14AA:				; CODE XREF: sub_144E+8j sub_144E+56j
 		rts
-; End of function sub_144E
+; End of function QueueDMATransfer
 
 
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_14AC:				; CODE XREF: ROM:0000079Cp
+ProcessDMAQueue:				; CODE XREF: ROM:0000079Cp
 					; ROM:loc_994p	...
 		lea	($C00004).l,a5
 		lea	($FFFFDC00).w,a1
@@ -2114,19 +2114,19 @@ loc_14CE:				; CODE XREF: sub_14AC+Cj
 		move.w	#0,($FFFFDC00).w
 		move.l	#$FFFFDC00,($FFFFDCFC).w
 		rts
-; End of function sub_14AC
+; End of function ProcessDMAQueue
 
 
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_14DE:				; CODE XREF: sub_178A+28p
+NemDec:				; CODE XREF: sub_178A+28p
 					; ROM:00003866p ...
 		movem.l	d0-a1/a3-a5,-(sp)
 		lea	(sub_15A0).l,a3
 		lea	($C00000).l,a4
 		bra.s	loc_14FA
-; End of function sub_14DE
+; End of function NemDec
 
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -2523,7 +2523,7 @@ loc_179C:				; CODE XREF: sub_178A+2Cj
 		ori.w	#$4000,d0
 		swap	d0
 		move.l	d0,($C00004).l
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		dbf	d1,loc_179C
 		rts
 ; End of function sub_178A
@@ -4304,13 +4304,13 @@ loc_384A:				; CODE XREF: ROM:00003850j
 		move.w	#$8F02,(a5)
 		move.l	#$40200000,($C00004).l
 		lea	($74876).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$50000000,($C00004).l
 		lea	($74CF6).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$51000000,($C00004).l
 		lea	($8BE12).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		lea	($FFFF0000).l,a1
 		lea	($74D0E).l,a0
 		move.w	#0,d0
@@ -4450,7 +4450,7 @@ loc_3A14:				; CODE XREF: ROM:00003A16j
 		dbf	d1,loc_3A14
 		move.l	#$60000002,($C00004).l
 		lea	($BD26).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		lea	(off_B2B0).l,a1
 		jsr	sub_B272
 		lea	($FFFFFB80).w,a1
@@ -4466,19 +4466,19 @@ loc_3A44:				; CODE XREF: ROM:00003A46j
 		move	#$2700,sr
 		move.l	#$40000000,($C00004).l
 		lea	($74F6C).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$6A000000,($C00004).l
 		lea	($7667A).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$7E400001,($C00004).l
 		lea	($78CBC).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$40400002,($C00004).l
 		lea	(off_3DF4).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$50000003,($C00004).l
 		lea	($7C43A).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.b	#0,($FFFFFE30).w
 		move.b	#0,($FFFFFEE0).w
 		move.w	#0,($FFFFFE08).w
@@ -6107,7 +6107,7 @@ loc_4F1A:				; CODE XREF: sub_4E98+ACj
 		lsl.w	#5,d2
 		move.l	#$FFFFFF,d1
 		move.w	d2,d1
-		jsr	(sub_144E).l
+		jsr	(QueueDMATransfer).l
 		move.w	d7,-(sp)
 		move.b	#$C,($FFFFF62A).w
 		bsr.w	sub_3384
@@ -6448,7 +6448,7 @@ loc_52F4:				; CODE XREF: ROM:000052EEj
 		bsr.w	sub_784A
 		move.l	#$72000002,($C00004).l
 		lea	($7EB58).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.w	($FFFFFF70).w,d0
 		beq.s	loc_5374
 		subq.w	#1,d0
@@ -7989,7 +7989,7 @@ off_7822:	dc.l sub_40804		; DATA XREF: ROM:00005344o
 ; ---------------------------------------------------------------------------
 
 loc_7844:				; CODE XREF: ROM:00006FC4j
-		jmp	sub_164F4
+		jmp	DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -8043,7 +8043,7 @@ loc_78A2:				; CODE XREF: ROM:000078A4j
 		bsr.w	sub_7A04
 		move.l	#$60000002,($C00004).l
 		lea	($7BDBE).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$64800002,($C00004).l
 		lea	($7C0AA).l,a0
 		cmpi.w	#2,($FFFFFF70).w
@@ -8051,7 +8051,7 @@ loc_78A2:				; CODE XREF: ROM:000078A4j
 		lea	($7C2F2).l,a0
 
 loc_78DE:				; CODE XREF: ROM:000078D6j
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		moveq	#$A,d1
 		jsr	sub_411A4
 		moveq	#$1B,d0
@@ -8132,7 +8132,7 @@ loc_79CE:
 sub_7A04:				; CODE XREF: ROM:000078A8p
 		move.l	#$70000002,($C00004).l
 		lea	(dword_7D22C).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		lea	($FFFF8000).w,a4
 		lea	($7D58A).l,a0
 		bsr.w	sub_14F0
@@ -8237,10 +8237,10 @@ loc_7DA6:				; CODE XREF: ROM:00007DA8j
 		dbf	d1,loc_7DA6
 		move.l	#$42000000,($C00004).l
 		lea	($7C43A).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$4E000000,($C00004).l
 		lea	($7C9AE).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		lea	($FFFF0000).l,a1
 		lea	($7CB80).l,a0
 		move.w	#$6000,d0
@@ -8745,13 +8745,13 @@ loc_8C2A:				; CODE XREF: ROM:00008C2Cj
 loc_8C3C:				; CODE XREF: ROM:00008BCCj
 		move.l	#$42000000,($C00004).l
 		lea	($7C43A).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$4E000000,($C00004).l
 		lea	($7D990).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		move.l	#$52000000,($C00004).l
 		lea	($7DA10).l,a0
-		bsr.w	sub_14DE
+		bsr.w	NemDec
 		lea	($FFFF0000).l,a1
 		lea	($7CB80).l,a0
 		move.w	#$6000,d0
@@ -11044,7 +11044,7 @@ word_BEEE:	dc.w $E862		; DATA XREF: ROM:0006A674o
 
 loc_BF68:				; CODE XREF: ROM:0000A452j
 					; ROM:0000A464j ...
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_BF6E:				; CODE XREF: ROM:0000AB98j
@@ -11073,7 +11073,7 @@ sub_BF7A:				; CODE XREF: ROM:0000A3C8p
 ; Attributes: thunk
 
 sub_BF80:				; CODE XREF: ROM:0000AB26p
-		jmp	sub_16544
+		jmp	AnimateSprite
 ; End of function sub_BF80
 
 
@@ -11083,7 +11083,7 @@ sub_BF80:				; CODE XREF: ROM:0000AB26p
 
 sub_BF86:				; CODE XREF: ROM:loc_9D98p
 					; ROM:00009DACp ...
-		jmp	(sub_14DE).l
+		jmp	(NemDec).l
 ; End of function sub_BF86
 
 
@@ -15692,7 +15692,7 @@ Obj11:
 
 loc_F684:				; CODE XREF: ROM:0000F672j
 		move.w	#$180,d0
-		bra.w	loc_16530
+		bra.w	DisplaySprite3
 ; ---------------------------------------------------------------------------
 off_F68C:	dc.l word_800EE
 ; ---------------------------------------------------------------------------
@@ -15852,7 +15852,7 @@ loc_F808:				; CODE XREF: ROM:0000F7FEj
 ; ---------------------------------------------------------------------------
 
 loc_F80C:				; DATA XREF: ROM:00008154o
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 		move.b	$22(a0),d0
 		andi.b	#$18,d0
@@ -16262,7 +16262,7 @@ Obj15:
 
 loc_FCB4:				; CODE XREF: ROM:0000FCA2j
 		move.w	#$200,d0
-		bra.w	loc_16530
+		bra.w	DisplaySprite3
 ; ---------------------------------------------------------------------------
 off_FCBC:	dc.l dword_E0194
 		dc.l $37E0382, $43C0444, $4AA5428, $24217C, $101E8, $4317C
@@ -16535,7 +16535,7 @@ loc_1000C:				; CODE XREF: ROM:0000FE6Cj
 					; ROM:loc_100F4j ...
 		tst.w	($FFFFFFD8).w
 		beq.s	loc_10016
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_10016:				; CODE XREF: ROM:00010010j
@@ -16549,7 +16549,7 @@ loc_1001A:				; DATA XREF: ROM:00006A40o
 loc_10026:				; DATA XREF: ROM:00006A0Co
 					; ROM:00006A44o ...
 		bhi.w	loc_1002E
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_1002E:				; CODE XREF: ROM:loc_10026j
@@ -16559,7 +16559,7 @@ loc_1002E:				; CODE XREF: ROM:loc_10026j
 loc_10036:				; DATA XREF: ROM:000069F0o
 		bra.w	loc_164E6
 ; ---------------------------------------------------------------------------
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 		move.w	8(a0),-(sp)
 		bsr.w	sub_FE70
@@ -16846,7 +16846,7 @@ loc_103E8:				; CODE XREF: ROM:0001036Ej
 		sub.w	($FFFFF7DA).w,d0
 		cmpi.w	#$280,d0
 		bhi.w	loc_10404
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_10404:				; CODE XREF: ROM:000103FCj
@@ -16887,7 +16887,7 @@ locret_10448:				; CODE XREF: sub_1042A+16j
 
 ; ---------------------------------------------------------------------------
 		bsr.w	sub_1042A
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 		dc.w $10
 		dc.l $1A0024, $2E0038, $420056,	$4C0001, $F0010000, $FFFC
@@ -17766,7 +17766,7 @@ word_13F82:	dc.w 6			; CODE XREF: ROM:00013F7Ej
 		move.l	#dword_14ED0,4(a1)
 		move.b	#$78,$19(a1) ; 'x'
 		move.b	#0,1(a1)
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 		moveq	#$20,d0	; ' '
 		move.w	8(a0),d1
@@ -17781,7 +17781,7 @@ loc_14724:				; CODE XREF: ROM:00014720j
 		bhi.s	locret_14734
 
 loc_14730:				; CODE XREF: ROM:0001471Ej
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 locret_14734:				; CODE XREF: ROM:0001472Ej
@@ -17792,7 +17792,7 @@ locret_14734:				; CODE XREF: ROM:0001472Ej
 		bne.w	dword_13CFC+$120
 		move.w	#$B4,$1E(a0) ; '´'
 		move.b	#$20,$24(a0) ; ' '
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 		dc.w $240
 		dc.l $12000AA, $2000000, $1200098, $4010118, $C4, $6050130
@@ -18396,7 +18396,7 @@ loc_15DEE:				; CODE XREF: ROM:00015DE0j
 		addi.w	#$70,$12(a0) ; 'p'
 		tst.b	1(a0)
 		bpl.w	loc_164E6
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -18524,7 +18524,7 @@ loc_15FF2:				; CODE XREF: sub_15F9C+50p
 		beq.s	loc_16002
 		tst.b	1(a0)
 		bpl.s	loc_16002
-		bsr.w	sub_164F4
+		bsr.w	DisplaySprite
 
 loc_16002:				; CODE XREF: ROM:00015FF6j
 					; ROM:00015FFCj
@@ -18616,7 +18616,7 @@ loc_163D2:				; CODE XREF: ROM:00010162j
 					; ROM:000101E4j ...
 		tst.w	($FFFFFFD8).w
 		beq.s	loc_163DC
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_163DC:				; CODE XREF: ROM:000163D6j
@@ -18625,7 +18625,7 @@ loc_163DC:				; CODE XREF: ROM:000163D6j
 		sub.w	($FFFFF7DA).w,d0
 		cmpi.w	#$280,d0
 		bhi.w	loc_163F4
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_163F4:				; CODE XREF: ROM:000163ECj
@@ -18643,7 +18643,7 @@ loc_1640A:				; CODE XREF: ROM:loc_21DA6j
 					; ROM:loc_2787Cj ...
 		tst.w	($FFFFFFD8).w
 		beq.s	loc_16414
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_16414:				; CODE XREF: ROM:0001640Ej
@@ -18651,7 +18651,7 @@ loc_16414:				; CODE XREF: ROM:0001640Ej
 		sub.w	($FFFFF7DA).w,d0
 		cmpi.w	#$280,d0
 		bhi.w	loc_16428
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_16428:				; CODE XREF: ROM:00016420j
@@ -18698,7 +18698,7 @@ loc_1646E:				; CODE XREF: ROM:00016466j
 		sub.w	($FFFFF7DA).w,d0
 		cmpi.w	#$280,d0
 		bhi.w	loc_16490
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_16490:				; CODE XREF: ROM:00016488j
@@ -18719,14 +18719,14 @@ loc_164A6:				; CODE XREF: ROM:00016476j
 		sub.w	($FFFFF7DA).w,d0
 		cmpi.w	#$300,d0
 		bhi.w	loc_164C0
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_164C0:				; CODE XREF: ROM:000164B8j
 		sub.w	($FFFFF7DC).w,d1
 		cmpi.w	#$300,d1
 		bhi.w	loc_164D0
-		bra.w	sub_164F4
+		bra.w	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_164D0:				; CODE XREF: ROM:000164C8j
@@ -18762,7 +18762,7 @@ loc_164EC:				; CODE XREF: sub_164E8+6j
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_164F4:				; CODE XREF: ROM:loc_7844j
+DisplaySprite:				; CODE XREF: ROM:loc_7844j
 					; ROM:loc_BF68j ...
 		lea	($FFFFAC00).w,a1
 		move.w	$18(a0),d0
@@ -18777,7 +18777,7 @@ sub_164F4:				; CODE XREF: ROM:loc_7844j
 
 locret_16510:				; CODE XREF: sub_164F4+14j
 		rts
-; End of function sub_164F4
+; End of function DisplaySprite
 
 ; ---------------------------------------------------------------------------
 		lea	($FFFFAC00).w,a2
@@ -18795,7 +18795,7 @@ locret_1652E:				; CODE XREF: ROM:00016526j
 		rts
 ; ---------------------------------------------------------------------------
 
-loc_16530:				; CODE XREF: ROM:0000F688j
+DisplaySprite3:				; CODE XREF: ROM:0000F688j
 					; ROM:0000FCB8j
 		lea	($FFFFAC00).w,a1
 		adda.w	d0,a1
@@ -18811,7 +18811,7 @@ locret_16542:				; CODE XREF: ROM:0001653Aj
 ; =============== S U B	R O U T	I N E =======================================
 
 
-sub_16544:				; CODE XREF: sub_BF80j	ROM:0001DE2Ep ...
+AnimateSprite:				; CODE XREF: sub_BF80j	ROM:0001DE2Ep ...
 		moveq	#0,d0
 		move.b	$1C(a0),d0
 		cmp.b	$1D(a0),d0
@@ -18901,7 +18901,7 @@ loc_165FA:				; CODE XREF: sub_16544+AEj
 
 locret_16602:				; CODE XREF: sub_16544+B8j
 		rts
-; End of function sub_16544
+; End of function AnimateSprite
 
 
 ; =============== S U B	R O U T	I N E =======================================
@@ -23091,7 +23091,7 @@ sub_1A0C6:				; CODE XREF: ROM:loc_1A07Ep
 		bcc.s	loc_1A0DA
 
 loc_1A0D4:				; CODE XREF: sub_1A0C6+4j
-		jsr	sub_164F4
+		jsr	DisplaySprite
 
 loc_1A0DA:				; CODE XREF: sub_1A0C6+Cj
 		btst	#1,$2B(a0)
@@ -24811,7 +24811,7 @@ loc_1B16A:				; CODE XREF: ROM:0001B162j
 		bsr.w	sub_1A15C
 		bsr.w	sub_1B350
 		bsr.w	sub_1B848
-		jmp	sub_164F4
+		jmp	DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -24846,7 +24846,7 @@ loc_1B1CA:				; CODE XREF: ROM:0001B13Ej
 		bsr.w	sub_1A15C
 		bsr.w	sub_1B350
 		bsr.w	sub_1B848
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 		tst.w	($FFFFFFFA).w
 		beq.s	loc_1B200
@@ -24864,7 +24864,7 @@ loc_1B200:				; CODE XREF: ROM:0001B1EAj
 		bsr.w	sub_1A15C
 		bsr.w	sub_1B350
 		bsr.w	sub_1B848
-		jmp	sub_164F4
+		jmp	DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -24957,7 +24957,7 @@ loc_1B342:				; CODE XREF: ROM:0001B334j
 					; ROM:0001B33Aj
 		bsr.w	sub_1B350
 		bsr.w	sub_1B848
-		jmp	sub_164F4
+		jmp	DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -25345,7 +25345,7 @@ loc_1B86E:				; CODE XREF: sub_1B848+4Ej
 		move.w	d4,d2
 		add.w	d3,d4
 		add.w	d3,d4
-		jsr	(sub_144E).l
+		jsr	(QueueDMATransfer).l
 		dbf	d5,loc_1B86E
 
 locret_1B89A:				; CODE XREF: sub_1B848+Aj
@@ -25502,7 +25502,7 @@ sub_1BA56:				; CODE XREF: ROM:loc_1BA12p
 		bcc.s	loc_1BA6A
 
 loc_1BA64:				; CODE XREF: sub_1BA56+4j
-		jsr	sub_164F4
+		jsr	DisplaySprite
 
 loc_1BA6A:				; CODE XREF: sub_1BA56+Cj
 		btst	#1,$2B(a0)
@@ -27377,7 +27377,7 @@ loc_1CBEE:				; CODE XREF: ROM:0001CBE6j
 		bsr.w	sub_1BF38
 		bsr.w	sub_1CDC4
 		bsr.w	sub_1D1AC
-		jmp	sub_164F4
+		jmp	DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -27412,7 +27412,7 @@ off_1CC56:	dc.l sub_16380		; DATA XREF: ROM:0001B8D0r
 		bsr.w	sub_1BF38
 		bsr.w	sub_1CDC4
 		bsr.w	sub_1D1AC
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 		cmpi.w	#2,($FFFFFF70).w
 		beq.w	sub_1B21C
@@ -27524,7 +27524,7 @@ loc_1CDB6:				; CODE XREF: ROM:0001CDA8j
 					; ROM:0001CDAEj
 		bsr.w	sub_1CDC4
 		bsr.w	sub_1D1AC
-		jmp	sub_164F4
+		jmp	DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -27875,7 +27875,7 @@ loc_1D1D2:				; CODE XREF: sub_1D1AC+4Ej
 		move.w	d4,d2
 		add.w	d3,d4
 		add.w	d3,d4
-		jsr	(sub_144E).l
+		jsr	(QueueDMATransfer).l
 		dbf	d5,loc_1D1D2
 
 locret_1D1FE:				; CODE XREF: sub_1D1AC+Aj
@@ -28000,7 +28000,7 @@ sub_1D5C0:
 
 loc_1D5FA:				; CODE XREF: sub_1D5C0+34j
 		move.w	#$60,d3	; '`'
-		jsr	(sub_144E).l
+		jsr	(QueueDMATransfer).l
 
 locret_1D604:				; CODE XREF: sub_1D5C0+Aj
 					; sub_1D5C0+10j ...
@@ -28357,9 +28357,9 @@ loc_1DE06:				; CODE XREF: ROM:0001DDFEj
 loc_1DE28:				; CODE XREF: ROM:0001DDB6j
 					; ROM:0001DDCAj ...
 		lea	(off_1DF38).l,a1
-		jsr	sub_16544
+		jsr	AnimateSprite
 		bsr.w	sub_1DEE4
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_1DE3E:				; CODE XREF: ROM:0001DDD2j
@@ -28442,7 +28442,7 @@ loc_1DF0A:				; CODE XREF: sub_1DEE4+4Ej
 		move.w	d4,d2
 		add.w	d3,d4
 		add.w	d3,d4
-		jsr	(sub_144E).l
+		jsr	(QueueDMATransfer).l
 		dbf	d5,loc_1DF0A
 
 locret_1DF36:				; CODE XREF: sub_1DEE4+Aj
@@ -30156,7 +30156,7 @@ loc_1FAA6:				; CODE XREF: ROM:0001FA76j
 
 loc_1FAC2:				; CODE XREF: ROM:0001FAAAj
 		lea	(off_1FBCC).l,a1
-		jsr	sub_16544
+		jsr	AnimateSprite
 		move.w	8(a0),d0
 		andi.w	#$FF80,d0
 		sub.w	($FFFFF7DA).w,d0
@@ -30196,7 +30196,7 @@ off_1FBCC:	dc.l byte_E0013		; DATA XREF: ROM:loc_1FAC2o
 ; ---------------------------------------------------------------------------
 
 loc_1FCC4:				; CODE XREF: ROM:0001FAEAj
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_1FCCA:				; CODE XREF: ROM:0001FADEj
@@ -30833,7 +30833,7 @@ loc_214A2:				; CODE XREF: ROM:00021498j
 ; Attributes: thunk
 
 sub_214AC:				; CODE XREF: ROM:00020E66p
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; End of function sub_214AC
 
 ; ---------------------------------------------------------------------------
@@ -32720,7 +32720,7 @@ loc_26868:				; CODE XREF: ROM:0002683Ej
 ; ---------------------------------------------------------------------------
 
 loc_268FC:				; CODE XREF: ROM:loc_26868j
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_26902:				; CODE XREF: ROM:00026864j
@@ -32816,7 +32816,7 @@ loc_26C16:				; CODE XREF: ROM:00026C0Ej
 		sub.w	($FFFFF7DA).w,d0
 		cmpi.w	#$280,d0
 		bhi.s	loc_26C66
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_26C66:				; CODE XREF: ROM:00026C5Ej
@@ -33127,14 +33127,14 @@ off_27548:	dc.l byte_40006		; DATA XREF: ROM:0002718Co
 ; ---------------------------------------------------------------------------
 
 loc_27580:				; CODE XREF: ROM:00027180j
-		jmp	sub_164F4
+		jmp	DisplaySprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
 ; Attributes: thunk
 
 sub_27586:				; CODE XREF: ROM:0002717Cp
-		jmp	sub_16544
+		jmp	AnimateSprite
 ; End of function sub_27586
 
 ; ---------------------------------------------------------------------------
@@ -33773,7 +33773,7 @@ loc_28D60:				; CODE XREF: ROM:00028D58j
 
 loc_28DC6:				; CODE XREF: ROM:00028D44j
 					; ROM:00028D5Cj
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_28DCC:				; CODE XREF: ROM:00028D68j
@@ -34771,7 +34771,7 @@ loc_2C298:				; CODE XREF: sub_2C224+66j
 
 loc_2C2AC:				; CODE XREF: sub_2C224+82j
 		move.w	#$100,d3
-		jsr	(sub_144E).l
+		jsr	(QueueDMATransfer).l
 		rts
 ; End of function sub_2C224
 
@@ -34978,7 +34978,7 @@ loc_2C410:				; DATA XREF: ROM:0002C060o
 ; ---------------------------------------------------------------------------
 		jmp	loc_163D2
 ; ---------------------------------------------------------------------------
-		jmp	sub_16544
+		jmp	AnimateSprite
 ; ---------------------------------------------------------------------------
 		jmp	sub_16D8A
 ; ---------------------------------------------------------------------------
@@ -35713,8 +35713,8 @@ loc_2F916:				; CODE XREF: ROM:0002F90Cj
 loc_2F924:				; CODE XREF: ROM:0002F914j
 					; ROM:0002F91Cj
 		lea	(off_2FAC8).l,a1
-		jsr	sub_16544
-		jmp	sub_164F4
+		jsr	AnimateSprite
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 		dc.l byte_6000A
 		dc.w $20
@@ -35762,7 +35762,7 @@ off_2FAC8:	dc.l byte_A000D		; DATA XREF: ROM:loc_2F924o
 
 loc_2FBF4:				; CODE XREF: ROM:0002F63Aj
 					; ROM:0002F656j ...
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_2FBFA:				; CODE XREF: ROM:0002F82Cj
@@ -35782,7 +35782,7 @@ loc_2FBFA:				; CODE XREF: ROM:0002F82Cj
 
 sub_2FC18:				; CODE XREF: ROM:0002F882p
 					; ROM:0002F8A2p
-		jmp	sub_16544
+		jmp	AnimateSprite
 ; End of function sub_2FC18
 
 ; ---------------------------------------------------------------------------
@@ -35924,7 +35924,7 @@ sub_30448:
 ; End of function sub_30448
 
 ; ---------------------------------------------------------------------------
-		jmp	sub_16544
+		jmp	AnimateSprite
 ; ---------------------------------------------------------------------------
 		jmp	loc_1EDFA
 ; ---------------------------------------------------------------------------
@@ -36257,7 +36257,7 @@ off_30D2C:	dc.l byte_4001B		; DATA XREF: ROM:00030C9Eo
 
 loc_30F54:				; CODE XREF: ROM:00030C7Aj
 					; ROM:00030C82j ...
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_30F5A:				; CODE XREF: ROM:00030CBCj
@@ -36296,7 +36296,7 @@ sub_30F6C:				; CODE XREF: ROM:000305D0p
 ; Attributes: thunk
 
 sub_30F72:				; CODE XREF: ROM:00030CA4p
-		jmp	sub_16544
+		jmp	AnimateSprite
 ; End of function sub_30F72
 
 ; ---------------------------------------------------------------------------
@@ -36713,7 +36713,7 @@ dword_3209C:	dc.l $140017, $1D0023, $27002C,	$370041, $450048, $F01FF0F
 ; ---------------------------------------------------------------------------
 
 loc_3224C:				; CODE XREF: ROM:00032094j
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_32252:				; CODE XREF: ROM:00031F2Ej
@@ -36745,7 +36745,7 @@ sub_32264:				; CODE XREF: ROM:00032062p
 ; Attributes: thunk
 
 sub_3226A:				; CODE XREF: ROM:0003208Ap
-		jmp	sub_16544
+		jmp	AnimateSprite
 ; End of function sub_3226A
 
 
@@ -37298,7 +37298,7 @@ word_32DC6:	dc.w $2A		; DATA XREF: ROM:0003229Eo
 
 loc_32F4C:				; CODE XREF: ROM:00032A6Cj
 					; ROM:00032BBEj ...
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_32F52:				; CODE XREF: ROM:00032CAAj
@@ -37330,7 +37330,7 @@ sub_32F5E:				; CODE XREF: ROM:00032C9Cp
 ; Attributes: thunk
 
 sub_32F64:				; CODE XREF: ROM:00032BBAp
-		jmp	sub_16544
+		jmp	AnimateSprite
 ; End of function sub_32F64
 
 ; ---------------------------------------------------------------------------
@@ -38631,14 +38631,14 @@ loc_3621C:				; CODE XREF: ROM:00036218j
 
 loc_365BC:				; CODE XREF: ROM:000357CCj
 					; ROM:00035B60j ...
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_365C2:				; CODE XREF: ROM:00035172j
 					; ROM:0003517Cj ...
 		jmp	loc_164E6
 ; ---------------------------------------------------------------------------
-		jmp	sub_16544
+		jmp	AnimateSprite
 
 ; =============== S U B	R O U T	I N E =======================================
 
@@ -38832,7 +38832,7 @@ loc_3674A:				; CODE XREF: ROM:0003673Cj
 ; ---------------------------------------------------------------------------
 		tst.w	($FFFFFFD8).w
 		beq.s	loc_36794
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_36794:				; CODE XREF: ROM:0003678Cj
@@ -38840,7 +38840,7 @@ loc_36794:				; CODE XREF: ROM:0003678Cj
 		andi.w	#$FF80,d0
 		sub.w	($FFFFF7DA).w,d0
 		bmi.w	loc_3691E
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 		move.b	1(a0),d0
 		andi.b	#$FC,d0
@@ -38984,7 +38984,7 @@ locret_368F6:				; CODE XREF: ROM:000368ECj
 ; ---------------------------------------------------------------------------
 		tst.w	($FFFFFFD8).w
 		beq.s	loc_36904
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_36904:				; CODE XREF: ROM:000368FCj
@@ -38993,7 +38993,7 @@ loc_36904:				; CODE XREF: ROM:000368FCj
 		sub.w	($FFFFF7DA).w,d0
 		cmpi.w	#$280,d0
 		bhi.w	loc_3691E
-		jmp	sub_164F4
+		jmp	DisplaySprite
 ; ---------------------------------------------------------------------------
 
 loc_3691E:				; CODE XREF: ROM:000367A0j
@@ -41423,7 +41423,7 @@ loc_3FF56:				; CODE XREF: sub_3FF2C+22j
 		moveq	#0,d3
 		move.b	7(a2),d3
 		lsl.w	#4,d3
-		jsr	(sub_144E).l
+		jsr	(QueueDMATransfer).l
 
 loc_3FF78:				; CODE XREF: sub_3FF2C+8j
 		move.b	6(a2),d0
@@ -42443,7 +42443,7 @@ loc_410BC:				; CODE XREF: sub_4105A+22j
 		move.l	#dword_4134C,d1
 		move.w	#$DC40,d2
 		move.w	#$160,d3
-		jmp	(sub_144E).l
+		jmp	(QueueDMATransfer).l
 ; End of function sub_4105A
 
 ; ---------------------------------------------------------------------------
