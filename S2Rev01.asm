@@ -17,9 +17,7 @@
 ; This file should be compiled with "as	-M"
 
 ; ===========================================================================
-align macro
-	cnop 0,\1
-	endm
+		include macros.asm
                 include lang.asm ;z80 macro set
 ; Segment type:	Pure code
 ; segment "ROM"
@@ -518,15 +516,13 @@ loc_484:				; CODE XREF: ROM:loc_410j
 		beq.s	loc_4C4
 		cmpi.b	#$C,($FFFFF600).w
 		beq.s	loc_4C4
-		move.w	#$100,($A11100).l
 
 loc_4AC:				; CODE XREF: ROM:000004B4j
-		btst	#0,($A11100).l
-		bne.s	loc_4AC
+		stopZ80
 		bsr.w	sub_1084
 
 loc_4BA:				; DATA XREF: ROM:000DECF4o
-		move.w	#0,($A11100).l
+		startZ80
 		bra.s	loc_45E
 ; ---------------------------------------------------------------------------
 
@@ -546,11 +542,9 @@ loc_4DE:				; CODE XREF: ROM:loc_4DEj
 
 loc_4E2:				; CODE XREF: ROM:000004D8j
 		move.w	#1,($FFFFF644).w
-		move.w	#$100,($A11100).l
 
 loc_4F0:				; CODE XREF: ROM:000004F8j
-		btst	#0,($A11100).l
-		bne.s	loc_4F0
+		stopZ80
 		tst.b	($FFFFF64E).w
 
 loc_4FE:				; DATA XREF: ROM:000227C4o
@@ -590,7 +584,7 @@ loc_54E:				; DATA XREF: ROM:000497CCo
 
 loc_55A:				; DATA XREF: ROM:000497ACo
 					; ROM:000497C8o ...
-		move.w	#0,($A11100).l
+		startZ80
 		bra.w	loc_45E
 ; ---------------------------------------------------------------------------
 
@@ -610,11 +604,9 @@ loc_58E:				; CODE XREF: ROM:00000584j
 		move.w	($FFFFF624).w,($C00004).l
 		move.w	#$8230,($C00004).l
 		move.l	($FFFFF61E).w,($FFFFEEEC).w
-		move.w	#$100,($A11100).l
 
 loc_5B2:				; CODE XREF: ROM:000005BAj
-		btst	#0,($A11100).l
-		bne.s	loc_5B2
+		stopZ80
 		lea	($C00004).l,a5
 		move.l	#$94019340,(a5)
 		move.l	#$96FC9500,(a5)
@@ -626,7 +618,7 @@ loc_5DC:				; DATA XREF: ROM:000497B0o
 					; ROM:000497B4o ...
 		move.w	($FFFFF640).w,(a5)
 		bsr.w	sub_1084
-		move.w	#0,($A11100).l
+		startZ80
 		bra.w	loc_45E
 ; ---------------------------------------------------------------------------
 		bsr.w	sub_E98
@@ -656,13 +648,11 @@ locret_628:				; CODE XREF: ROM:00000620j
 		move.b	($FFFFFE0F).w,d0
 		andi.w	#$F,d0
 		bne.s	loc_652
-		move.w	#$100,($A11100).l
 
 loc_63C:				; CODE XREF: ROM:00000644j
-		btst	#0,($A11100).l
-		bne.s	loc_63C
+		stopZ80
 		bsr.w	sub_111C
-		move.w	#0,($A11100).l
+		startZ80
 
 loc_652:				; CODE XREF: ROM:00000632j
 		tst.w	($FFFFF614).w
@@ -698,11 +688,9 @@ loc_67C:				; DATA XREF: ROM:00067BFCo
 					; ROM:00003E84o
 		cmpi.b	#$10,($FFFFF600).w
 		beq.w	loc_802
-		move.w	#$100,($A11100).l
 
 loc_68E:				; CODE XREF: ROM:00000696j
-		btst	#0,($A11100).l
-		bne.s	loc_68E
+		stopZ80
 		bsr.w	sub_111C
 		tst.b	($FFFFF622).w
 		beq.s	loc_6F8
@@ -801,7 +789,7 @@ loc_78E:
 		move.w	($FFFFF640).w,(a5)
 		bsr.w	sub_14AC
 		bsr.w	sub_1084
-		move.w	#0,($A11100).l
+		startZ80
 		movem.l	($FFFFEE00).w,d0-d7
 		movem.l	d0-d7,($FFFFEE60).w
 		movem.l	($FFFFEE20).w,d0-d7
@@ -835,12 +823,10 @@ locret_800:				; CODE XREF: sub_7E6+12j
 
 loc_802:				; CODE XREF: ROM:00000682j
 					; DATA XREF: ROM:000227D8o
-		move.w	#$100,($A11100).l
 
 loc_80A:				; CODE XREF: ROM:00000812j
 					; DATA XREF: ROM:00010F2Co ...
-		btst	#0,($A11100).l
-		bne.s	loc_80A
+		stopZ80
 		bsr.w	sub_111C
 		jsr	(sub_1084).l
 		tst.b	($FFFFDB11).w
@@ -869,7 +855,7 @@ loc_864:				; DATA XREF: ROM:0005B1B0o
 
 loc_86E:				; CODE XREF: ROM:00000848j
 					; DATA XREF: ROM:00062B68o
-		move.w	#0,($A11100).l
+		startZ80
 
 locret_876:				; DATA XREF: ROM:00068934o
 		rts
@@ -877,15 +863,13 @@ locret_876:				; DATA XREF: ROM:00068934o
 
 loc_878:				; DATA XREF: ROM:0006D578o
 					; ROM:00067168o
-		move.w	#$100,($A11100).l
 
 loc_880:				; CODE XREF: ROM:loc_888j
 					; DATA XREF: ROM:00062B7Co
-		btst	#0,($A11100).l
 
 loc_888:				; DATA XREF: ROM:00054060o
 					; ROM:00056540o ...
-		bne.s	loc_880
+		stopZ80
 		bsr.w	sub_111C
 
 loc_88E:				; DATA XREF: ROM:0005CF60o
@@ -994,7 +978,7 @@ loc_994:				; CODE XREF: ROM:loc_960j
 loc_998:				; DATA XREF: ROM:00051B5Co
 					; ROM:00067870o ...
 		jsr	(sub_1084).l
-		move.w	#0,($A11100).l
+		startZ80
 		bsr.w	loc_16FC
 		tst.w	($FFFFF614).w
 		beq.w	locret_9B6
@@ -1136,11 +1120,9 @@ off_B68:	dc.l off_A1		; DATA XREF: ROM:0006C070o
 		move.b	d0,-(a0)
 		rts
 ; ---------------------------------------------------------------------------
-		move.w	#$100,($A11100).l
 
 loc_B78:				; CODE XREF: ROM:00000B80j
-		btst	#0,($A11100).l
-		bne.s	loc_B78
+		stopZ80
 		bsr.w	sub_111C
 
 loc_B86:				; DATA XREF: ROM:0006C06Co
@@ -1203,7 +1185,7 @@ loc_C1E:				; DATA XREF: ROM:00003140o
 		bsr.w	sub_14AC
 		jsr	sub_15584
 		jsr	(sub_1084).l
-		move.w	#0,($A11100).l
+		startZ80
 		movem.l	($FFFFEE00).w,d0-d7
 		movem.l	d0-d7,($FFFFEE60).w
 		movem.l	($FFFFEE50).w,d0-d1
@@ -1224,11 +1206,9 @@ loc_C52:				; DATA XREF: ROM:0007B1ECo
 		move.w	($FFFFF624).w,(a5)
 		bra.w	sub_16E0
 ; ---------------------------------------------------------------------------
-		move.w	#$100,($A11100).l
 
 loc_C82:				; CODE XREF: ROM:00000C8Aj
-		btst	#0,($A11100).l
-		bne.s	loc_C82
+		stopZ80
 		bsr.w	sub_111C
 		lea	($C00004).l,a5
 		move.l	#$94009340,(a5)
@@ -1268,7 +1248,7 @@ loc_D00:				; DATA XREF: ROM:off_3DACo
 		movem.l	($FFFFEE50).w,d0-d3
 		movem.l	d0-d3,($FFFFEEA0).w
 		bsr.w	sub_10E0
-		move.w	#0,($A11100).l
+		startZ80
 		move.w	($FFFFF662).w,d0
 		beq.s	locret_D3A
 		clr.w	($FFFFF662).w
@@ -1364,12 +1344,10 @@ loc_DEE:				; DATA XREF: ROM:0006CB6Co
 
 loc_DF4:				; DATA XREF: ROM:0006CB80o
 					; ROM:0006BE6Co
-		move.w	#$100,($A11100).l
 
 loc_DFC:				; CODE XREF: ROM:00000E04j
 					; DATA XREF: ROM:00055418o ...
-		btst	#0,($A11100).l
-		bne.s	loc_DFC
+		stopZ80
 		bsr.w	sub_111C
 
 loc_E0A:				; DATA XREF: ROM:00002128o
@@ -1407,7 +1385,7 @@ loc_E64:
 		bsr.w	sub_1084
 
 loc_E7E:				; DATA XREF: ROM:00001F50o
-		move.w	#0,($A11100).l
+		startZ80
 		bsr.w	sub_16E0
 		tst.w	($FFFFF614).w
 		beq.w	locret_E96
@@ -1421,11 +1399,9 @@ locret_E96:				; CODE XREF: ROM:00000E8Ej
 
 sub_E98:				; CODE XREF: ROM:000005F0p
 					; ROM:loc_660p	...
-		move.w	#$100,($A11100).l
 
 loc_EA0:				; CODE XREF: sub_E98+10j
-		btst	#0,($A11100).l
-		bne.s	loc_EA0
+		stopZ80
 		bsr.w	sub_111C
 		tst.b	($FFFFF64E).w
 		bne.s	loc_EDA
@@ -1471,7 +1447,7 @@ loc_F0A:				; DATA XREF: ROM:0006806Co
 		move.w	#$83,($FFFFF640).w ; 'ƒ'
 		move.w	($FFFFF640).w,(a5)
 		bsr.w	sub_1084
-		move.w	#0,($A11100).l
+		startZ80
 		rts
 ; End of function sub_E98
 
@@ -1494,11 +1470,9 @@ loc_F6E:				; CODE XREF: ROM:00000F78j
 		move.w	#$8228,($C00004).l
 		move.l	#$40000010,($C00004).l
 		move.l	($FFFFEEEC).w,($C00000).l
-		move.w	#$100,($A11100).l
 
 loc_FAA:				; CODE XREF: ROM:00000FB2j
-		btst	#0,($A11100).l
-		bne.s	loc_FAA
+		stopZ80
 		lea	($C00004).l,a5
 		move.l	#$94019340,(a5)
 		move.l	#$96EE9580,(a5)
@@ -1506,7 +1480,7 @@ loc_FAA:				; CODE XREF: ROM:00000FB2j
 		move.w	#$7800,(a5)
 		move.w	#$83,($FFFFF640).w ; 'ƒ'
 		move.w	($FFFFF640).w,(a5)
-		move.w	#0,($A11100).l
+		startZ80
 
 loc_FE0:				; CODE XREF: ROM:00000FEAj
 		move.w	($C00004).l,d0
@@ -1660,11 +1634,9 @@ sub_10E6:				; CODE XREF: ROM:00000618p
 
 
 sub_10EC:				; CODE XREF: ROM:0000038Ap
-		move.w	#$100,($A11100).l
 
 loc_10F4:				; CODE XREF: sub_10EC+10j
-		btst	#0,($A11100).l
-		bne.s	loc_10F4
+		stopZ80
 		moveq	#$40,d0	; '@'
 
 loc_1100:				; DATA XREF: ROM:00055794o
@@ -1677,7 +1649,7 @@ loc_110C:				; DATA XREF: ROM:00057CB8o
 		move.b	d0,($A1000D).l
 
 loc_1112:				; DATA XREF: ROM:0005D050o
-		move.w	#0,($A11100).l
+		startZ80
 		rts
 ; End of function sub_10EC
 
@@ -1819,11 +1791,9 @@ word_11E4:	dc.w $8134		; DATA XREF: sub_1158+1Ar
 
 sub_1208:				; CODE XREF: ROM:00003824p
 					; ROM:000039D6p ...
-		move.w	#$100,($A11100).l
 
 loc_1210:				; CODE XREF: sub_1208+10j
-		btst	#0,($A11100).l
-		bne.s	loc_1210
+		stopZ80
 		lea	($C00004).l,a5
 		move.w	#$8F01,(a5)
 		move.l	#$9400933F,(a5)
@@ -1892,7 +1862,7 @@ loc_12EA:				; CODE XREF: sub_1208+E4j
 loc_12FA:				; CODE XREF: sub_1208+F4j
 		move.l	d0,(a1)+
 		dbf	d1,loc_12FA
-		move.w	#0,($A11100).l
+		startZ80
 		rts
 ; End of function sub_1208
 
@@ -10036,12 +10006,10 @@ loc_9CA6:				; CODE XREF: ROM:00009CA8j
 		move.w	($FFFFF60C).w,d0
 		andi.b	#$BF,d0
 		move.w	d0,($C00004).l
-		move.w	#$100,($A11100).l
 
 loc_9CC6:				; CODE XREF: ROM:00009CCEj
 					; DATA XREF: ROM:0006EF74o
-		btst	#0,($A11100).l
-		bne.s	loc_9CC6
+		stopZ80
 		lea	($C00004).l,a5
 		move.w	#$8F01,(a5)
 		move.l	#$940F93FF,(a5)
@@ -10056,7 +10024,7 @@ loc_9CF2:				; CODE XREF: ROM:00009CF8j
 		move.w	#$8F02,(a5)
 		clr.l	($FFFFF616).w
 		clr.l	($FFFFF61A).w
-		move.w	#0,($A11100).l
+		startZ80
 		lea	($C00004).l,a6
 		move.w	#$8B03,(a6)
 		move.w	#$8230,(a6)
