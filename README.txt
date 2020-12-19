@@ -4,34 +4,23 @@
 ----------------------------------------------------------------------------------------
 	WARNING
 ----------------------------------------------------------------------------------------
-DO NOT MODIFY THE BUILD OPTIONS IN BUILD.BAT. I HAVE FIXED THE BUILD.BAT SO 
-THE MAIN SOURCE FILE ASSEMBLES INTO A BOOTABLE STATE. 
+PLEASE DO NOT MODIFY THE BUILD OPTIONS IN BUILD.BAT - I HAVE FIXED BUILD.BAT SO THE MAIN
+       	      	     SOURCE FILE ASSEMBLES INTO A BOOTABLE STATE.
 ----------------------------------------------------------------------------------------
 	Files
 ----------------------------------------------------------------------------------------
 Present in root folder:
 
-s2Rev01.asm	
-		Sonic 2 main asm file, with most chunks of data separated.
-s2Macros.asm 	
-		Sonic 2 macros used in code
-s2RamLabels.asm	
-		Sonic 2 labels for Ram Addresses
-s2Constants.asm	
-		Sonic 2 constants used in code.
+s2Rev01.asm;	Sonic 2 main asm file, with most chunks of data separated.
+macros.asm; 	Macros used in the code
 
 Present in "Build_Source" folder:
 
-asm68k.exe	
-		Compiles the ASM file. ASM68K was created by Cross Products.
-rompad.exe	
-		Pads the output ROM so that its size is 2^n. Written by Lightning.
-fixheadr.exe	
-		Fixes the checksum of the output ROM. Written by Stealth.
-hack-detection.exe
-		Checks if the produced rom is Byte-for-Byte identical to Sonic 2 Revision 01
-Split.exe	
-		Splits data from a Sonic 2 ROM
+asm68k.exe;	Compiles the ASM file. ASM68K was created by Cross Products.
+rompad.exe;	Pads the output ROM so that its size is 2^n. Written by Lightning.
+fixheadr.exe;	Fixes the checksum of the output ROM. Written by Stealth.
+hack-detection.exe;	Checks if the produced rom is Byte-for-Byte identical to Sonic 2 Revision 01
+Split.exe;	Splits data from a Sonic 2 ROM
 
 ----------------------------------------------------------------------------------------
 	How to split a ROM
